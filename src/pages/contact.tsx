@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import siteData from "@/data/siteData.json";
 import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
-import { Button } from "@/components/ui/button";
 
 export default function Contact() {
   return (
