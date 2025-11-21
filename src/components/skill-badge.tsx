@@ -1,1 +1,0 @@
-// Skill badge component

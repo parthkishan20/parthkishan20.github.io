@@ -1,19 +1,19 @@
 {
   "profile": {
     "name": "Parthkumar Patel",
-    "title": "Software Developer",
+    "title": "Software Developer | Full-Stack Engineer",
     "email": "parthkishan20@gmail.com",
-    "phone": "551 966 79 09",
+    "phone": "+1 (551) 966-7909",
     "location": "Rochelle Park, NJ 07662",
     "links": {
       "linkedin": "https://linkedin.com/in/parthkishan20",
       "github": "https://github.com/parthkishan20",
-      "portfolio": ""
+      "portfolio": "https://parthkishan20.github.io"
     },
-    "summary": "Passionate software developer with expertise in web development, full-stack solutions, and modern web technologies. Experienced in leading web development projects with a focus on performance, security, and user experience."
+    "summary": "MS Computer Science student at Stevens Institute of Technology (3.9 GPA) with hands-on experience in full-stack development. Proficient in React, TypeScript, Node.js, and cloud deployment. Passionate about building scalable, user-centric web applications with modern technologies."
   },
   "about": {
-    "bio": "I'm a passionate software developer currently pursuing my MS in Computer Science at Stevens Institute of Technology. With experience in web development and full-stack solutions, I specialize in JavaScript, TypeScript, Node.js, and modern web technologies. I enjoy leading development projects, collaborating with diverse teams, and creating user-friendly web applications. My experience includes both full-stack development and team leadership, with a focus on delivering high-quality solutions."
+    "bio": "Currently pursuing my MS in Computer Science at Stevens Institute of Technology with a 3.9 GPA, I bring practical experience in full-stack web development from internships at EventEase and TechBilv Solutions. I specialize in React, TypeScript, and modern web technologies, with hands-on experience in AWS deployment, REST API integration, and building responsive UI components from Figma designs. My academic projects include developing a Mini Search Engine using advanced algorithms. I thrive on solving complex problems with clean, efficient code and enjoy collaborating with teams to deliver high-quality solutions."
   },
   "education": [
     {
@@ -41,51 +41,77 @@
   ],
   "experience": [
     {
-      "company": "TechBilv Solutions LLP",
-      "role": "Software Developer",
-      "dates": "Apr 2023 – Aug 2024",
-      "location": "Gandhinagar, Gujarat, India",
+      "company": "EventEase",
+      "role": "Software Development Intern",
+      "dates": "Sept 2025 – Dec 2025",
+      "location": "Remote / NJ",
       "bullets": [
-        "Led web development projects, ensuring high-quality delivery with a focus on performance, security, and UX",
-        "Collaborated with teams to meet requirements, improve front-end and back-end skills, and stay updated on trends"
+        "Developed full-stack web applications using React.js, Vite, and Tailwind CSS, converting Figma designs into responsive and reusable UI components",
+        "Integrated dynamic data using REST APIs provided through Swagger JSON, ensuring accurate rendering and state synchronization",
+        "Built a full Admin/Dashboard application from scratch using React, TypeScript, ShadCN UI, and Redux Toolkit for global state management",
+        "Followed professional Git workflows including branching, merging, code reviews, and conflict resolution",
+        "Assisted with deployment, production builds, and hosting activities while gaining experience with AI-assisted development tools"
       ]
     },
     {
-      "company": "TechBilv Solution LLP",
-      "role": "Software Developer Intern",
-      "dates": "Jan 2023 – Apr 2023",
+      "company": "TechBilv Solutions LLP",
+      "role": "Software Developer",
+      "dates": "Jan 2023 – Aug 2024",
       "location": "Gandhinagar, Gujarat, India",
       "bullets": [
-        "Worked with TechBilv Web Developer team to build user-friendly web applications and achieve project goals",
-        "Contributed to large-scale projects, aligning tasks with marketing goals and receiving positive feedback"
+        "Contributed to client-facing web applications using React.js, redesigning modals, enhancing layouts, and improving navigation elements",
+        "Integrated AI chatbot (Hoori), updated link structures, and implemented alphabetical scrolling for streamlined user experience",
+        "Managed production deployments using Visual Studio 2022, publishing builds and updating projects on AWS-connected IIS hosting servers",
+        "Hosted and configured static websites on AWS S3, gaining hands-on experience with cloud hosting and deployment pipelines",
+        "Collaborated with cross-functional teams to ensure timely delivery and alignment with client requirements"
       ]
     }
   ],
   "projects": [
     {
+      "name": "Portfolio Website",
+      "description": "Fully responsive portfolio website built with React and TypeScript, featuring reusable components, dark/light mode toggle, and a modern UI. Implemented React Router for seamless navigation and managed all site content using JSON-driven data structures.",
+      "tech": ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite", "React Router"],
+      "github": "https://github.com/parthkishan20/parthkishan20.github.io",
+      "demo": "https://parthkishan20.github.io",
+      "featured": true,
+      "highlights": ["Dark/light mode", "Deployed to GitHub Pages", "Custom domain & DNS configuration"]
+    },
+    {
+      "name": "Mini Search Engine",
+      "description": "Advanced search engine developed for CS 600 Advanced Algorithms course. Implements indexing, tokenization, ranking algorithms, and optimized search retrieval. Utilizes algorithmic techniques to improve query performance and handle large text datasets efficiently.",
+      "tech": ["Python", "Algorithms", "Data Structures", "Text Processing", "Indexing"],
+      "github": "https://github.com/parthkishan20/Mini-Search-Engine",
+      "demo": "",
+      "featured": true,
+      "highlights": ["Advanced indexing algorithms", "Optimized query performance", "Large dataset handling"]
+    },
+    {
       "name": "Online Shop E-commerce Website",
-      "description": "Created a basic online shop with HTML, CSS, and front-end JavaScript for intuitive user interactions. Employed the MVC pattern on the backend, integrating authentication, product management, and cart functionality.",
-      "tech": ["HTML", "CSS", "JavaScript", "MVC Pattern", "MongoDB", "Authentication"],
+      "description": "Functional e-commerce platform with intuitive UI and responsive design. Features MVC backend architecture with user authentication, product management, and shopping cart functionality using MongoDB for data persistence.",
+      "tech": ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB", "MVC Pattern"],
       "github": "https://github.com/parthkishan20/Online_shop",
       "demo": "",
-      "featured": true
+      "featured": true,
+      "highlights": ["User authentication", "Product management", "Shopping cart functionality"]
     },
     {
       "name": "Tic-Tac-Toe Game",
-      "description": "Developed a browser-based tic-tac-toe game using JavaScript, HTML, and CSS. Showcased expertise in advanced JavaScript, including DOM manipulation, event handling, and form submissions.",
-      "tech": ["JavaScript", "HTML", "CSS", "DOM Manipulation", "Event Handling"],
+      "description": "Interactive browser-based game with advanced JavaScript features including AI opponent, move history, and responsive design. Demonstrates mastery of DOM manipulation and event handling.",
+      "tech": ["JavaScript", "HTML", "CSS", "DOM Manipulation", "Game Logic"],
       "github": "https://github.com/parthkishan20/tic-tac-toe",
       "demo": "",
-      "featured": true
+      "featured": false,
+      "highlights": ["AI opponent algorithm", "Move history tracking", "Responsive UI"]
     }
   ],
   "skills": {
-    "languages": ["JavaScript", "TypeScript", "Java", "C++", "C#", "HTML", "CSS", "Python", "SQL"],
-    "frameworks": ["Node.js", "Express.js", "AngularJS", "Vue.js", ".NET", "Bootstrap5"],
-    "tools": ["Adobe Photoshop", "Adobe Illustrator", "iMovie", "MVC Pattern"],
+    "languages": ["JavaScript", "TypeScript", "Java", "C++", "C#", "Python", "HTML5", "CSS3", "SQL"],
+    "frameworks": ["React.js", "Redux", "Redux Toolkit", "Context API", "Node.js", "Express.js", ".NET", "AngularJS", "Vue.js", "Bootstrap 5", "Tailwind CSS"],
+    "tools": ["Git", "Vite", "Swagger APIs", "Figma", "Visual Studio 2022", "Adobe Photoshop", "Adobe Illustrator", "iMovie"],
     "databases": ["MongoDB", "SQL", "MySQL"],
-    "cloud": [],
-    "other": ["Leadership", "Communication", "Problem Solving", "Teamwork", "Adaptability", "Motivation"]
+    "cloud": ["AWS S3", "AWS IIS Hosting", "GitHub Pages"],
+    "other": ["REST APIs", "MVC Architecture", "UI/UX Design", "Responsive Web Design", "State Management", "Code Reviews", "Agile Workflows"]
   },
   "certifications": [
     {
@@ -93,7 +119,7 @@
       "issuer": "Udemy - Maximilian Schwarzmuller",
       "year": 2024,
       "credentialId": "",
-      "link": "https://www.linkedin.com/in/parthkishan20/details/certifications/1705864892199/single-media-viewer/?profileId=ACoAAC_XShoBsjpWX31pJgWDznUant05GwmPOu8"
+      "link": "https://www.linkedin.com/in/parthkishan20/details/certifications/"
     }
   ],
   "extracurricular": [
@@ -114,6 +140,6 @@
   ],
   "resume": {
     "pdfPath": "https://drive.google.com/file/d/1ybRp6vzPU8eAReBynBIRQY4L4-MMpQb_/view?usp=sharing",
-    "lastUpdated": "January 2024"
+    "lastUpdated": "November 2025"
   }
 }

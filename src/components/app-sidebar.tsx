@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Link, useLocation } from "react-router-dom"
 import {
   Home,
   User,
@@ -11,6 +10,7 @@ import {
   Users,
   FileText,
   Mail,
+  Quote,
 } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -27,22 +27,32 @@ import {
 // Import your site data
 import siteData from "@/data/siteData.json"
 
-// Navigation items with proper routes
+// Navigation items with section IDs
 const navigationItems = [
-  { title: "Home", url: "/", icon: Home },
-  { title: "About", url: "/about", icon: User },
-  { title: "Education", url: "/education", icon: GraduationCap },
-  { title: "Experience", url: "/experience", icon: Briefcase },
-  { title: "Projects", url: "/projects", icon: Code },
-  { title: "Skills", url: "/skills", icon: Award },
-  { title: "Certifications", url: "/certifications", icon: ScrollText },
-  { title: "Extracurricular", url: "/extracurricular", icon: Users },
-  { title: "Resume", url: "/resume", icon: FileText },
-  { title: "Contact", url: "/contact", icon: Mail },
+  { title: "Home", id: "home", icon: Home },
+  { title: "About", id: "about", icon: User },
+  { title: "Experience", id: "experience", icon: Briefcase },
+  { title: "Education", id: "education", icon: GraduationCap },
+  { title: "Skills", id: "skills", icon: Award },
+  { title: "Projects", id: "projects", icon: Code },
+  { title: "Certifications", id: "certifications", icon: ScrollText },
+  { title: "Extracurricular", id: "extracurricular", icon: Users },
+  { title: "Testimonials", id: "testimonials", icon: Quote },
+  { title: "Resume", id: "resume", icon: FileText },
+  { title: "Contact", id: "contact", icon: Mail },
 ]
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const location = useLocation()
+interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+  activeSection?: string;
+}
+
+export function AppSidebar({ activeSection, ...props }: AppSidebarProps) {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   
   return (
     <Sidebar {...props}>
@@ -61,14 +71,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent className="px-2">
         <SidebarMenu>
           {navigationItems.map((item) => {
-            const isActive = location.pathname === item.url
+            const isActive = activeSection === item.id
             return (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild isActive={isActive}>
-                  <Link to={item.url} className="flex items-center space-x-3">
-                    <item.icon className="h-4 w-4" />
-                    <span>{item.title}</span>
-                  </Link>
+                <SidebarMenuButton 
+                  onClick={() => scrollToSection(item.id)}
+                  isActive={isActive}
+                  className="cursor-pointer"
+                >
+                  <item.icon className="h-4 w-4" />
+                  <span>{item.title}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             )
