@@ -124,12 +124,12 @@
     }
   ],
   "skills": {
-    "languages": ["JavaScript", "TypeScript", "Java", "C++", "C#", "Python", "HTML5", "CSS3", "SQL"],
-    "frameworks": ["React.js", "Redux", "Redux Toolkit", "Context API", "Node.js", "Express.js", ".NET", "AngularJS", "Vue.js", "Bootstrap 5", "Tailwind CSS", "TensorFlow", "Keras", "Scikit-learn"],
-    "tools": ["Git", "Vite", "Swagger APIs", "Figma", "Visual Studio 2022", "Adobe Photoshop", "Adobe Illustrator", "iMovie", "Jupyter Notebook", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
-    "databases": ["MongoDB", "SQL", "MySQL"],
-    "cloud": ["AWS S3", "AWS IIS Hosting", "GitHub Pages"],
-    "other": ["REST APIs", "MVC Architecture", "UI/UX Design", "Responsive Web Design", "State Management", "Code Reviews", "Agile Workflows", "Machine Learning", "Data Mining", "Neural Networks", "Feature Engineering", "Data Preprocessing", "SMOTE", "Model Evaluation"]
+    "languages": ["JavaScript", "TypeScript", "Python", "Java", "C++", "C#", "HTML5", "CSS3", "SQL"],
+    "frameworks": ["React.js", "Node.js", "Express.js", "Redux Toolkit", "Tailwind CSS", "Bootstrap 5", ".NET", "TensorFlow", "Keras", "Scikit-learn"],
+    "databases": ["MongoDB", "MySQL", "SQL Server"],
+    "cloud": ["AWS S3", "AWS IIS", "GitHub Pages"],
+    "tools": ["Git", "Vite", "Figma", "Swagger", "Visual Studio", "Jupyter Notebook", "Postman"],
+    "other": ["Machine Learning", "Neural Networks", "Data Analysis", "REST APIs", "State Management", "Responsive Design", "Agile/Scrum", "CI/CD"]
   },
   "certifications": [
     {
