@@ -114,6 +114,15 @@
       "highlights": ["81% accuracy with Random Forest", "Analyzed 100K customer records with 28 features", "Handled imbalanced data using SMOTE", "Compared 6 ML algorithms (KNN, Naive Bayes, Logistic Regression, Decision Tree, Random Forest, ANN)"]
     },
     {
+      "name": "Basic Banking System",
+      "description": "Full-stack web application simulating core banking operations including customer account management, money transfers, and transaction history tracking. Built with PHP backend, MySQL database, and responsive frontend design. Features real-time balance updates and complete transaction logging.",
+      "tech": ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript", "MySQLi"],
+      "github": "",
+      "demo": "https://github.com/parthkishan20/basic-banking-system",
+      "featured": false,
+      "highlights": ["Customer account management", "Real-time money transfers", "Transaction history logging", "Responsive web design", "Database-driven application"]
+    },
+    {
       "name": "Tic-Tac-Toe Game",
       "description": "Interactive browser-based game with advanced JavaScript features including AI opponent, move history, and responsive design. Demonstrates mastery of DOM manipulation and event handling.",
       "tech": ["JavaScript", "HTML", "CSS", "DOM Manipulation", "Game Logic"],
