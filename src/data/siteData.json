@@ -125,11 +125,11 @@
   ],
   "skills": {
     "languages": ["JavaScript", "TypeScript", "Java", "C++", "C#", "Python", "HTML5", "CSS3", "SQL"],
-    "frameworks": ["React.js", "Redux", "Redux Toolkit", "Context API", "Node.js", "Express.js", ".NET", "AngularJS", "Vue.js", "Bootstrap 5", "Tailwind CSS"],
-    "tools": ["Git", "Vite", "Swagger APIs", "Figma", "Visual Studio 2022", "Adobe Photoshop", "Adobe Illustrator", "iMovie"],
+    "frameworks": ["React.js", "Redux", "Redux Toolkit", "Context API", "Node.js", "Express.js", ".NET", "AngularJS", "Vue.js", "Bootstrap 5", "Tailwind CSS", "TensorFlow", "Keras", "Scikit-learn"],
+    "tools": ["Git", "Vite", "Swagger APIs", "Figma", "Visual Studio 2022", "Adobe Photoshop", "Adobe Illustrator", "iMovie", "Jupyter Notebook", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
     "databases": ["MongoDB", "SQL", "MySQL"],
     "cloud": ["AWS S3", "AWS IIS Hosting", "GitHub Pages"],
-    "other": ["REST APIs", "MVC Architecture", "UI/UX Design", "Responsive Web Design", "State Management", "Code Reviews", "Agile Workflows"]
+    "other": ["REST APIs", "MVC Architecture", "UI/UX Design", "Responsive Web Design", "State Management", "Code Reviews", "Agile Workflows", "Machine Learning", "Data Mining", "Neural Networks", "Feature Engineering", "Data Preprocessing", "SMOTE", "Model Evaluation"]
   },
   "certifications": [
     {
