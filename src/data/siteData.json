@@ -96,6 +96,24 @@
       "highlights": ["User authentication", "Product management", "Shopping cart functionality"]
     },
     {
+      "name": "Heart Disease Prediction System",
+      "description": "Medical prediction system using machine learning to predict heart disease presence in patients. Analyzed 1,889 patient records with 14 medical features, achieving 87.83% accuracy with Artificial Neural Network. Implemented and compared 3 ML algorithms (KNN, Random Forest, ANN) for MIS-637 Data Analytics course.",
+      "tech": ["Python", "TensorFlow", "Keras", "Scikit-learn", "Pandas", "NumPy", "Machine Learning", "Neural Networks", "Data Preprocessing"],
+      "github": "",
+      "demo": "",
+      "featured": true,
+      "highlights": ["87.83% accuracy with ANN model", "Compared 3 ML algorithms (KNN, Random Forest, ANN)", "90% recall for disease detection", "Comprehensive data preprocessing pipeline"]
+    },
+    {
+      "name": "Credit Score Prediction System",
+      "description": "Machine learning system that predicts credit scores (Poor, Standard, Good) for 100,000 customers using 6 ML algorithms. Achieved 81% accuracy with Random Forest after handling class imbalance using SMOTE. Performed comprehensive data cleaning, feature engineering, and model comparison for CS-513 Knowledge Discovery course.",
+      "tech": ["Python", "Scikit-learn", "Pandas", "NumPy", "SMOTE", "Machine Learning", "Data Mining", "Feature Engineering"],
+      "github": "",
+      "demo": "",
+      "featured": true,
+      "highlights": ["81% accuracy with Random Forest", "Analyzed 100K customer records with 28 features", "Handled imbalanced data using SMOTE", "Compared 6 ML algorithms (KNN, Naive Bayes, Logistic Regression, Decision Tree, Random Forest, ANN)"]
+    },
+    {
       "name": "Tic-Tac-Toe Game",
       "description": "Interactive browser-based game with advanced JavaScript features including AI opponent, move history, and responsive design. Demonstrates mastery of DOM manipulation and event handling.",
       "tech": ["JavaScript", "HTML", "CSS", "DOM Manipulation", "Game Logic"],
