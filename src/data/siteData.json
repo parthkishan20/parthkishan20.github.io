@@ -1,19 +1,19 @@
 {
   "profile": {
     "name": "Parthkumar Patel",
-    "title": "Software Developer | Full-Stack Engineer",
-    "email": "parthkishan20@gmail.com",
-    "phone": "+1 (551) 966-7909",
+    "title": "Software Engineer",
+    "email": "ppatel36@stevens.edu",
+    "phone": "(551) 996-7909",
     "location": "Rochelle Park, NJ 07662",
     "links": {
       "linkedin": "https://linkedin.com/in/parthkishan20",
       "github": "https://github.com/parthkishan20",
-      "portfolio": "https://parthkishan20.github.io"
+      "portfolio": "https://parthkumar.me/"
     },
-    "summary": "MS Computer Science student at Stevens Institute of Technology (3.9 GPA) with hands-on experience in full-stack development. Proficient in React, TypeScript, Node.js, and cloud deployment. Passionate about building scalable, user-centric web applications with modern technologies."
+    "summary": "MS Computer Science student at Stevens Institute of Technology with a 3.9 GPA and hands-on full-stack experience in React, TypeScript, REST APIs, and cloud deployment."
   },
   "about": {
-    "bio": "Currently pursuing my MS in Computer Science at Stevens Institute of Technology with a 3.9 GPA, I bring practical experience in full-stack web development from internships at EventEase and TechBilv Solutions. I specialize in React, TypeScript, and modern web technologies, with hands-on experience in AWS deployment, REST API integration, and building responsive UI components from Figma designs. My academic projects include developing a Mini Search Engine using advanced algorithms. I thrive on solving complex problems with clean, efficient code and enjoy collaborating with teams to deliver high-quality solutions."
+    "bio": "Currently pursuing my MS in Computer Science at Stevens Institute of Technology with a 3.9 GPA, I bring practical experience in full-stack web development from internships at EventEase and TechBilv Solutions LLP. I specialize in React, TypeScript, and modern web technologies, with hands-on experience in REST API integration, AWS-based deployments, and responsive UI development. I enjoy solving complex problems with clean code and collaborating with teams to deliver reliable, user-focused products."
   },
   "education": [
     {
@@ -46,21 +46,22 @@
       "dates": "Sept 2025 – Dec 2025",
       "location": "Remote / NJ",
       "bullets": [
-        "Developed full-stack web applications using React.js, Vite, and Tailwind CSS, converting Figma designs into responsive and reusable UI components",
-        "Integrated dynamic data using REST APIs provided through Swagger JSON, ensuring accurate rendering and state synchronization",
-        "Built a full Admin/Dashboard application from scratch using React, TypeScript, ShadCN UI, and Redux Toolkit for global state management",
-        "Followed professional Git workflows including branching, merging, code reviews, and conflict resolution",
-        "Assisted with deployment, production builds, and hosting activities while gaining experience with AI-assisted development tools"
+        "Built and shipped two greenfield React SPAs and extended an existing codebase for charity golf live scoring and tournament operations, delivering responsive experiences from mobile layouts to 4K TV displays",
+        "Architected modular frontends with React 19, Vite, TypeScript/JavaScript, Tailwind CSS, shadcn/ui, and Redux Toolkit to support live leaderboards, dashboards, and admin workflows",
+        "Integrated REST API workflows with Axios for authentication, team onboarding, score submission, leaderboard retrieval, messaging, media uploads, and sponsor content with centralized error handling and toast-based user feedback",
+        "Implemented near real-time leaderboard updates via polling and optimized refresh logic for web and TV-ready views, including sponsor carousels and animated transitions",
+        "Delivered an admin/dashboard CMS with data-rich tables, CSV/XLSX import flows, and validated forms using React Hook Form, Zod, and TanStack Table",
+        "Collaborated in a Scrum-based remote team using Trello, Slack, Git/GitHub, and supported production builds, deployments, testing, and AI-assisted development workflows"
       ]
     },
     {
       "company": "TechBilv Solutions LLP",
-      "role": "Software Developer",
+      "role": "Software Development Intern",
       "dates": "Jan 2023 – Aug 2024",
       "location": "Gandhinagar, Gujarat, India",
       "bullets": [
         "Contributed to client-facing web applications using React.js, redesigning modals, enhancing layouts, and improving navigation elements",
-        "Integrated AI chatbot (Hoori), updated link structures, and implemented alphabetical scrolling for streamlined user experience",
+        "Integrated AI chatbot Hoori, updated link structures, and implemented alphabetical scrolling for streamlined user experience",
         "Managed production deployments using Visual Studio 2022, publishing builds and updating projects on AWS-connected IIS hosting servers",
         "Hosted and configured static websites on AWS S3, gaining hands-on experience with cloud hosting and deployment pipelines",
         "Collaborated with cross-functional teams to ensure timely delivery and alignment with client requirements"
@@ -69,31 +70,13 @@
   ],
   "projects": [
     {
-      "name": "Portfolio Website",
-      "description": "Fully responsive portfolio website built with React and TypeScript, featuring reusable components, dark/light mode toggle, and a modern UI. Implemented React Router for seamless navigation and managed all site content using JSON-driven data structures.",
-      "tech": ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite", "React Router"],
-      "github": "https://github.com/parthkishan20/parthkishan20.github.io",
-      "demo": "https://parthkishan20.github.io",
-      "featured": true,
-      "highlights": ["Dark/light mode", "Deployed to GitHub Pages", "Custom domain & DNS configuration"]
-    },
-    {
-      "name": "Mini Search Engine",
-      "description": "Advanced search engine developed for CS 600 Advanced Algorithms course. Implements indexing, tokenization, ranking algorithms, and optimized search retrieval. Utilizes algorithmic techniques to improve query performance and handle large text datasets efficiently.",
-      "tech": ["Python", "Algorithms", "Data Structures", "Text Processing", "Indexing"],
-      "github": "https://github.com/parthkishan20/Mini-Search-Engine",
+      "name": "MRTD Validation System (ICAO TD3)",
+      "description": "Built a Python-based machine-readable travel document encoder, decoder, and validator using the Damm algorithm, with automated testing, coverage, mutation analysis, and performance benchmarking at production-scale record volumes.",
+      "tech": ["Python", "pytest", "pytest-cov", "coverage.py", "MutPy", "pandas", "matplotlib", "unittest.mock", "JSON", "CSV", "Git", "GitHub"],
+      "github": "https://github.com/Aayush-Gandhi/SSW_Final-Project_-Group-H",
       "demo": "",
-      "featured": true,
-      "highlights": ["Advanced indexing algorithms", "Optimized query performance", "Large dataset handling"]
-    },
-    {
-      "name": "Online Shop E-commerce Website",
-      "description": "Functional e-commerce platform with intuitive UI and responsive design. Features MVC backend architecture with user authentication, product management, and shopping cart functionality using MongoDB for data persistence.",
-      "tech": ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB", "MVC Pattern"],
-      "github": "https://github.com/parthkishan20/Online_shop",
-      "demo": "",
-      "featured": true,
-      "highlights": ["User authentication", "Product management", "Shopping cart functionality"]
+      "featured": false,
+      "highlights": ["Developed an end-to-end ICAO TD3 MRZ engine with scan, decode, encode, and check-digit validation.", "Designed and executed 15 automated unit tests with a 100% pass rate.", "Achieved 86% line coverage and generated full HTML/terminal reports.", "Implemented mutation testing with 406 generated mutants and 137 killed mutants.", "Benchmarked performance on up to 10,000 records at scale."]
     },
     {
       "name": "Heart Disease Prediction System",
@@ -112,6 +95,60 @@
       "demo": "",
       "featured": true,
       "highlights": ["81% accuracy with Random Forest", "Analyzed 100K customer records with 28 features", "Handled imbalanced data using SMOTE", "Compared 6 ML algorithms (KNN, Naive Bayes, Logistic Regression, Decision Tree, Random Forest, ANN)"]
+    },
+    {
+      "name": "Financial QA Bot",
+      "description": "Python application that analyzes CSV financial data, answers natural-language questions with rule-based or OpenRouter-backed reasoning, and generates professional financial reports and visualizations.",
+      "tech": ["Python", "pandas", "matplotlib", "numpy", "requests", "python-dotenv", "OpenRouter API", "seaborn", "scipy"],
+      "github": "https://github.com/parthkishan20/Final-project-FE-520-QA-Bot",
+      "demo": "",
+      "featured": false,
+      "highlights": ["CSV financial data ingestion and validation", "Natural-language Q&A for revenue, income, expenses, and assets", "Smart year detection for best/worst/highest/lowest questions", "Rule-based fallback when AI is unavailable", "Automated JSON report export", "Fuzzy column matching and trend analysis"]
+    },
+    {
+      "name": "SortBoard",
+      "description": "Built a responsive React + TypeScript sorting visualizer that animates 6 algorithms in real time using generator-based execution and user-controlled playback for interactive algorithm learning.",
+      "tech": ["React 19", "TypeScript", "Vite 7", "Tailwind CSS 3", "JavaScript Generators", "Custom React Hooks", "Lucide React", "ESLint", "GitHub Pages"],
+      "github": "",
+      "demo": "https://parthkishan20.github.io/SortBoard/",
+      "featured": false,
+      "highlights": ["Real-time visualization for 6 sorting algorithms", "Pause, resume, stop, and restart controls", "Adjustable array size and animation speed", "Color-coded bar states and algorithm complexity display", "Responsive UI for desktop, tablet, and mobile"]
+    },
+    {
+      "name": "MouseMacro",
+      "description": "Built a lightweight macOS menu bar automation app that remaps extra mouse buttons to copy/paste shortcuts with global event interception, suppressed default navigation behavior, and real-time usage analytics.",
+      "tech": ["Swift 5", "SwiftUI", "AppKit", "Quartz Event Tap", "os.log", "Xcode", "macOS"],
+      "github": "https://github.com/parthkishan20/MouseMacro",
+      "demo": "",
+      "featured": false,
+      "highlights": ["System-wide remapping of mouse Button 4 to Cmd+C and Button 5 to Cmd+V", "Suppression of original Button 4/5 forward-back navigation events", "Persistent menu bar presence with quick Preferences and Quit controls", "Real-time session statistics for copy and paste actions", "Accessibility permission flow with guided settings deep-link", "Structured logging and resilient event-tap lifecycle management"]
+    },
+    {
+      "name": "Mini Search Engine",
+      "description": "Python-based mini search engine that crawls and indexes HTML pages, ranks matches by term frequency, and serves results through a Flask web app and CLI.",
+      "tech": ["Python", "Flask", "BeautifulSoup", "Jinja2", "HTML", "CSS", "JavaScript", "Requests", "Regex"],
+      "github": "https://github.com/parthkishan20/Mini-Search-Engine",
+      "demo": "",
+      "featured": false,
+      "highlights": ["Web crawler that downloads and stores HTML pages locally", "Inverted index with stop-word removal and frequency-based ranking", "Snippet previews and search-term highlighting in results", "Flask web interface with a responsive layout and dark mode toggle", "Recent search history and query logging to output.txt", "Command-line search mode for terminal-based use"]
+    },
+    {
+      "name": "Portfolio Website",
+      "description": "A responsive, JSON-driven React portfolio that showcases professional experience, projects, skills, certifications, and resume content with a polished recruiter-friendly interface.",
+      "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Radix UI", "Framer Motion", "Lucide React", "GitHub Pages", "HTML", "CSS", "JavaScript", "Responsive Design"],
+      "github": "https://github.com/parthkishan20/parthkishan20.github.io",
+      "demo": "https://parthkishan20.github.io",
+      "featured": false,
+      "highlights": ["Sticky sidebar navigation with active section highlighting", "Dark/light mode toggle and motion-based hero section", "JSON-driven content for projects, skills, experience, and certifications", "Live GitHub stats integration", "Resume PDF preview and download", "Contact form with toast confirmation", "Scroll progress indicator and back-to-top control", "SEO metadata management"]
+    },
+    {
+      "name": "Online Shop E-commerce Website",
+      "description": "Functional e-commerce platform with intuitive UI and responsive design. Features MVC backend architecture with user authentication, product management, and shopping cart functionality using MongoDB for data persistence.",
+      "tech": ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB", "MVC Pattern"],
+      "github": "https://github.com/parthkishan20/Online_shop",
+      "demo": "",
+      "featured": true,
+      "highlights": ["User authentication", "Product management", "Shopping cart functionality"]
     },
     {
       "name": "Basic Banking System",
@@ -133,14 +170,35 @@
     }
   ],
   "skills": {
-    "languages": ["JavaScript", "TypeScript", "Python", "Java", "C++", "C#", "HTML5", "CSS3", "SQL"],
-    "frameworks": ["React.js", "Node.js", "Express.js", "Redux Toolkit", "Tailwind CSS", "Bootstrap 5", ".NET", "TensorFlow", "Keras", "Scikit-learn"],
-    "databases": ["MongoDB", "MySQL", "SQL Server"],
-    "cloud": ["AWS S3", "AWS IIS", "GitHub Pages"],
-    "tools": ["Git", "Vite", "Figma", "Swagger", "Visual Studio", "Jupyter Notebook", "Postman"],
-    "other": ["Machine Learning", "Neural Networks", "Data Analysis", "REST APIs", "State Management", "Responsive Design", "Agile/Scrum", "CI/CD"]
+    "languages": ["JavaScript", "TypeScript", "Python", "Java", "C++", "C#"],
+    "frameworks": ["React.js", "AngularJS", "Redux", "Node.js", "Express.js", "Vue.js", "Flask", ".NET", "Tailwind CSS", "HTML", "CSS"],
+    "databases": ["MongoDB", "PostgreSQL"],
+    "cloud": ["CI/CD"],
+    "tools": ["Git", "GitHub", "GitHub Copilot", "n8n", "Claude Code", "AntiGravity", "LLM", "Prompt Engineering", "BeautifulSoup", "Web Crawling", "Data Scraping", "Adobe Photoshop"],
+    "other": ["Machine Learning", "Deep Learning", "Data Visualization", "Data Analysis", "Model Training", "Data Preprocessing", "Imbalanced Data Handling", "Model Evaluation", "Web Development", "REST APIs", "Model-View-Controller", "Object-Oriented Programming"]
   },
   "certifications": [
+    {
+      "name": "Bloomberg Market Concept",
+      "issuer": "Bloomberg for Education",
+      "year": 2026,
+      "credentialId": "",
+      "link": "https://portal.bloombergforeducation.com/certificates/E61TbMUtkYjzyZSwjD9N1cWf"
+    },
+    {
+      "name": "React Essential Training",
+      "issuer": "Linkedin Learning",
+      "year": 2024,
+      "credentialId": "",
+      "link": "https://www.linkedin.com/learning/certificates/8d89ad609a45fa6e99f2f7d184b7d7733531acd41042cde6e4707745e430414f?u=56742337"
+    },
+    {
+      "name": "Advanced Prompt Engineering",
+      "issuer": "Linkedin Learning",
+      "year": 2024,
+      "credentialId": "",
+      "link": "https://www.linkedin.com/learning/certificates/cf0c517ebdfd5b8a02e4a4fb3047a7a9d788e4f2c28b24134acd06dd81db7e61?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3B6y59wotFTGyzZdAvAPd4PA%3D%3D&accountId=56742337&u=56742337&success=true&authUUID=G6DCfU1bStOdeNPSi3H2tg%3D%3D"
+    },
     {
       "name": "100 Days Of Code - 2024 Web Development Bootcamp",
       "issuer": "Udemy - Maximilian Schwarzmuller",
