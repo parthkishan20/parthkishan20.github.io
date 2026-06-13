@@ -4,17 +4,19 @@ import { Badge } from "@/components/ui/badge";
 import siteData from "@/data/siteData.json";
 import { Code2, Rocket, Users2, Zap } from "lucide-react";
 
+const initials = siteData.profile.name.split(" ").map((n) => n[0]).join("");
+
 const highlights = [
-  { icon: Code2, label: "1.5 Years Experience", color: "text-blue-500" },
-  { icon: Rocket, label: "5+ Projects Delivered", color: "text-purple-500" },
-  { icon: Users2, label: "Team Leadership", color: "text-indigo-500" },
-  { icon: Zap, label: "3.9 GPA at Stevens", color: "text-violet-500" },
+  { icon: Code2, label: "1.5 Years Experience", color: "text-primary" },
+  { icon: Rocket, label: "5+ Projects Delivered", color: "text-accent" },
+  { icon: Users2, label: "Team Leadership", color: "text-primary" },
+  { icon: Zap, label: "3.9 GPA at Stevens", color: "text-accent" },
 ];
 
 export default function About() {
   return (
     <div className="w-full min-h-screen flex items-center justify-center py-12 px-4 md:px-6 lg:px-8">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -30,17 +32,14 @@ export default function About() {
               transition={{ duration: 0.5 }}
               className="relative group"
             >
-              <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition duration-500"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#0077B5] to-[#00A0DC] rounded-full blur-lg opacity-30 group-hover:opacity-50 transition duration-500"></div>
               <Avatar className="size-24 sm:size-28 md:size-36 relative border-4 border-background">
                 <AvatarImage
                   src="/images/profile/avatar.png"
                   alt={`${siteData.profile.name} - Professional headshot`}
                 />
-                <AvatarFallback className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 text-white">
-                  {siteData.profile.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                <AvatarFallback className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#0077B5] to-[#00A0DC] text-white">
+                  {initials}
                 </AvatarFallback>
               </Avatar>
             </motion.div>

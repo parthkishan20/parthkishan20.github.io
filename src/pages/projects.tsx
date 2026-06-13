@@ -40,11 +40,11 @@ export default function Projects() {
                   className="group border rounded-lg p-6 space-y-4 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-gradient-to-br from-card to-card/50 border-primary/20 relative overflow-hidden"
                 >
                   {/* Animated gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-blue-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0077B5]/5 to-[#00A0DC]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
                   <div className="relative z-10">
                     <div className="flex items-start justify-between">
-                      <h3 className="text-xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 dark:group-hover:from-purple-400 dark:group-hover:to-blue-400 group-hover:bg-clip-text transition-all duration-300">
+                      <h3 className="text-xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#0077B5] group-hover:to-[#00A0DC] group-hover:bg-clip-text transition-all duration-300">
                         {project.name}
                       </h3>
                       <Star className="h-5 w-5 text-yellow-500 fill-yellow-500 shrink-0 group-hover:scale-110 transition-transform" />

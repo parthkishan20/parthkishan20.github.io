@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, GitFork, Eye } from "lucide-react";
+import { Star, GitFork, Eye, AlertCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { GitHubStatsSkeleton } from "./github-stats-skeleton";
 
@@ -10,6 +10,10 @@ interface GitHubData {
   public_gists: number;
 }
 
+interface RepoData {
+  stargazers_count: number;
+}
+
 export function GitHubStats() {
   const [stats, setStats] = useState({
     repos: 0,
@@ -17,19 +21,25 @@ export function GitHubStats() {
     followers: 0,
   });
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
     const fetchGitHubData = async () => {
       try {
-        // Fetch user data
-        const userResponse = await fetch("https://api.github.com/users/parthkishan20");
+        const userResponse = await fetch("https://api.github.com/users/parthkishan20", { signal });
+        if (!userResponse.ok) throw new Error(`User API error: ${userResponse.status}`);
         const userData: GitHubData = await userResponse.json();
 
-        // Fetch repositories to calculate total stars
-        const reposResponse = await fetch("https://api.github.com/users/parthkishan20/repos?per_page=100");
-        const reposData = await reposResponse.json();
-        
-        const totalStars = reposData.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0);
+        const reposResponse = await fetch("https://api.github.com/users/parthkishan20/repos?per_page=100", { signal });
+        if (!reposResponse.ok) throw new Error(`Repos API error: ${reposResponse.status}`);
+        const reposData: RepoData[] = await reposResponse.json();
+
+        if (!Array.isArray(reposData)) throw new Error("Repos response is not an array");
+
+        const totalStars = reposData.reduce((acc, repo) => acc + repo.stargazers_count, 0);
 
         setStats({
           repos: userData.public_repos,
@@ -37,17 +47,29 @@ export function GitHubStats() {
           followers: userData.followers,
         });
         setLoading(false);
-      } catch (error) {
-        console.error("Error fetching GitHub data:", error);
+      } catch (err) {
+        if ((err as Error).name === "AbortError") return;
+        console.error("Error fetching GitHub data:", err);
+        setError(true);
         setLoading(false);
       }
     };
 
     fetchGitHubData();
+    return () => controller.abort();
   }, []);
 
   if (loading) {
     return <GitHubStatsSkeleton />;
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center gap-2 py-6 text-sm text-muted-foreground">
+        <AlertCircle className="h-4 w-4 shrink-0" />
+        <span>GitHub stats unavailable — visit <a href="https://github.com/parthkishan20" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">github.com/parthkishan20</a></span>
+      </div>
+    );
   }
 
   const displayStats = [
@@ -71,7 +93,7 @@ export function GitHubStats() {
             <Card className="text-center hover:shadow-lg transition-all duration-300 hover:scale-105 border-primary/20 bg-gradient-to-br from-card to-card/50">
               <CardContent className="pt-6">
                 <Icon className="h-8 w-8 mx-auto mb-2 text-primary" />
-                <div className="text-3xl font-bold mb-1 bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">{stat.value}</div>
+                <div className="text-3xl font-bold mb-1 bg-gradient-to-r from-[#0077B5] to-[#00A0DC] bg-clip-text text-transparent">{stat.value}</div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
               </CardContent>
             </Card>

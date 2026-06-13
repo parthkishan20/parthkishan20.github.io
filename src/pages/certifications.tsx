@@ -38,7 +38,7 @@ export default function Certifications() {
                     <span className="text-xs sm:text-sm text-muted-foreground truncate">{cert.issuer}</span>
                     {cert.link ? (
                       <a
-                        className="inline-flex items-center gap-1 md:gap-2 text-xs sm:text-sm text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap"
+                        className="inline-flex items-center gap-1 md:gap-2 text-xs sm:text-sm text-primary hover:underline whitespace-nowrap"
                         href={cert.link}
                         target="_blank"
                         rel="noopener noreferrer"

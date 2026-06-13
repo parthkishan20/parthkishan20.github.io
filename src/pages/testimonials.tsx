@@ -34,7 +34,7 @@ export default function Testimonials() {
             <Card className="max-w-2xl mx-auto border-primary/20 bg-gradient-to-br from-card to-card/50">
               <CardContent className="pt-12 pb-12 px-6 text-center space-y-6">
                 <div className="flex justify-center">
-                  <div className="p-4 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20">
+                  <div className="p-4 rounded-full bg-gradient-to-r from-[#0077B5]/20 to-[#00A0DC]/20">
                     <Clock className="h-12 w-12 text-primary" />
                   </div>
                 </div>

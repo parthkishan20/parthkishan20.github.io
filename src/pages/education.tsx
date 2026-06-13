@@ -26,7 +26,7 @@ export default function Education() {
               className="relative mb-12 sm:mb-16 sm:pl-12"
             >
               {/* Timeline dot */}
-              <div className="bg-gradient-to-r from-purple-600 to-blue-600 absolute left-0 top-7 size-5 sm:flex items-center justify-center rounded-full border-2 border-background shadow-lg hidden" />
+              <div className="bg-gradient-to-r from-[#0077B5] to-[#00A0DC] absolute left-0 top-7 size-5 sm:flex items-center justify-center rounded-full border-2 border-background shadow-lg hidden" />
               <Card className="border-primary/20 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-card to-card/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-xl sm:text-2xl font-semibold">
@@ -41,7 +41,7 @@ export default function Education() {
                 <CardContent className="pt-0">
                   <div className="flex flex-wrap items-center gap-3 mb-2">
                     <span className="text-muted-foreground text-sm font-medium bg-muted/50 px-3 py-1 rounded-full">{edu.dates}</span>
-                    <span className="text-sm font-semibold bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent px-3 py-1 rounded-full border border-primary/20">GPA: {edu.gpa}</span>
+                    <span className="text-sm font-semibold bg-gradient-to-r from-[#0077B5] to-[#00A0DC] bg-clip-text text-transparent px-3 py-1 rounded-full border border-primary/20">GPA: {edu.gpa}</span>
                   </div>
                   {/* <ul className="list-disc list-inside space-y-1 text-base text-muted-foreground">
                     {edu.details.map((detail, i) => (

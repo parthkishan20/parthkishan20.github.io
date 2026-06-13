@@ -16,6 +16,7 @@ const sectionNames: Record<string, string> = {
   projects: "Projects",
   certifications: "Certifications",
   extracurricular: "Extracurricular",
+  testimonials: "Testimonials",
   resume: "Resume",
   contact: "Contact",
 };

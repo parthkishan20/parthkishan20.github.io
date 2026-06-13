@@ -9,13 +9,13 @@ const skillGroups = [
     icon: <Code className="h-6 w-6" />,
     title: "Languages",
     items: siteData.skills.languages,
-    color: "text-blue-500",
+    color: "text-primary",
   },
   {
     icon: <Layers className="h-6 w-6" />,
     title: "Frameworks & Libraries",
     items: siteData.skills.frameworks,
-    color: "text-purple-500",
+    color: "text-accent",
   },
   {
     icon: <Database className="h-6 w-6" />,

@@ -4,17 +4,9 @@ import { Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Resume() {
-  const handleDownload = () => {
-    // Convert Google Drive view link to download link
-    const fileId = siteData.resume.pdfPath.match(/\/d\/(.+?)\//)?.[1];
-    if (fileId) {
-      window.open(`https://drive.google.com/uc?export=download&id=${fileId}`, "_blank");
-    }
-  };
-
   return (
     <div className="w-full min-h-screen flex items-center py-12 px-4 md:px-6 lg:px-8">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -32,22 +24,23 @@ export default function Resume() {
             <Button variant="outline" asChild className="gap-2">
               <a href={siteData.resume.pdfPath} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="h-4 w-4" />
-                View in Drive
+                Open PDF
               </a>
             </Button>
-            <Button onClick={handleDownload} className="gap-2">
-              <Download className="h-4 w-4" />
-              Download PDF
+            <Button asChild className="gap-2">
+              <a href={siteData.resume.pdfPath} download>
+                <Download className="h-4 w-4" />
+                Download PDF
+              </a>
             </Button>
           </div>
         </div>
-        
+
         <div className="w-full mx-auto rounded-lg overflow-hidden bg-muted flex items-center justify-center shadow-lg" style={{ aspectRatio: '8.5/11', maxHeight: '75vh' }}>
           <iframe
-            src={siteData.resume.pdfPath.replace("/view", "/preview")}
+            src={siteData.resume.pdfPath}
             title="Resume Preview"
             className="w-full h-full border-none"
-            allow="autoplay"
           />
         </div>
       </motion.div>
