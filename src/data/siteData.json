@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Parthkumar Patel",
-    "title": "Software Engineer",
+    "title": "Full Stack Developer",
     "email": "ppatel36@stevens.edu",
     "phone": "(551) 996-7909",
     "location": "Rochelle Park, NJ 07662",
@@ -10,10 +10,10 @@
       "github": "https://github.com/parthkishan20",
       "portfolio": "https://parthkumar.me/"
     },
-    "summary": "MS Computer Science student at Stevens Institute of Technology with a 3.9 GPA and hands-on full-stack experience in React, TypeScript, REST APIs, and cloud deployment."
+    "summary": "MS Computer Science student at Stevens Institute of Technology (3.9 GPA) with full-stack experience building React SPAs, REST APIs, and cloud-deployed web applications. Seeking Software Developer and Full Stack Developer roles."
   },
   "about": {
-    "bio": "Currently pursuing my MS in Computer Science at Stevens Institute of Technology with a 3.9 GPA, I bring practical experience in full-stack web development from internships at EventEase and TechBilv Solutions LLP. I specialize in React, TypeScript, and modern web technologies, with hands-on experience in REST API integration, AWS-based deployments, and responsive UI development. I enjoy solving complex problems with clean code and collaborating with teams to deliver reliable, user-focused products."
+    "bio": "Currently pursuing my MS in Computer Science at Stevens Institute of Technology with a 3.9 GPA, I bring hands-on full-stack experience from internships at EventEase and TechBilv Solutions LLP. I build production-grade web applications with React 19, TypeScript, Node.js, and modern tooling — from architecting modular component systems and REST API integrations to managing AWS S3 deployments and CI/CD pipelines. I enjoy owning features end-to-end, collaborating in agile teams, and writing clean, maintainable code that solves real user problems."
   },
   "education": [
     {
@@ -46,12 +46,13 @@
       "dates": "Sept 2025 – Dec 2025",
       "location": "Remote / NJ",
       "bullets": [
-        "Built and shipped two greenfield React SPAs and extended an existing codebase for charity golf live scoring and tournament operations, delivering responsive experiences from mobile layouts to 4K TV displays",
-        "Architected modular frontends with React 19, Vite, TypeScript/JavaScript, Tailwind CSS, shadcn/ui, and Redux Toolkit to support live leaderboards, dashboards, and admin workflows",
-        "Integrated REST API workflows with Axios for authentication, team onboarding, score submission, leaderboard retrieval, messaging, media uploads, and sponsor content with centralized error handling and toast-based user feedback",
-        "Implemented near real-time leaderboard updates via polling and optimized refresh logic for web and TV-ready views, including sponsor carousels and animated transitions",
-        "Delivered an admin/dashboard CMS with data-rich tables, CSV/XLSX import flows, and validated forms using React Hook Form, Zod, and TanStack Table",
-        "Collaborated in a Scrum-based remote team using Trello, Slack, Git/GitHub, and supported production builds, deployments, testing, and AI-assisted development workflows"
+        "Built and shipped two greenfield React SPAs and extended an existing codebase for charity golf live scoring and tournament operations, delivering responsive experiences from mobile layouts to 4K TV displays.",
+        "Architected modular frontends with React 19, Vite, TypeScript/JavaScript, Tailwind CSS, shadcn/ui, and Redux Toolkit, using reusable component patterns to support live leaderboards, dashboards, and admin workflows.",
+        "Integrated end-to-end REST API workflows with Axios for authentication, team onboarding, score submission, leaderboard retrieval, messaging, media uploads, and sponsor content, adding centralized error handling and toast-based user feedback.",
+        "Implemented near real-time leaderboard updates via polling and optimized refresh logic for both web and TV-ready views, including sponsor carousels and animated transitions to keep rankings and event information current.",
+        "Delivered an admin/dashboard CMS with data-rich tables, CSV/XLSX import flows, and validated forms (React Hook Form, Zod, TanStack Table) to streamline course, golfer, team, communication, and sponsor management for organizers.",
+        "Collaborated in a Scrum-based remote team with weekly standups, using Trello for task tracking, Slack for communication, and Git/GitHub for version control and code reviews while assisting with production builds, deployments, and testing.",
+        "Leveraged AI-assisted coding tools (ChatGPT, GitHub Copilot, Cursor) alongside ESLint and established patterns to accelerate development while maintaining readable, consistent, and maintainable code."
       ]
     },
     {
@@ -60,41 +61,73 @@
       "dates": "Jan 2023 – Aug 2024",
       "location": "Gandhinagar, Gujarat, India",
       "bullets": [
-        "Contributed to client-facing web applications using React.js, redesigning modals, enhancing layouts, and improving navigation elements",
-        "Integrated AI chatbot Hoori, updated link structures, and implemented alphabetical scrolling for streamlined user experience",
-        "Managed production deployments using Visual Studio 2022, publishing builds and updating projects on AWS-connected IIS hosting servers",
-        "Hosted and configured static websites on AWS S3, gaining hands-on experience with cloud hosting and deployment pipelines",
-        "Collaborated with cross-functional teams to ensure timely delivery and alignment with client requirements"
+        "Contributed to client-facing web applications using React.js, redesigning modals, enhancing layouts, and improving navigation elements.",
+        "Integrated AI chatbot (Hoori), updated link structures, and implemented alphabetical scrolling for streamlined user experience.",
+        "Managed production deployments using Visual Studio 2022, publishing builds and updating projects on AWS-connected IIS hosting servers.",
+        "Hosted and configured static websites on AWS S3, gaining hands-on experience with cloud hosting and deployment pipelines.",
+        "Collaborated with cross-functional teams to ensure timely delivery and alignment with client requirements."
       ]
     }
   ],
   "projects": [
     {
-      "name": "MRTD Validation System (ICAO TD3)",
-      "description": "Built a Python-based machine-readable travel document encoder, decoder, and validator using the Damm algorithm, with automated testing, coverage, mutation analysis, and performance benchmarking at production-scale record volumes.",
-      "tech": ["Python", "pytest", "pytest-cov", "coverage.py", "MutPy", "pandas", "matplotlib", "unittest.mock", "JSON", "CSV", "Git", "GitHub"],
-      "github": "https://github.com/Aayush-Gandhi/SSW_Final-Project_-Group-H",
-      "demo": "",
-      "featured": false,
-      "highlights": ["Developed an end-to-end ICAO TD3 MRZ engine with scan, decode, encode, and check-digit validation.", "Designed and executed 15 automated unit tests with a 100% pass rate.", "Achieved 86% line coverage and generated full HTML/terminal reports.", "Implemented mutation testing with 406 generated mutants and 137 killed mutants.", "Benchmarked performance on up to 10,000 records at scale."]
+      "name": "SortBoard",
+      "description": "Built a responsive React + TypeScript sorting visualizer that animates 6 algorithms in real time using generator-based execution and user-controlled playback for interactive algorithm learning.",
+      "tech": ["React 19", "TypeScript", "Vite", "Tailwind CSS", "JavaScript Generators", "Custom React Hooks", "Lucide React", "ESLint", "GitHub Pages"],
+      "github": "https://github.com/parthkishan20/SortBoard",
+      "demo": "https://parthkishan20.github.io/SortBoard/",
+      "featured": true,
+      "highlights": [
+        "Engineered an interactive sorting visualizer with 6 algorithm implementations (Bubble, Merge, Quick, Insertion, Selection, Heap) to demonstrate behavior step-by-step.",
+        "Implemented generator-based sorting flows and a reusable animation engine in custom hooks, enabling pause, resume, stop, and speed control for smooth real-time playback.",
+        "Designed modular UI components and color-state visualization (comparing, swapping, pivot, sorted) to improve concept clarity for learners.",
+        "Built configurable controls for array size (10–100) and execution speed (1–100 steps/sec), supporting multiple learning paces and side-by-side exploration.",
+        "Shipped a production deployment pipeline with Vite build and GitHub Pages publishing, delivering a live, accessible web demo."
+      ]
     },
     {
-      "name": "Heart Disease Prediction System",
-      "description": "Medical prediction system using machine learning to predict heart disease presence in patients. Analyzed 1,889 patient records with 14 medical features, achieving 87.83% accuracy with Artificial Neural Network. Implemented and compared 3 ML algorithms (KNN, Random Forest, ANN) for MIS-637 Data Analytics course.",
-      "tech": ["Python", "TensorFlow", "Keras", "Scikit-learn", "Pandas", "NumPy", "Machine Learning", "Neural Networks", "Data Preprocessing"],
-      "github": "",
-      "demo": "",
+      "name": "Portfolio Website",
+      "description": "A responsive, JSON-driven React portfolio that showcases professional experience, projects, skills, certifications, and resume content with a polished recruiter-friendly interface.",
+      "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Radix UI", "Framer Motion", "Lucide React", "GitHub Pages", "HTML", "CSS", "JavaScript"],
+      "github": "https://github.com/parthkishan20/parthkishan20.github.io",
+      "demo": "https://parthkishan20.github.io",
       "featured": true,
-      "highlights": ["87.83% accuracy with ANN model", "Compared 3 ML algorithms (KNN, Random Forest, ANN)", "90% recall for disease detection", "Comprehensive data preprocessing pipeline"]
+      "highlights": [
+        "Built a responsive, single-page portfolio in React and TypeScript with section-based navigation, improving discoverability across the full personal brand and career story.",
+        "Designed a reusable, JSON-driven content architecture with Tailwind CSS and shadcn/ui components, making it easy to maintain projects, skills, experience, and certifications.",
+        "Implemented dark/light mode, scroll progress, back-to-top behavior, and active-section tracking to deliver a polished, accessible user experience.",
+        "Integrated live GitHub activity cards, resume preview/download, SEO metadata, and a contact form with toast feedback to improve recruiter engagement.",
+        "Deployed to GitHub Pages with custom-domain support, delivering a fast, production-ready portfolio presence."
+      ]
     },
     {
-      "name": "Credit Score Prediction System",
-      "description": "Machine learning system that predicts credit scores (Poor, Standard, Good) for 100,000 customers using 6 ML algorithms. Achieved 81% accuracy with Random Forest after handling class imbalance using SMOTE. Performed comprehensive data cleaning, feature engineering, and model comparison for CS-513 Knowledge Discovery course.",
-      "tech": ["Python", "Scikit-learn", "Pandas", "NumPy", "SMOTE", "Machine Learning", "Data Mining", "Feature Engineering"],
-      "github": "",
+      "name": "Online Shop E-commerce Website",
+      "description": "Functional full-stack e-commerce platform with MVC backend architecture, user authentication, product management, and shopping cart functionality using Node.js and MongoDB.",
+      "tech": ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MongoDB", "MVC Pattern"],
+      "github": "https://github.com/parthkishan20/Online_shop",
       "demo": "",
       "featured": true,
-      "highlights": ["81% accuracy with Random Forest", "Analyzed 100K customer records with 28 features", "Handled imbalanced data using SMOTE", "Compared 6 ML algorithms (KNN, Naive Bayes, Logistic Regression, Decision Tree, Random Forest, ANN)"]
+      "highlights": [
+        "Built an end-to-end e-commerce platform with Node.js and Express.js following the MVC pattern for clean separation of concerns.",
+        "Implemented user authentication, session management, and protected routes.",
+        "Developed product management, shopping cart, and order workflows backed by MongoDB.",
+        "Designed a responsive front-end with intuitive UI for browsing, filtering, and purchasing products."
+      ]
+    },
+    {
+      "name": "Mini Search Engine",
+      "description": "Python-based mini search engine that crawls and indexes HTML pages, ranks matches by term frequency, and serves results through a Flask web app and CLI.",
+      "tech": ["Python", "Flask", "BeautifulSoup", "Jinja2", "HTML", "CSS", "JavaScript", "Requests", "Regex"],
+      "github": "https://github.com/parthkishan20/Mini-Search-Engine",
+      "demo": "",
+      "featured": true,
+      "highlights": [
+        "Built a Flask search application that indexes local HTML pages and returns ranked results with highlighted matches, snippets, and clickable source pages.",
+        "Implemented an inverted-index pipeline with stop-word filtering and text tokenization to support fast full-text search across the document set.",
+        "Developed a recursive web crawler to collect and persist up to 10 Wikipedia pages as the searchable corpus.",
+        "Added recent-search tracking, output logging, and a dark-mode interface to improve usability.",
+        "Delivered a command-line version of the search engine to validate core retrieval logic outside the browser UI."
+      ]
     },
     {
       "name": "Financial QA Bot",
@@ -103,81 +136,110 @@
       "github": "https://github.com/parthkishan20/Final-project-FE-520-QA-Bot",
       "demo": "",
       "featured": false,
-      "highlights": ["CSV financial data ingestion and validation", "Natural-language Q&A for revenue, income, expenses, and assets", "Smart year detection for best/worst/highest/lowest questions", "Rule-based fallback when AI is unavailable", "Automated JSON report export", "Fuzzy column matching and trend analysis"]
+      "highlights": [
+        "Built a CSV-driven financial question-answering pipeline that loads structured data, matches metrics with fuzzy lookup, and returns year-specific insights in plain English.",
+        "Implemented a dual-mode QA engine with OpenRouter LLM support and rule-based fallback to keep responses available even without an API key.",
+        "Generated automated JSON reports and high-resolution financial charts to streamline analysis and stakeholder review.",
+        "Added trend detection, best/worst-year analysis, and derived ratio calculations such as net margin, ROA, and asset turnover."
+      ]
     },
     {
-      "name": "SortBoard",
-      "description": "Built a responsive React + TypeScript sorting visualizer that animates 6 algorithms in real time using generator-based execution and user-controlled playback for interactive algorithm learning.",
-      "tech": ["React 19", "TypeScript", "Vite 7", "Tailwind CSS 3", "JavaScript Generators", "Custom React Hooks", "Lucide React", "ESLint", "GitHub Pages"],
-      "github": "",
-      "demo": "https://parthkishan20.github.io/SortBoard/",
+      "name": "MRTD Validation System (ICAO TD3)",
+      "description": "Python-based machine-readable travel document encoder, decoder, and validator using the Damm algorithm, with automated testing, coverage, mutation analysis, and performance benchmarking at production-scale record volumes.",
+      "tech": ["Python", "pytest", "pytest-cov", "coverage.py", "MutPy", "pandas", "matplotlib", "unittest.mock", "JSON", "CSV", "Git", "GitHub"],
+      "github": "https://github.com/Aayush-Gandhi/SSW_Final-Project_-Group-H",
+      "demo": "",
       "featured": false,
-      "highlights": ["Real-time visualization for 6 sorting algorithms", "Pause, resume, stop, and restart controls", "Adjustable array size and animation speed", "Color-coded bar states and algorithm complexity display", "Responsive UI for desktop, tablet, and mobile"]
+      "highlights": [
+        "Developed an end-to-end ICAO TD3 MRZ engine (scan, decode, encode, and check-digit validation) with deterministic Damm-based verification and structured mismatch reporting.",
+        "Designed and executed 15 automated unit tests with a 100% pass rate, validating normal flows, negative paths, boundary checks, and mutation-killing edge cases.",
+        "Achieved 86% line coverage (above the 80% target) and generated full HTML/terminal reports to enforce measurable code quality.",
+        "Implemented mutation testing with 406 generated mutants and 137 killed mutants, using findings to identify weak assertions and guide test improvements.",
+        "Benchmarked system performance on up to 10,000 records, reaching ~31.5K encode/sec and ~156K decode/sec."
+      ]
     },
     {
       "name": "MouseMacro",
-      "description": "Built a lightweight macOS menu bar automation app that remaps extra mouse buttons to copy/paste shortcuts with global event interception, suppressed default navigation behavior, and real-time usage analytics.",
+      "description": "Lightweight macOS menu bar automation app that remaps extra mouse buttons to copy/paste shortcuts with global event interception, suppressed default navigation behavior, and real-time usage analytics.",
       "tech": ["Swift 5", "SwiftUI", "AppKit", "Quartz Event Tap", "os.log", "Xcode", "macOS"],
       "github": "https://github.com/parthkishan20/MouseMacro",
       "demo": "",
       "featured": false,
-      "highlights": ["System-wide remapping of mouse Button 4 to Cmd+C and Button 5 to Cmd+V", "Suppression of original Button 4/5 forward-back navigation events", "Persistent menu bar presence with quick Preferences and Quit controls", "Real-time session statistics for copy and paste actions", "Accessibility permission flow with guided settings deep-link", "Structured logging and resilient event-tap lifecycle management"]
-    },
-    {
-      "name": "Mini Search Engine",
-      "description": "Python-based mini search engine that crawls and indexes HTML pages, ranks matches by term frequency, and serves results through a Flask web app and CLI.",
-      "tech": ["Python", "Flask", "BeautifulSoup", "Jinja2", "HTML", "CSS", "JavaScript", "Requests", "Regex"],
-      "github": "https://github.com/parthkishan20/Mini-Search-Engine",
-      "demo": "",
-      "featured": false,
-      "highlights": ["Web crawler that downloads and stores HTML pages locally", "Inverted index with stop-word removal and frequency-based ranking", "Snippet previews and search-term highlighting in results", "Flask web interface with a responsive layout and dark mode toggle", "Recent search history and query logging to output.txt", "Command-line search mode for terminal-based use"]
-    },
-    {
-      "name": "Portfolio Website",
-      "description": "A responsive, JSON-driven React portfolio that showcases professional experience, projects, skills, certifications, and resume content with a polished recruiter-friendly interface.",
-      "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Radix UI", "Framer Motion", "Lucide React", "GitHub Pages", "HTML", "CSS", "JavaScript", "Responsive Design"],
-      "github": "https://github.com/parthkishan20/parthkishan20.github.io",
-      "demo": "https://parthkishan20.github.io",
-      "featured": false,
-      "highlights": ["Sticky sidebar navigation with active section highlighting", "Dark/light mode toggle and motion-based hero section", "JSON-driven content for projects, skills, experience, and certifications", "Live GitHub stats integration", "Resume PDF preview and download", "Contact form with toast confirmation", "Scroll progress indicator and back-to-top control", "SEO metadata management"]
-    },
-    {
-      "name": "Online Shop E-commerce Website",
-      "description": "Functional e-commerce platform with intuitive UI and responsive design. Features MVC backend architecture with user authentication, product management, and shopping cart functionality using MongoDB for data persistence.",
-      "tech": ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB", "MVC Pattern"],
-      "github": "https://github.com/parthkishan20/Online_shop",
-      "demo": "",
-      "featured": true,
-      "highlights": ["User authentication", "Product management", "Shopping cart functionality"]
+      "highlights": [
+        "Designed and shipped a Swift-based menu bar application that remaps mouse Button 4/5 to Cmd+C/Cmd+V, improving copy/paste speed in daily workflows.",
+        "Implemented low-level Quartz Event Tap interception to capture system-wide events and suppress native forward/back browser navigation.",
+        "Built robust keyboard macro injection using CGEvent key-down/key-up synthesis with compatibility timing controls.",
+        "Developed a thread-safe SwiftUI preferences panel with live session metrics backed by @MainActor state management.",
+        "Hardened the app with Accessibility permission prompts, actionable failure alerts, structured os.log diagnostics, and safe lifecycle cleanup."
+      ]
     },
     {
       "name": "Basic Banking System",
-      "description": "Full-stack web application simulating core banking operations including customer account management, money transfers, and transaction history tracking. Built with PHP backend, MySQL database, and responsive frontend design. Features real-time balance updates and complete transaction logging.",
+      "description": "Full-stack web application simulating core banking operations including customer account management, money transfers, and transaction history tracking. Built with PHP backend, MySQL database, and responsive frontend.",
       "tech": ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript", "MySQLi"],
-      "github": "",
-      "demo": "https://github.com/parthkishan20/basic-banking-system",
+      "github": "https://github.com/parthkishan20/basic-banking-system",
+      "demo": "",
       "featured": false,
-      "highlights": ["Customer account management", "Real-time money transfers", "Transaction history logging", "Responsive web design", "Database-driven application"]
+      "highlights": [
+        "Built customer account management with real-time money transfers and complete transaction logging.",
+        "Designed a responsive web interface with database-driven application logic using PHP and MySQLi."
+      ]
+    },
+    {
+      "name": "Credit Score Prediction",
+      "description": "Machine learning pipeline predicting customer credit scores (Poor, Standard, Good) from 100,000 records using 6 classifiers, SMOTE for class imbalance, and comprehensive feature engineering.",
+      "tech": ["Python", "Scikit-learn", "Pandas", "NumPy", "SMOTE", "Machine Learning", "Data Mining", "Feature Engineering"],
+      "github": "",
+      "demo": "",
+      "featured": false,
+      "highlights": [
+        "Built an end-to-end classification pipeline on 100,000 customer records through cleaning, imputation, outlier handling, and feature engineering.",
+        "Addressed class imbalance with SMOTE and compared six classifiers: KNN, Gaussian Naive Bayes, Logistic Regression, Decision Tree, Random Forest, and MLP — achieving 81% accuracy with Random Forest.",
+        "Applied mutual information feature selection to reduce model complexity and improve training efficiency."
+      ]
+    },
+    {
+      "name": "Heart Disease Prediction",
+      "description": "End-to-end ML workflow predicting heart disease from 1,889 clinical records, comparing KNN, Random Forest, and ANN classifiers with 87.83% top accuracy using Artificial Neural Network.",
+      "tech": ["Python", "TensorFlow", "Keras", "Scikit-learn", "Pandas", "NumPy", "Machine Learning", "Neural Networks"],
+      "github": "",
+      "demo": "",
+      "featured": false,
+      "highlights": [
+        "Prepared 1,889 clinical records with missing-value checks, outlier handling, encoding, and feature scaling.",
+        "Built and evaluated KNN, Random Forest, and ANN classifiers — ANN achieved 87.83% accuracy with 90% recall for disease detection.",
+        "Applied mutual information feature selection and visualized feature importance and data distributions for clinical variables."
+      ]
     },
     {
       "name": "Tic-Tac-Toe Game",
-      "description": "Interactive browser-based game with advanced JavaScript features including AI opponent, move history, and responsive design. Demonstrates mastery of DOM manipulation and event handling.",
+      "description": "Interactive browser-based game with AI opponent, move history, and responsive design demonstrating DOM manipulation and event handling.",
       "tech": ["JavaScript", "HTML", "CSS", "DOM Manipulation", "Game Logic"],
       "github": "https://github.com/parthkishan20/tic-tac-toe",
       "demo": "",
       "featured": false,
-      "highlights": ["AI opponent algorithm", "Move history tracking", "Responsive UI"]
+      "highlights": [
+        "Built an AI opponent algorithm and move history tracking.",
+        "Designed a responsive UI with smooth event-driven game logic."
+      ]
     }
   ],
   "skills": {
-    "languages": ["JavaScript", "TypeScript", "Python", "Java", "C++", "C#"],
-    "frameworks": ["React.js", "AngularJS", "Redux", "Node.js", "Express.js", "Vue.js", "Flask", ".NET", "Tailwind CSS", "HTML", "CSS"],
-    "databases": ["MongoDB", "PostgreSQL"],
-    "cloud": ["CI/CD"],
-    "tools": ["Git", "GitHub", "GitHub Copilot", "n8n", "Claude Code", "AntiGravity", "LLM", "Prompt Engineering", "BeautifulSoup", "Web Crawling", "Data Scraping", "Adobe Photoshop"],
-    "other": ["Machine Learning", "Deep Learning", "Data Visualization", "Data Analysis", "Model Training", "Data Preprocessing", "Imbalanced Data Handling", "Model Evaluation", "Web Development", "REST APIs", "Model-View-Controller", "Object-Oriented Programming"]
+    "languages": ["JavaScript", "TypeScript", "Python", "Java", "C++", "C#", "PHP"],
+    "frameworks": ["React.js", "Node.js", "Express.js", "Vue.js", "AngularJS", "Redux", "Flask", ".NET", "Tailwind CSS", "HTML5", "CSS3"],
+    "databases": ["MongoDB", "PostgreSQL", "MySQL"],
+    "cloud": ["AWS S3", "IIS", "GitHub Pages", "CI/CD"],
+    "tools": ["Git", "GitHub", "GitHub Copilot", "Claude Code", "Cursor", "n8n", "Vite", "Visual Studio", "Prompt Engineering", "REST APIs"],
+    "other": ["Object-Oriented Programming", "Model-View-Controller", "Machine Learning", "Deep Learning", "LLM", "Data Analysis", "Data Visualization", "BeautifulSoup", "Web Scraping", "Adobe Photoshop"]
   },
   "certifications": [
+    {
+      "name": "Claude Code in Action",
+      "issuer": "Anthropic",
+      "year": 2026,
+      "credentialId": "",
+      "link": "https://verify.skilljar.com/c/xizug76m9vw8"
+    },
     {
       "name": "Bloomberg Market Concept",
       "issuer": "Bloomberg for Education",
@@ -187,27 +249,34 @@
     },
     {
       "name": "React Essential Training",
-      "issuer": "Linkedin Learning",
+      "issuer": "LinkedIn Learning",
       "year": 2024,
       "credentialId": "",
       "link": "https://www.linkedin.com/learning/certificates/8d89ad609a45fa6e99f2f7d184b7d7733531acd41042cde6e4707745e430414f?u=56742337"
     },
     {
       "name": "Advanced Prompt Engineering",
-      "issuer": "Linkedin Learning",
+      "issuer": "LinkedIn Learning",
       "year": 2024,
       "credentialId": "",
       "link": "https://www.linkedin.com/learning/certificates/cf0c517ebdfd5b8a02e4a4fb3047a7a9d788e4f2c28b24134acd06dd81db7e61?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3B6y59wotFTGyzZdAvAPd4PA%3D%3D&accountId=56742337&u=56742337&success=true&authUUID=G6DCfU1bStOdeNPSi3H2tg%3D%3D"
     },
     {
       "name": "100 Days Of Code - 2024 Web Development Bootcamp",
-      "issuer": "Udemy - Maximilian Schwarzmuller",
+      "issuer": "Udemy – Maximilian Schwarzmüller",
       "year": 2024,
       "credentialId": "",
       "link": "https://www.linkedin.com/in/parthkishan20/details/certifications/"
     }
   ],
   "extracurricular": [
+    {
+      "name": "Volunteer/Organizer",
+      "org": "SPY – The Graduate AI Club, Stevens Institute of Technology",
+      "summary": "Volunteered as an organizer for SPY, the Graduate AI Club at Stevens, supporting event planning, speaker coordination, and community engagement to foster AI learning and collaboration among graduate students. Assisted with logistics for workshops, guest lectures, and networking events contributing to the club's mission of promoting AI education and research on campus.",
+      "dates": "Mar 2026 – May 2026",
+      "role": "Volunteer/Organizer"
+    },
     {
       "name": "Co-Founder/Event Head",
       "org": "Student Club IDE, GEC Gandhinagar",
@@ -219,12 +288,12 @@
       "name": "Core Team Member",
       "org": "Event Management, GEC Gandhinagar",
       "summary": "Key team member at GEC Gandhinagar, organizing Garba festivals, cultural events, day celebrations, and freshers' parties. Managed documentation, sponsorships, permissions, and coordination to ensure seamless events and attendee satisfaction.",
-      "dates": "",
+      "dates": "May 2021 – May 2023",
       "role": "Core Team Member"
     }
   ],
   "resume": {
-    "pdfPath": "https://drive.google.com/file/d/1ybRp6vzPU8eAReBynBIRQY4L4-MMpQb_/view?usp=sharing",
-    "lastUpdated": "November 2025"
+    "pdfPath": "/Parthkumar_Patel_Resume.pdf",
+    "lastUpdated": "June 2026"
   }
 }
