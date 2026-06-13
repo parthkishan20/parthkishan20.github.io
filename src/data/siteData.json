@@ -10,10 +10,10 @@
       "github": "https://github.com/parthkishan20",
       "portfolio": "https://parthkumar.me/"
     },
-    "summary": "MS Computer Science student at Stevens Institute of Technology (3.9 GPA) with full-stack experience building React SPAs, REST APIs, and cloud-deployed web applications. Seeking Software Developer and Full Stack Developer roles."
+    "summary": "MS in Computer Science from Stevens Institute of Technology (3.9 GPA), specializing in full-stack development with React, TypeScript, FastAPI, and LLM/AI integration. Seeking Software Developer and Full Stack Developer roles."
   },
   "about": {
-    "bio": "Currently pursuing my MS in Computer Science at Stevens Institute of Technology with a 3.9 GPA, I bring hands-on full-stack experience from internships at EventEase and TechBilv Solutions LLP. I build production-grade web applications with React 19, TypeScript, Node.js, and modern tooling — from architecting modular component systems and REST API integrations to managing AWS S3 deployments and CI/CD pipelines. I enjoy owning features end-to-end, collaborating in agile teams, and writing clean, maintainable code that solves real user problems."
+    "bio": "I hold an MS in Computer Science from Stevens Institute of Technology (3.9 GPA) and bring hands-on full-stack experience from internships at EventEase and TechBilv Solutions LLP. I build production-grade web applications with React 19, TypeScript, and FastAPI — architecting modular component systems, real-time REST API and WebSocket integrations, and LLM-powered multi-agent workflows. I've shipped responsive interfaces across mobile, desktop, and 4K displays, managed AWS S3 deployments, and integrated AI capabilities into practical full-stack applications. I enjoy owning features end-to-end, collaborating in agile teams, and writing clean, maintainable code."
   },
   "education": [
     {
@@ -71,6 +71,19 @@
   ],
   "projects": [
     {
+      "name": "AI Resume Tailoring Platform",
+      "description": "Full-stack platform that transforms master resumes and job descriptions into ATS-optimized outputs using a multi-agent LLM workflow for analysis, generation, and verification.",
+      "tech": ["FastAPI", "React", "TypeScript", "Tailwind CSS", "WebSocket", "LLM Agents", "Python", "REST APIs", "PDF Preview"],
+      "github": "",
+      "demo": "",
+      "featured": true,
+      "highlights": [
+        "Engineered a full-stack platform that transforms master resumes and job descriptions into ATS-optimized outputs using a multi-agent LLM workflow for analysis, generation, and verification.",
+        "Developed a FastAPI backend with job queueing, response caching, cost estimation, audit logging, token authentication, CORS configuration, and path-traversal protection.",
+        "Designed a React + Tailwind dashboard with real-time WebSocket streaming, live execution logs, and PDF preview functionality."
+      ]
+    },
+    {
       "name": "SortBoard",
       "description": "Built a responsive React + TypeScript sorting visualizer that animates 6 algorithms in real time using generator-based execution and user-controlled playback for interactive algorithm learning.",
       "tech": ["React 19", "TypeScript", "Vite", "Tailwind CSS", "JavaScript Generators", "Custom React Hooks", "Lucide React", "ESLint", "GitHub Pages"],
@@ -91,7 +104,7 @@
       "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Radix UI", "Framer Motion", "Lucide React", "GitHub Pages", "HTML", "CSS", "JavaScript"],
       "github": "https://github.com/parthkishan20/parthkishan20.github.io",
       "demo": "https://parthkishan20.github.io",
-      "featured": true,
+      "featured": false,
       "highlights": [
         "Built a responsive, single-page portfolio in React and TypeScript with section-based navigation, improving discoverability across the full personal brand and career story.",
         "Designed a reusable, JSON-driven content architecture with Tailwind CSS and shadcn/ui components, making it easy to maintain projects, skills, experience, and certifications.",
@@ -149,7 +162,7 @@
       "tech": ["Python", "pytest", "pytest-cov", "coverage.py", "MutPy", "pandas", "matplotlib", "unittest.mock", "JSON", "CSV", "Git", "GitHub"],
       "github": "https://github.com/Aayush-Gandhi/SSW_Final-Project_-Group-H",
       "demo": "",
-      "featured": false,
+      "featured": true,
       "highlights": [
         "Developed an end-to-end ICAO TD3 MRZ engine (scan, decode, encode, and check-digit validation) with deterministic Damm-based verification and structured mismatch reporting.",
         "Designed and executed 15 automated unit tests with a 100% pass rate, validating normal flows, negative paths, boundary checks, and mutation-killing edge cases.",
