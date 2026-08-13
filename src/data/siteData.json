@@ -51,7 +51,7 @@
         "Integrated end-to-end REST API workflows with Axios for authentication, team onboarding, score submission, leaderboard retrieval, messaging, media uploads, and sponsor content, adding centralized error handling and toast-based user feedback.",
         "Implemented near real-time leaderboard updates via polling and optimized refresh logic for both web and TV-ready views, including sponsor carousels and animated transitions to keep rankings and event information current.",
         "Delivered an admin/dashboard CMS with data-rich tables, CSV/XLSX import flows, and validated forms (React Hook Form, Zod, TanStack Table) to streamline course, golfer, team, communication, and sponsor management for organizers.",
-        "Collaborated in a Scrum-based remote team with weekly standups, using Trello for task tracking, Slack for communication, and Git/GitHub for version control and code reviews while assisting with production builds, deployments, and testing.",
+        "Collaborated in a Scrum-based remote team with weekly standups, using Trello for task tracking, Slack for communication, and Git/GitHub for version control and code reviews while assisting with production builds, deployments, and basic testing.",
         "Leveraged AI-assisted coding tools (ChatGPT, GitHub Copilot, Cursor) alongside ESLint and established patterns to accelerate development while maintaining readable, consistent, and maintainable code."
       ]
     },
@@ -72,30 +72,47 @@
   "projects": [
     {
       "name": "AI Resume Tailoring Platform",
-      "description": "Full-stack platform that transforms master resumes and job descriptions into ATS-optimized outputs using a multi-agent LLM workflow for analysis, generation, and verification.",
-      "tech": ["FastAPI", "React", "TypeScript", "Tailwind CSS", "WebSocket", "LLM Agents", "Python", "REST APIs", "PDF Preview"],
-      "github": "",
+      "description": "Full-stack AI resume workstation that keeps one master resume in YAML and uses LLMs to generate job-specific tailored resumes, score ATS keyword fit, and apply chat-driven edits, shipped as a single Docker container with FastAPI, Next.js, and rendercv PDF rendering.",
+      "tech": ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "FastAPI", "SQLite", "LiteLLM", "Server-Sent Events", "rendercv", "Typst", "Playwright", "Docker"],
+      "github": "https://github.com/parthkishan20/resume-tailoring-platform",
       "demo": "",
       "featured": true,
       "highlights": [
-        "Engineered a full-stack platform that transforms master resumes and job descriptions into ATS-optimized outputs using a multi-agent LLM workflow for analysis, generation, and verification.",
-        "Developed a FastAPI backend with job queueing, response caching, cost estimation, audit logging, token authentication, CORS configuration, and path-traversal protection.",
-        "Designed a React + Tailwind dashboard with real-time WebSocket streaming, live execution logs, and PDF preview functionality."
+        "Built a full-stack AI resume workstation (Next.js 14, React 18, TypeScript, Tailwind CSS, FastAPI, SQLite) that maintains a single master resume in YAML and generates job-specific tailored resumes from pasted job descriptions using LLM-driven section selection and rewriting.",
+        "Engineered real-time generation and ATS evaluation over Server-Sent Events, streaming LLM output, keyword match scores, and fit critiques to the UI, with LiteLLM providing provider-agnostic access to OpenAI-compatible models.",
+        "Automated PDF pipeline with rendercv and Typst, including AI-powered import that converts an uploaded PDF resume into schema-valid YAML and a normalizer layer that repairs LLM-generated YAML before rendering.",
+        "Designed a context-aware chat assistant that applies edits directly to the master resume YAML, plus persistent generation rules and a sortable library of every generated resume with one-click PDF re-download.",
+        "Exposed 23 REST/SSE endpoints across 7 FastAPI route modules and verified the system with 89 backend unit tests and 13 Playwright end-to-end tests spanning 8 full integration scenarios, including a deterministic LLM mock mode for CI-safe testing.",
+        "Orchestrated development with a spec-first, multi-agent Claude Code workflow (design docs, 7 implementation plans, parallel agent builds) and shipped the app as one Docker container serving both the API and the static frontend."
       ]
     },
     {
       "name": "SortBoard",
-      "description": "Built a responsive React + TypeScript sorting visualizer that animates 6 algorithms in real time using generator-based execution and user-controlled playback for interactive algorithm learning.",
+      "description": "A responsive React + TypeScript sorting visualizer that animates 6 algorithms in real time using generator-based execution and user-controlled playback for interactive algorithm learning.",
       "tech": ["React 19", "TypeScript", "Vite", "Tailwind CSS", "JavaScript Generators", "Custom React Hooks", "Lucide React", "ESLint", "GitHub Pages"],
       "github": "https://github.com/parthkishan20/SortBoard",
       "demo": "https://parthkishan20.github.io/SortBoard/",
       "featured": true,
       "highlights": [
-        "Engineered an interactive sorting visualizer with 6 algorithm implementations (Bubble, Merge, Quick, Insertion, Selection, Heap) to demonstrate behavior step-by-step.",
+        "Engineered an interactive sorting visualizer in React 19, TypeScript, and Vite with 6 algorithm implementations (Bubble, Merge, Quick, Insertion, Selection, Heap) to demonstrate algorithm behavior step-by-step.",
         "Implemented generator-based sorting flows and a reusable animation engine in custom hooks, enabling pause, resume, stop, and speed control for smooth real-time playback.",
-        "Designed modular UI components and color-state visualization (comparing, swapping, pivot, sorted) to improve concept clarity for learners.",
-        "Built configurable controls for array size (10–100) and execution speed (1–100 steps/sec), supporting multiple learning paces and side-by-side exploration.",
-        "Shipped a production deployment pipeline with Vite build and GitHub Pages publishing, delivering a live, accessible web demo."
+        "Designed modular UI components and color-state visualization (comparing, swapping, pivot, sorted) to improve concept clarity and reduce cognitive load for learners.",
+        "Built configurable controls for array size (10-100) and execution speed (1-100 steps/sec), supporting multiple learning paces and side-by-side algorithm exploration.",
+        "Shipped a production deployment pipeline with Vite build + GitHub Pages publishing, delivering a live, accessible web demo for portfolio and interview use."
+      ]
+    },
+    {
+      "name": "Financial QA Bot",
+      "description": "Python application that analyzes CSV financial data, answers natural-language questions with rule-based or OpenRouter-backed reasoning, and generates professional financial reports and visualizations.",
+      "tech": ["Python", "pandas", "matplotlib", "numpy", "requests", "python-dotenv", "OpenRouter API", "seaborn", "scipy"],
+      "github": "https://github.com/parthkishan20/Final-project-FE-520-QA-Bot",
+      "demo": "",
+      "featured": false,
+      "highlights": [
+        "Built a CSV-driven financial question-answering pipeline that loads structured data, matches metrics with fuzzy lookup, and returns year-specific insights in plain English.",
+        "Implemented a dual-mode QA engine with OpenRouter LLM support and rule-based fallback to keep responses available even without an API key.",
+        "Generated automated JSON reports and high-resolution financial charts to streamline analysis, presentation, and stakeholder review.",
+        "Added trend detection, best/worst-year analysis, and derived ratio calculations such as net margin, ROA, and asset turnover for stronger decision support."
       ]
     },
     {
@@ -111,49 +128,6 @@
         "Implemented dark/light mode, scroll progress, back-to-top behavior, and active-section tracking to deliver a polished, accessible user experience.",
         "Integrated live GitHub activity cards, resume preview/download, SEO metadata, and a contact form with toast feedback to improve recruiter engagement.",
         "Deployed to GitHub Pages with custom-domain support, delivering a fast, production-ready portfolio presence."
-      ]
-    },
-    {
-      "name": "Online Shop E-commerce Website",
-      "description": "Functional full-stack e-commerce platform with MVC backend architecture, user authentication, product management, and shopping cart functionality using Node.js and MongoDB.",
-      "tech": ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MongoDB", "MVC Pattern"],
-      "github": "https://github.com/parthkishan20/Online_shop",
-      "demo": "",
-      "featured": true,
-      "highlights": [
-        "Built an end-to-end e-commerce platform with Node.js and Express.js following the MVC pattern for clean separation of concerns.",
-        "Implemented user authentication, session management, and protected routes.",
-        "Developed product management, shopping cart, and order workflows backed by MongoDB.",
-        "Designed a responsive front-end with intuitive UI for browsing, filtering, and purchasing products."
-      ]
-    },
-    {
-      "name": "Mini Search Engine",
-      "description": "Python-based mini search engine that crawls and indexes HTML pages, ranks matches by term frequency, and serves results through a Flask web app and CLI.",
-      "tech": ["Python", "Flask", "BeautifulSoup", "Jinja2", "HTML", "CSS", "JavaScript", "Requests", "Regex"],
-      "github": "https://github.com/parthkishan20/Mini-Search-Engine",
-      "demo": "",
-      "featured": true,
-      "highlights": [
-        "Built a Flask search application that indexes local HTML pages and returns ranked results with highlighted matches, snippets, and clickable source pages.",
-        "Implemented an inverted-index pipeline with stop-word filtering and text tokenization to support fast full-text search across the document set.",
-        "Developed a recursive web crawler to collect and persist up to 10 Wikipedia pages as the searchable corpus.",
-        "Added recent-search tracking, output logging, and a dark-mode interface to improve usability.",
-        "Delivered a command-line version of the search engine to validate core retrieval logic outside the browser UI."
-      ]
-    },
-    {
-      "name": "Financial QA Bot",
-      "description": "Python application that analyzes CSV financial data, answers natural-language questions with rule-based or OpenRouter-backed reasoning, and generates professional financial reports and visualizations.",
-      "tech": ["Python", "pandas", "matplotlib", "numpy", "requests", "python-dotenv", "OpenRouter API", "seaborn", "scipy"],
-      "github": "https://github.com/parthkishan20/Final-project-FE-520-QA-Bot",
-      "demo": "",
-      "featured": false,
-      "highlights": [
-        "Built a CSV-driven financial question-answering pipeline that loads structured data, matches metrics with fuzzy lookup, and returns year-specific insights in plain English.",
-        "Implemented a dual-mode QA engine with OpenRouter LLM support and rule-based fallback to keep responses available even without an API key.",
-        "Generated automated JSON reports and high-resolution financial charts to streamline analysis and stakeholder review.",
-        "Added trend detection, best/worst-year analysis, and derived ratio calculations such as net margin, ROA, and asset turnover."
       ]
     },
     {
@@ -173,79 +147,86 @@
     },
     {
       "name": "MouseMacro",
-      "description": "Lightweight macOS menu bar automation app that remaps extra mouse buttons to copy/paste shortcuts with global event interception, suppressed default navigation behavior, and real-time usage analytics.",
+      "description": "A lightweight macOS menu bar automation app that remaps extra mouse buttons to copy/paste shortcuts with global event interception, suppressed default navigation behavior, and real-time usage analytics.",
       "tech": ["Swift 5", "SwiftUI", "AppKit", "Quartz Event Tap", "os.log", "Xcode", "macOS"],
       "github": "https://github.com/parthkishan20/MouseMacro",
       "demo": "",
       "featured": false,
       "highlights": [
-        "Designed and shipped a Swift-based menu bar application that remaps mouse Button 4/5 to Cmd+C/Cmd+V, improving copy/paste speed in daily workflows.",
-        "Implemented low-level Quartz Event Tap interception to capture system-wide events and suppress native forward/back browser navigation.",
-        "Built robust keyboard macro injection using CGEvent key-down/key-up synthesis with compatibility timing controls.",
-        "Developed a thread-safe SwiftUI preferences panel with live session metrics backed by @MainActor state management.",
-        "Hardened the app with Accessibility permission prompts, actionable failure alerts, structured os.log diagnostics, and safe lifecycle cleanup."
+        "Designed and shipped a Swift-based menu bar application that remaps mouse Button 4/5 to Cmd+C/Cmd+V, improving copy/paste speed and reducing repetitive keyboard use in daily workflows.",
+        "Implemented low-level Quartz Event Tap interception to capture system-wide other-mouse events and suppress native forward/back browser navigation, eliminating shortcut conflicts across applications.",
+        "Built robust keyboard macro injection using CGEvent key-down/key-up synthesis with compatibility timing controls, ensuring consistent command execution across macOS apps.",
+        "Developed a thread-safe SwiftUI preferences panel with live session metrics (copy/paste counters and last action) backed by @MainActor state management for safe concurrent updates.",
+        "Hardened the desktop app experience with Accessibility permission prompts, actionable failure alerts, structured os.log diagnostics, and safe lifecycle cleanup of event taps/run loop resources."
       ]
     },
     {
-      "name": "Basic Banking System",
-      "description": "Full-stack web application simulating core banking operations including customer account management, money transfers, and transaction history tracking. Built with PHP backend, MySQL database, and responsive frontend.",
-      "tech": ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript", "MySQLi"],
-      "github": "https://github.com/parthkishan20/basic-banking-system",
+      "name": "Mini Search Engine",
+      "description": "Python-based mini search engine that crawls and indexes HTML pages, ranks matches by term frequency, and serves results through a Flask web app and CLI.",
+      "tech": ["Python", "Flask", "BeautifulSoup", "Jinja2", "HTML", "CSS", "JavaScript", "Requests", "Regex"],
+      "github": "https://github.com/parthkishan20/Mini-Search-Engine",
       "demo": "",
-      "featured": false,
+      "featured": true,
       "highlights": [
-        "Built customer account management with real-time money transfers and complete transaction logging.",
-        "Designed a responsive web interface with database-driven application logic using PHP and MySQLi."
+        "Built a Flask search application that indexes local HTML pages and returns ranked results with highlighted matches, snippets, and clickable source pages.",
+        "Implemented an inverted-index pipeline with stop-word filtering and text tokenization to support fast full-text search across the document set.",
+        "Developed a recursive web crawler to collect and persist up to 10 Wikipedia pages as the searchable corpus.",
+        "Added recent-search tracking, output logging, and a dark-mode interface to improve usability.",
+        "Delivered a command-line version of the search engine to validate core retrieval logic outside the browser UI."
       ]
     },
     {
-      "name": "Credit Score Prediction",
-      "description": "Machine learning pipeline predicting customer credit scores (Poor, Standard, Good) from 100,000 records using 6 classifiers, SMOTE for class imbalance, and comprehensive feature engineering.",
+      "name": "Credit Score Prediction Project",
+      "description": "Machine learning project that predicts customer credit scores (Poor, Standard, Good) from financial behavior using data cleaning, feature engineering, SMOTE, and model comparison.",
       "tech": ["Python", "Scikit-learn", "Pandas", "NumPy", "SMOTE", "Machine Learning", "Data Mining", "Feature Engineering"],
       "github": "",
       "demo": "",
       "featured": false,
       "highlights": [
-        "Built an end-to-end classification pipeline on 100,000 customer records through cleaning, imputation, outlier handling, and feature engineering.",
-        "Addressed class imbalance with SMOTE and compared six classifiers: KNN, Gaussian Naive Bayes, Logistic Regression, Decision Tree, Random Forest, and MLP — achieving 81% accuracy with Random Forest.",
-        "Applied mutual information feature selection to reduce model complexity and improve training efficiency."
+        "Built an end-to-end credit score classification pipeline on 100,000 customer records, transforming messy financial data into a model-ready dataset through cleaning, imputation, outlier handling, and feature engineering.",
+        "Reduced model complexity by applying mutual information feature selection to retain the top predictive variables and improve training efficiency on the credit scoring dataset.",
+        "Addressed class imbalance with SMOTE and compared six classifiers, including KNN, Gaussian Naive Bayes, logistic regression, decision tree, random forest, and an MLP neural network.",
+        "Analyzed correlations, payment behavior, debt, and credit history patterns to identify the strongest drivers of credit score outcomes for risk-focused decision making."
       ]
     },
     {
-      "name": "Heart Disease Prediction",
-      "description": "End-to-end ML workflow predicting heart disease from 1,889 clinical records, comparing KNN, Random Forest, and ANN classifiers with 87.83% top accuracy using Artificial Neural Network.",
+      "name": "Heart Disease Prediction using KNN, Random Forest, and ANN",
+      "description": "A machine learning project that predicts heart disease from clinical measurements using cleaned patient data, feature engineering, visualization, and model comparison across KNN, Random Forest, and ANN.",
       "tech": ["Python", "TensorFlow", "Keras", "Scikit-learn", "Pandas", "NumPy", "Machine Learning", "Neural Networks"],
       "github": "",
       "demo": "",
       "featured": false,
       "highlights": [
-        "Prepared 1,889 clinical records with missing-value checks, outlier handling, encoding, and feature scaling.",
-        "Built and evaluated KNN, Random Forest, and ANN classifiers — ANN achieved 87.83% accuracy with 90% recall for disease detection.",
-        "Applied mutual information feature selection and visualized feature importance and data distributions for clinical variables."
-      ]
-    },
-    {
-      "name": "Tic-Tac-Toe Game",
-      "description": "Interactive browser-based game with AI opponent, move history, and responsive design demonstrating DOM manipulation and event handling.",
-      "tech": ["JavaScript", "HTML", "CSS", "DOM Manipulation", "Game Logic"],
-      "github": "https://github.com/parthkishan20/tic-tac-toe",
-      "demo": "",
-      "featured": false,
-      "highlights": [
-        "Built an AI opponent algorithm and move history tracking.",
-        "Designed a responsive UI with smooth event-driven game logic."
+        "Developed an end-to-end heart disease prediction workflow in Python, preparing 1,889 clinical records with missing-value checks, outlier handling, encoding, and feature scaling.",
+        "Built and evaluated KNN, Random Forest, and ANN classifiers, using confusion matrices, classification reports, and accuracy scoring to compare model performance.",
+        "Improved model interpretability by applying mutual information feature selection and visualizing feature importance and data distributions for clinical variables.",
+        "Packaged the analysis in an interactive Jupyter Notebook with reusable preprocessing and evaluation steps, supporting clear model comparison for healthcare decision-making."
       ]
     }
   ],
   "skills": {
-    "languages": ["JavaScript", "TypeScript", "Python", "Java", "C++", "C#", "PHP"],
+    "languages": ["JavaScript", "TypeScript", "Python", "Java", "C++", "C#"],
     "frameworks": ["React.js", "Node.js", "Express.js", "Vue.js", "AngularJS", "Redux", "Flask", ".NET", "Tailwind CSS", "HTML5", "CSS3"],
-    "databases": ["MongoDB", "PostgreSQL", "MySQL"],
+    "databases": ["MongoDB", "PostgreSQL"],
     "cloud": ["AWS S3", "IIS", "GitHub Pages", "CI/CD"],
     "tools": ["Git", "GitHub", "GitHub Copilot", "Claude Code", "Cursor", "n8n", "Vite", "Visual Studio", "Prompt Engineering", "REST APIs"],
-    "other": ["Object-Oriented Programming", "Model-View-Controller", "Machine Learning", "Deep Learning", "LLM", "Data Analysis", "Data Visualization", "BeautifulSoup", "Web Scraping", "Adobe Photoshop"]
+    "other": ["Object-Oriented Programming", "Model-View-Controller", "Machine Learning", "Deep Learning", "LLM", "Data Analysis", "Data Visualization", "Data Preprocessing", "Model Training", "Model Evaluation", "Imbalanced Data Handling", "Web Crawling", "Data Scraping", "Web Development", "BeautifulSoup", "Adobe Photoshop"]
   },
   "certifications": [
+    {
+      "name": "Claude 101",
+      "issuer": "Anthropic",
+      "year": 2026,
+      "credentialId": "",
+      "link": "https://verify.skilljar.com/c/hr943kh82n3i"
+    },
+    {
+      "name": "Claude Code 101",
+      "issuer": "Anthropic",
+      "year": 2026,
+      "credentialId": "",
+      "link": "https://verify.skilljar.com/c/6rxepn7g5vva"
+    },
     {
       "name": "Claude Code in Action",
       "issuer": "Anthropic",
@@ -254,18 +235,18 @@
       "link": "https://verify.skilljar.com/c/xizug76m9vw8"
     },
     {
-      "name": "Bloomberg Market Concept",
-      "issuer": "Bloomberg for Education",
+      "name": "AI Fluency Framework & Foundations",
+      "issuer": "Anthropic",
       "year": 2026,
       "credentialId": "",
-      "link": "https://portal.bloombergforeducation.com/certificates/E61TbMUtkYjzyZSwjD9N1cWf"
+      "link": "https://verify.skilljar.com/c/t92r3i8z3xu7"
     },
     {
-      "name": "React Essential Training",
-      "issuer": "LinkedIn Learning",
-      "year": 2024,
+      "name": "AI Coder: Complete Claude Code & Coding Agents Course",
+      "issuer": "Udemy – Ed Donner",
+      "year": 2026,
       "credentialId": "",
-      "link": "https://www.linkedin.com/learning/certificates/8d89ad609a45fa6e99f2f7d184b7d7733531acd41042cde6e4707745e430414f?u=56742337"
+      "link": "https://www.udemy.com/certificate/UC-a8a4347b-81f0-49b2-b787-969237b84b76/"
     },
     {
       "name": "Advanced Prompt Engineering",
@@ -275,11 +256,25 @@
       "link": "https://www.linkedin.com/learning/certificates/cf0c517ebdfd5b8a02e4a4fb3047a7a9d788e4f2c28b24134acd06dd81db7e61?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3B6y59wotFTGyzZdAvAPd4PA%3D%3D&accountId=56742337&u=56742337&success=true&authUUID=G6DCfU1bStOdeNPSi3H2tg%3D%3D"
     },
     {
-      "name": "100 Days Of Code - 2024 Web Development Bootcamp",
-      "issuer": "Udemy – Maximilian Schwarzmüller",
+      "name": "React Essential Training",
+      "issuer": "LinkedIn Learning",
       "year": 2024,
       "credentialId": "",
-      "link": "https://www.linkedin.com/in/parthkishan20/details/certifications/"
+      "link": "https://www.linkedin.com/learning/certificates/8d89ad609a45fa6e99f2f7d184b7d7733531acd41042cde6e4707745e430414f?u=56742337"
+    },
+    {
+      "name": "Bloomberg Market Concept",
+      "issuer": "Bloomberg for Education",
+      "year": 2026,
+      "credentialId": "",
+      "link": "https://portal.bloombergforeducation.com/certificates/E61TbMUtkYjzyZSwjD9N1cWf"
+    },
+    {
+      "name": "100 Days of Code - 2023 Web Development Bootcamp",
+      "issuer": "Udemy – Maximilian Schwarzmüller",
+      "year": 2023,
+      "credentialId": "",
+      "link": "https://www.linkedin.com/in/parthkishan20/overlay/Certifications/762425019/treasury/?profileId=ACoAAC_XShoBsjpWX31pJgWDznUant05GwmPOu8"
     }
   ],
   "extracurricular": [
@@ -307,6 +302,6 @@
   ],
   "resume": {
     "pdfPath": "/Parthkumar_Patel_Resume.pdf",
-    "lastUpdated": "June 2026"
+    "lastUpdated": "August 2026"
   }
 }
