@@ -1,108 +1,46 @@
-import { motion } from "framer-motion";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import siteData from "@/data/siteData.json";
-import { Code2, Rocket, Users2, Zap } from "lucide-react";
-
-const initials = siteData.profile.name.split(" ").map((n) => n[0]).join("");
-
-const highlights = [
-  { icon: Code2, label: "1.5 Years Experience", color: "text-primary" },
-  { icon: Rocket, label: "5+ Projects Delivered", color: "text-accent" },
-  { icon: Users2, label: "Team Leadership", color: "text-primary" },
-  { icon: Zap, label: "3.9 GPA at Stevens", color: "text-accent" },
-];
+import { GitHubStats } from "@/components/github-stats";
+import { about, skillGroups } from "@/data/adapters";
 
 export default function About() {
   return (
-    <div className="w-full min-h-screen flex items-center justify-center py-12 px-4 md:px-6 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="container max-w-4xl"
-      >
-        <div className="mx-auto max-w-3xl space-y-8 md:space-y-10">
-          <div className="flex justify-center">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="relative group"
-            >
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#0077B5] to-[#00A0DC] rounded-full blur-lg opacity-30 group-hover:opacity-50 transition duration-500"></div>
-              <Avatar className="size-24 sm:size-28 md:size-36 relative border-4 border-background">
-                <AvatarImage
-                  src="/images/profile/avatar.png"
-                  alt={`${siteData.profile.name} - Professional headshot`}
-                />
-                <AvatarFallback className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#0077B5] to-[#00A0DC] text-white">
-                  {initials}
-                </AvatarFallback>
-              </Avatar>
-            </motion.div>
-          </div>
-
-          <div className="text-center space-y-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-3xl sm:text-4xl font-bold tracking-tight md:text-5xl"
-            >
-              About Me
-            </motion.h2>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <Badge variant="secondary" className="text-base px-4 py-1.5">
-                {siteData.profile.title}
-              </Badge>
-            </motion.div>
-          </div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-muted-foreground text-lg sm:text-xl md:text-2xl leading-relaxed text-center"
-          >
-            {siteData.about.bio}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6"
-          >
-            {highlights.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                  className="flex flex-col items-center gap-3 p-4 rounded-lg bg-gradient-to-br from-card to-card/50 border border-primary/20 hover:scale-105 transition-transform"
-                >
-                  <Icon className={`h-6 w-6 ${item.color}`} />
-                  <span className="text-xs sm:text-sm font-medium text-center">{item.label}</span>
-                </motion.div>
-              );
-            })}
-          </motion.div>
+    <div className="flex flex-col gap-12 md:gap-16">
+      <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div className="max-w-[64ch]">
+          <h2 className="text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+            How I build.
+          </h2>
+          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+            {about.bio}
+          </p>
         </div>
-      </motion.div>
+
+        <aside>
+          <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            What I reach for first
+          </h3>
+          <dl className="mt-4 grid gap-4">
+            {skillGroups.map((group) => (
+              <div key={group.label}>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
+                  {group.label}
+                </dt>
+                <dd className="mt-1 text-sm font-medium text-primary">
+                  {group.primary.join(", ")}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
+      </div>
+
+      <div>
+        <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+          GitHub activity
+        </h3>
+        <div className="mt-4">
+          <GitHubStats />
+        </div>
+      </div>
     </div>
   );
 }

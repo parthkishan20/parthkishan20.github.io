@@ -5,17 +5,65 @@ import siteData from "@/data/siteData.json";
 // résumé-sync process (see commit 0e1cef5) can safely overwrite the raw
 // JSON without touching any editorial reshaping done here.
 //
-// `roles` (experience bullets split into lead/rest, 7.1) and
-// `skillGroups` (7.2) are added once their own phases author that
-// content; the exports below are plain pass-throughs with nothing
-// editorial to decide.
+// `roles` (experience bullets split into lead/rest, 7.1) is added once
+// Phase 6 authors that content; the exports below are plain
+// pass-throughs with nothing editorial to decide.
 
 export const profile = siteData.profile;
+export const about = siteData.about;
 export const education = siteData.education;
 export const projects = siteData.projects;
 export const certifications = siteData.certifications;
 export const community = siteData.extracurricular;
 export const resume = siteData.resume;
+
+export type SkillGroup = { label: string; primary: string[]; rest: string };
+
+// Authored, not derived from siteData.json's raw `skills` object (7.2):
+// the grouping and the "reached for first" hierarchy are editorial
+// decisions a flat list of strings can't carry. The raw `skills` object
+// stays untouched in the JSON for whatever a future résumé sync does
+// with it; this adapter doesn't read it at all. Brought forward from
+// its Phase 8 (Skills) content now because About's aside (Phase 5)
+// needs the same `primary` tools and there is exactly one place these
+// strings should live.
+export const skillGroups: SkillGroup[] = [
+  {
+    label: "Languages",
+    primary: ["TypeScript", "JavaScript", "Python"],
+    rest: "Java, C++ and C# from coursework and .NET work.",
+  },
+  {
+    label: "Interface",
+    primary: ["React 19", "Tailwind CSS", "shadcn/ui"],
+    rest: "Redux Toolkit, Vite, React Hook Form, Zod and TanStack Table, with Vue and AngularJS earlier on.",
+  },
+  {
+    label: "Services and data",
+    primary: ["FastAPI", "Node.js", "Express"],
+    rest: "Flask, PostgreSQL, MongoDB, SQLite, REST design and Server Sent Events.",
+  },
+  {
+    label: "Applied AI",
+    primary: ["LiteLLM", "prompt engineering", "multi agent workflows"],
+    rest: "Machine learning through model training, evaluation and imbalanced data handling.",
+  },
+  {
+    label: "Shipping",
+    primary: ["Docker", "AWS S3", "GitHub Pages"],
+    rest: "IIS, CI/CD pipelines, Git and GitHub review flow, production build management.",
+  },
+  {
+    label: "Verification",
+    primary: ["pytest", "Playwright", "coverage.py"],
+    rest: "MutPy for mutation analysis, ESLint, and deterministic mock modes so suites stay CI safe.",
+  },
+  {
+    label: "Daily tools",
+    primary: ["Claude Code", "GitHub Copilot", "Cursor"],
+    rest: "Visual Studio, n8n, and the habit of reading the diff before the agent commits it.",
+  },
+];
 
 // The three figures for the Opening hero (plan section 8.2, Q13 — no
 // months figure). GPA is derived live from education[0].gpa

@@ -34,9 +34,9 @@ function App() {
           <Section id="home" label="Opening">
             <Home />
           </Section>
-          <section id="about" className={`w-full ${SCROLL_ANCHOR}`}>
+          <Section id="about" label="About">
             <About />
-          </section>
+          </Section>
           <section id="experience" className={`w-full ${SCROLL_ANCHOR}`}>
             <Experience />
           </section>

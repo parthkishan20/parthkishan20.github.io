@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, GitFork, Eye, AlertCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useReveal } from "@/hooks/use-reveal";
 import { GitHubStatsSkeleton } from "./github-stats-skeleton";
 
 interface GitHubData {
@@ -22,6 +22,7 @@ export function GitHubStats() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const { ref, revealed } = useReveal<HTMLDivElement>();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -67,7 +68,17 @@ export function GitHubStats() {
     return (
       <div className="flex items-center justify-center gap-2 py-6 text-sm text-muted-foreground">
         <AlertCircle className="h-4 w-4 shrink-0" />
-        <span>GitHub stats unavailable — visit <a href="https://github.com/parthkishan20" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">github.com/parthkishan20</a></span>
+        <span>
+          GitHub stats unavailable — visit{" "}
+          <a
+            href="https://github.com/parthkishan20"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-primary"
+          >
+            github.com/parthkishan20
+          </a>
+        </span>
       </div>
     );
   }
@@ -79,25 +90,27 @@ export function GitHubStats() {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      {displayStats.map((stat, index) => {
+    <div
+      ref={ref}
+      className={`grid grid-cols-1 gap-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] sm:grid-cols-3 ${
+        revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+      }`}
+    >
+      {displayStats.map((stat) => {
         const Icon = stat.icon;
         return (
-          <motion.div
+          <Card
             key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
+            className="rounded-lg text-center transition-[border-color,transform] duration-[220ms] hover:-translate-y-[3px] hover:border-muted-foreground-2"
           >
-            <Card className="text-center hover:shadow-lg transition-all duration-300 hover:scale-105 border-primary/20 bg-gradient-to-br from-card to-card/50">
-              <CardContent className="pt-6">
-                <Icon className="h-8 w-8 mx-auto mb-2 text-primary" />
-                <div className="text-3xl font-bold mb-1 bg-gradient-to-r from-[#0077B5] to-[#00A0DC] bg-clip-text text-transparent">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </CardContent>
-            </Card>
-          </motion.div>
+            <CardContent className="pt-6">
+              <Icon className="mx-auto mb-2 h-8 w-8 text-primary" />
+              <div className="mb-1 font-display text-3xl font-bold tabular-nums tracking-[-0.03em] text-foreground">
+                {stat.value}
+              </div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </CardContent>
+          </Card>
         );
       })}
     </div>
