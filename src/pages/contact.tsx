@@ -65,18 +65,27 @@ export default function Contact() {
         </Button>
       </div>
 
-      <dl className="mt-12 grid gap-5">
+      {/* A <ul>, not a <dl>: this is a list of contact methods (each
+          with a decorative icon, a label and a value), not a strict
+          term/description pairing — axe-core's definition-list rule
+          requires a <dl>'s content to be flatly dt/dd/div/script/
+          template, and the icon sitting alongside the label+value
+          here would violate that (found via Phase 12's Lighthouse
+          accessibility audit, not assumed). A plain list sidesteps
+          the constraint entirely and is the more accurate semantic
+          fit for "ways to reach me" besides. */}
+      <ul className="mt-12 grid gap-5">
         {contactLines.map(({ icon: Icon, label, display, href }) => (
-          <div key={label} className="flex items-start gap-3">
+          <li key={label} className="flex items-start gap-3">
             <Icon className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
             <div className="min-w-0">
-              <dt className="text-xs uppercase tracking-wide text-muted-foreground-2">
+              <span className="block text-xs uppercase tracking-wide text-muted-foreground-2">
                 {label}
-              </dt>
+              </span>
               {/* M5: long identifiers (email, profile URLs) use
                   overflow-wrap: anywhere so they can't blow out the
                   layout at narrow widths. */}
-              <dd className="mt-0.5 [overflow-wrap:anywhere]">
+              <span className="mt-0.5 block [overflow-wrap:anywhere]">
                 {href ? (
                   <a
                     href={href}
@@ -91,11 +100,11 @@ export default function Contact() {
                 ) : (
                   <span className="text-foreground">{display}</span>
                 )}
-              </dd>
+              </span>
             </div>
-          </div>
+          </li>
         ))}
-      </dl>
+      </ul>
     </div>
   );
 }
