@@ -27,3 +27,10 @@ dist-ssr
 .agents/
 .claude/skills/
 skills-lock.json
+
+# Playwright responsive screenshot harness (Phase 1.5) — not deployed, regenerated per phase
+docs/shots/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
