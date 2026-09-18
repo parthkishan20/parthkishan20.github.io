@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --breakpoint-rail: 1160px;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -20,151 +24,145 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-muted-foreground-2: var(--muted-foreground-2);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-ok: var(--ok);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-/* Palette:
-   #0077B5 – LinkedIn blue  (primary light / accent dark)
-   #000000 – Pure black     (dark bg base)
-   #313335 – Dark charcoal  (dark cards / sidebar)
-   #86888A – Medium gray    (muted foreground)
-   #CACCCE – Light gray     (borders / dark foreground)
-   #00A0DC – Sky blue       (accent light / primary dark)
-*/
+/* Palette (notes-from-artifacts.md entry 7, --ink-3 contrast fix applied):
+   cool neutrals biased green, one deep-green accent. Hex, not oklch — matches
+   what the notes measured for contrast. Do not mix notations. */
 
 :root {
-  --radius: 0.625rem;
+  --radius: 6px;
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.224 0.003 253);
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.224 0.003 253);
+  /* ground */
+  --background: #F3F5F3;
+  /* ink */
+  --foreground: #121816;
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.224 0.003 253);
+  /* raised */
+  --card: #FFFFFF;
+  --card-foreground: #121816;
 
-  /* #0077B5 */
-  --primary: oklch(0.546 0.132 242);
-  --primary-foreground: oklch(1 0 0);
+  --popover: #FFFFFF;
+  --popover-foreground: #121816;
 
-  --secondary: oklch(0.95 0.002 253);
-  --secondary-foreground: oklch(0.224 0.003 253);
+  /* accent */
+  --primary: #0F6B4F;
+  --primary-foreground: #FFFFFF;
 
-  --muted: oklch(0.95 0.002 253);
-  /* #86888A */
-  --muted-foreground: oklch(0.575 0.002 253);
+  --secondary: #E7EBE7;
+  --secondary-foreground: #121816;
 
-  /* #00A0DC */
-  --accent: oklch(0.668 0.135 228);
-  --accent-foreground: oklch(1 0 0);
+  --muted: #E7EBE7;
+  /* ink-2 */
+  --muted-foreground: #4C5853;
+  /* ink-3, contrast-fixed */
+  --muted-foreground-2: #656F6A;
 
-  --destructive: oklch(0.577 0.245 27.325);
+  /* wash */
+  --accent: rgba(15, 107, 79, 0.08);
+  --accent-foreground: #121816;
 
-  /* #CACCCE */
-  --border: oklch(0.820 0.003 253);
-  --input: oklch(0.820 0.003 253);
-  --ring: oklch(0.546 0.132 242);
+  --destructive: #B3261E;
 
-  --chart-1: oklch(0.546 0.132 242);
-  --chart-2: oklch(0.668 0.135 228);
-  --chart-3: oklch(0.60 0.11 235);
-  --chart-4: oklch(0.575 0.002 253);
-  --chart-5: oklch(0.820 0.003 253);
+  /* line */
+  --border: #DCE1DD;
+  --input: #DCE1DD;
+  --ring: #0F6B4F;
 
-  /* #CACCCE-tinted sidebar */
-  --sidebar: oklch(0.97 0.002 253);
-  --sidebar-foreground: oklch(0.224 0.003 253);
-  --sidebar-primary: oklch(0.546 0.132 242);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.93 0.003 253);
-  --sidebar-accent-foreground: oklch(0.224 0.003 253);
-  --sidebar-border: oklch(0.820 0.003 253);
-  --sidebar-ring: oklch(0.546 0.132 242);
+  /* ok (availability dot) */
+  --ok: #15803D;
+
+  --chart-1: #0F6B4F;
+  --chart-2: #2F8F6B;
+  --chart-3: #58C79B;
+  --chart-4: #4C5853;
+  --chart-5: #79847F;
 }
 
 .dark {
-  /* #000000 — very dark base */
-  --background: oklch(0.07 0 0);
-  /* #CACCCE */
-  --foreground: oklch(0.820 0.003 253);
+  --background: #0C100E;
+  --foreground: #E7ECE9;
 
-  /* #313335 */
-  --card: oklch(0.224 0.003 253);
-  --card-foreground: oklch(0.820 0.003 253);
+  --card: #141A17;
+  --card-foreground: #E7ECE9;
 
-  --popover: oklch(0.224 0.003 253);
-  --popover-foreground: oklch(0.820 0.003 253);
+  --popover: #141A17;
+  --popover-foreground: #E7ECE9;
 
-  /* #00A0DC — brighter blue works better on dark */
-  --primary: oklch(0.668 0.135 228);
-  --primary-foreground: oklch(0.07 0 0);
+  --primary: #58C79B;
+  --primary-foreground: #07100C;
 
-  --secondary: oklch(0.28 0.003 253);
-  --secondary-foreground: oklch(0.820 0.003 253);
+  --secondary: #1A211D;
+  --secondary-foreground: #E7ECE9;
 
-  --muted: oklch(0.28 0.003 253);
-  --muted-foreground: oklch(0.575 0.002 253);
+  --muted: #1A211D;
+  --muted-foreground: #9BA6A1;
+  --muted-foreground-2: #838E89;
 
-  /* #0077B5 as accent in dark mode */
-  --accent: oklch(0.546 0.132 242);
-  --accent-foreground: oklch(0.820 0.003 253);
+  --accent: rgba(88, 199, 155, 0.12);
+  --accent-foreground: #E7ECE9;
 
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: #E46A63;
 
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.668 0.135 228);
+  --border: #222A26;
+  --input: #222A26;
+  --ring: #58C79B;
 
-  --chart-1: oklch(0.668 0.135 228);
-  --chart-2: oklch(0.72 0.10 225);
-  --chart-3: oklch(0.60 0.12 235);
-  --chart-4: oklch(0.575 0.002 253);
-  --chart-5: oklch(0.820 0.003 253);
+  --ok: #4ADE80;
 
-  /* #313335 sidebar */
-  --sidebar: oklch(0.224 0.003 253);
-  --sidebar-foreground: oklch(0.820 0.003 253);
-  --sidebar-primary: oklch(0.668 0.135 228);
-  --sidebar-primary-foreground: oklch(0.07 0 0);
-  --sidebar-accent: oklch(0.28 0.003 253);
-  --sidebar-accent-foreground: oklch(0.820 0.003 253);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.668 0.135 228);
+  --chart-1: #58C79B;
+  --chart-2: #4ADE80;
+  --chart-3: #2F8F6B;
+  --chart-4: #9BA6A1;
+  --chart-5: #6E7A75;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-  }
+
   html {
+    -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
   }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.62;
+  }
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
   }
 
   *:focus-visible {
@@ -175,30 +173,21 @@
     @apply absolute -top-full left-0 z-50 bg-primary text-primary-foreground px-4 py-2 focus:top-0 transition-all;
   }
 
-  @keyframes blob {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-    }
-    25% {
-      transform: translate(20px, -20px) scale(1.1);
-    }
-    50% {
-      transform: translate(-20px, 20px) scale(0.9);
-    }
-    75% {
-      transform: translate(20px, 20px) scale(1.05);
-    }
+  @keyframes status-blink {
+    0%, 60%   { opacity: 1; }
+    61%, 100% { opacity: 0.25; }
   }
 
-  .animate-blob {
-    animation: blob 7s infinite;
+  .animate-status-blink {
+    animation: status-blink 2s steps(1, end) infinite;
   }
 
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-
-  .animation-delay-4000 {
-    animation-delay: 4s;
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
