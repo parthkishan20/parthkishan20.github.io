@@ -20,8 +20,24 @@ export function RailNav({ active }: RailNavProps) {
   return (
     <aside className="site-rail hidden rail:flex rail:flex-col rail:sticky rail:top-0 rail:h-dvh rail:pt-12 rail:pb-10">
       <div className="flex items-center gap-3.5">
+        {/* Phase 13 / D5: the only on-page usage of the profile photo
+            is this 52px rail slot (Q8), yet the source file was a
+            687 KB 1024x1024 PNG. avatar-104.webp is a 104x104 (2x
+            retina) WebP generated from it, 3.7 KB. The original PNG
+            stays in public/ unchanged — it's also the og:image /
+            twitter:image meta target (index.html), a genuinely
+            different use case (a social-preview card wants a large
+            image) that this defect isn't about and isn't asked to
+            touch. width/height describe the rendered CSS box (52px),
+            not the source file's pixel count, so the browser reserves
+            the right space before the image loads (no CLS). */}
         <Avatar className="h-[52px] w-[52px]">
-          <AvatarImage src="/images/profile/avatar.png" alt={name} />
+          <AvatarImage
+            src="/images/profile/avatar-104.webp"
+            alt={name}
+            width={52}
+            height={52}
+          />
           <AvatarFallback>{initials}</AvatarFallback>
         </Avatar>
         <div className="min-w-0">

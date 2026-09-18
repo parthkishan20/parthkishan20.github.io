@@ -128,3 +128,50 @@ actual bottleneck instead of just the assumed one.
 - Print preview at A4 (794×1123 CSS px): rail/nav/back-to-top hidden,
   full width, all 4 featured projects unrolled and visible — same
   correct behavior confirmed at Letter size in Phase 11.
+
+## Phase 13 update — after the avatar fix
+
+Re-ran the identical Lighthouse config after Phase 13's `avatar.png`
+→ `avatar-104.webp` change (see `docs/after/bundle.md`).
+
+| Category | Before Phase 13 | After Phase 13 |
+| --- | --- | --- |
+| Performance | 86 | 87 |
+| Accessibility | 100 | 100 |
+| Best Practices | 100 | 96 (see below) |
+| SEO | 100 | 100 |
+| LCP | 3.5 s | 3.4 s |
+| CLS | 0 | 0 |
+
+**LCP barely moved (3.5s → 3.4s), confirming the Phase 12 diagnosis
+was correct**: the avatar was never the LCP element or a meaningful
+contributor to it (the LCP element is a text span, not an image — see
+above). The 687 KB → 3.7 KB asset reduction is real and worth keeping
+regardless (D5 was a genuine defect on its own terms — an
+unnecessarily large file for what it renders — not something whose
+justification depended on moving the LCP number), but it does not
+close the gap to the acceptance criterion (LCP < 2.5s). That gap's
+actual cause — most likely Google Fonts' request chain or main-bundle
+parse/execution time under Lighthouse's simulated throttling — is
+outside Phase 13's four defined steps (image, font weights, bundle
+size, GitHubStats skeleton) and is not chased further here; flagging
+it as the next place to look if closing this specific gap matters.
+
+**Best Practices dipped to 96, not because of anything Phase 13
+changed**: the one failing audit (`errors-in-console`) fired because
+this specific run hit GitHub's real, unauthenticated API rate limit
+(HTTP 403) — a direct, expected consequence of the sheer amount of
+automated testing run against the live GitHub API across every phase
+of this project today. `GitHubStats`'s catch block both handles this
+gracefully (confirmed: the sensible fallback UI renders, not an empty
+box — Phase 5 and Phase 13's own bundle.md) *and* logs it via
+`console.error` for developer visibility, which is reasonable
+practice that Lighthouse's blanket "any console.error is a defect"
+heuristic can't distinguish from a real unhandled crash. Not
+regressed by this phase, not fixed by removing a legitimate debug log
+just to satisfy the audit — the score is a property of this moment's
+external rate-limit state, not of the code.
+
+CLS stayed at a flat 0 throughout every measurement in this project —
+the stated <0.1 target is met with room to spare and was never at
+risk.
