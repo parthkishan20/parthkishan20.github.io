@@ -1,61 +1,49 @@
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import siteData from "@/data/siteData.json";
+import { roles } from "@/data/adapters";
 
+// notes-from-artifacts.md entry 3. Base: meta stacked above bullets, no
+// sticky. md: two columns (0.8fr/2fr), still no sticky — a sticky meta
+// column fights nothing at md, since there's no header there either,
+// but the plan reserves sticky for rail only where it's guaranteed a
+// long job actually has room to pin against. rail: meta becomes sticky,
+// self-start required or the sticky silently does nothing inside a grid
+// row (6.3 acceptance).
 export default function Experience() {
   return (
-    <div className="w-full min-h-screen flex items-center py-12 px-4 md:px-6 lg:px-8">
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="container max-w-4xl mx-auto"
-      >
-        <div className="relative mx-auto max-w-3xl">
-          {/* Timeline vertical separator */}
-          <Separator orientation="vertical" className="bg-muted absolute left-4 top-8 h-full hidden sm:block" />
-          {siteData.experience.map((exp, idx) => (
-            <motion.div 
-              key={idx} 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="relative mb-12 sm:mb-16 sm:pl-12"
-            >
-              {/* Timeline dot */}
-              <div className="bg-gradient-to-r from-[#0077B5] to-[#00A0DC] absolute left-0 top-7 size-5 sm:flex items-center justify-center rounded-full border-2 border-background shadow-lg hidden" />
-              <Card className="border-primary/20 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-card to-card/50">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-xl sm:text-2xl font-semibold">
-                    {exp.company}
-                  </CardTitle>
-                  <CardDescription className="flex flex-wrap gap-2 text-sm sm:text-base font-medium">
-                    <span className="text-primary">{exp.role}</span>
-                    <span className="hidden sm:inline">•</span>
-                    <span>{exp.location}</span>
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="flex flex-wrap items-center gap-4 mb-4">
-                    <span className="text-muted-foreground text-sm font-medium bg-muted/50 px-3 py-1 rounded-full">{exp.dates}</span>
-                  </div>
-                  <ul className="space-y-3 text-sm sm:text-base text-muted-foreground">
-                    {exp.bullets.map((bullet, i) => (
-                      <li key={i} className="leading-relaxed flex items-start gap-2">
-                        <span className="text-primary mt-1.5 shrink-0">▸</span>
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+    <div className="divide-y divide-border/60">
+      {roles.map((job) => (
+        <article
+          key={job.company}
+          className="grid gap-5 py-10 first:pt-0 md:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] md:gap-14 md:py-14"
+        >
+          <div className="rail:sticky rail:top-6 rail:self-start">
+            <h3 className="text-2xl tracking-tight md:text-3xl">
+              {job.company}
+            </h3>
+            <div className="mt-2 text-[15px] text-muted-foreground">
+              {job.role}, {job.location}
+            </div>
+            <div className="mt-1 text-sm tabular-nums text-muted-foreground">
+              {job.dates}
+            </div>
+          </div>
+
+          <ul className="grid gap-[18px]">
+            {job.bullets.map((bullet, i) => (
+              <li
+                key={i}
+                className="max-w-[68ch] leading-relaxed text-muted-foreground"
+              >
+                {bullet.lead && (
+                  <strong className="font-semibold text-foreground">
+                    {bullet.lead}
+                  </strong>
+                )}
+                {bullet.rest}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
     </div>
   );
 }

@@ -17,6 +17,96 @@ export const certifications = siteData.certifications;
 export const community = siteData.extracurricular;
 export const resume = siteData.resume;
 
+export type Bullet = { lead: string; rest: string };
+export type Role = {
+  company: string;
+  role: string;
+  dates: string;
+  location: string;
+  bullets: Bullet[];
+};
+
+// The bullet prose is authored here, keyed by company, not derived from
+// siteData.json's raw experience[].bullets (7.1's stated shape, applying
+// 7.2's precedent). The plan's own worked example under 7.1 quotes this
+// exact EventEase lead bullet verbatim, confirming this is the intended
+// source text — transcribed from the "Parth Patel Ships" artifact via a
+// screenshot the site owner supplied directly on 2026-09-18, since the
+// artifact itself is sandboxed against automated reading. It is a
+// tighter, portfolio-specific rewrite of the same two jobs — 10 bullets
+// total (6 + 4) versus the raw JSON's 12 more résumé-formal ones — not a
+// verbatim substring split of the JSON text, so the 7.1 "lead must be a
+// prefix of the current JSON string" drift guard does not apply the way
+// it would for a same-text split. `company`/`role`/`dates`/`location`
+// below are still pulled live from siteData.experience (not
+// re-hardcoded) so a future résumé sync to those fields stays
+// authoritative; only the bullet prose is independent of the sync.
+//
+// Exactly one bullet per job carries an empty lead (the process bullet)
+// so it renders unbolded, per 7.1. `rest` includes its own leading
+// space or comma so `<strong>{lead}</strong>{rest}` reconstructs the
+// original sentence with correct punctuation — do not insert an
+// additional space when rendering.
+const roleBulletsByCompany: Record<string, Bullet[]> = {
+  EventEase: [
+    {
+      lead: "Shipped two greenfield React single page apps",
+      rest: " and extended an existing codebase for charity golf live scoring, delivering layouts that work on a phone and on a 4K TV in the clubhouse.",
+    },
+    {
+      lead: "Architected the front ends",
+      rest: " in React 19, Vite, TypeScript, Tailwind CSS, shadcn/ui and Redux Toolkit, with reusable component patterns behind live leaderboards, dashboards and admin workflows.",
+    },
+    {
+      lead: "Wired end to end REST workflows",
+      rest: " with Axios covering authentication, team onboarding, score submission, leaderboard retrieval, messaging, media uploads and sponsor content, with centralised error handling and toast feedback.",
+    },
+    {
+      lead: "Kept leaderboards near real time",
+      rest: " through tuned polling and refresh logic for both web and TV views, including sponsor carousels and animated transitions.",
+    },
+    {
+      lead: "Built the organiser CMS",
+      rest: " with data rich tables, CSV and XLSX import flows and validated forms using React Hook Form, Zod and TanStack Table.",
+    },
+    {
+      lead: "",
+      rest: "Worked Scrum in a remote team on weekly standups, Trello and GitHub reviews, and helped with production builds and deployments.",
+    },
+  ],
+  "TechBilv Solutions LLP": [
+    {
+      lead: "Rebuilt parts of client facing React applications",
+      rest: ", redesigning modals, reworking layouts and improving navigation.",
+    },
+    {
+      lead: "Integrated the Hoori AI chatbot",
+      rest: ", restructured link systems and added alphabetical scrolling to make long directories usable.",
+    },
+    {
+      lead: "Owned production deployments",
+      rest: " through Visual Studio 2022, publishing builds to AWS-connected IIS hosting servers.",
+    },
+    {
+      lead: "",
+      rest: "Hosted and configured static sites on AWS S3, and coordinated with cross functional teams to keep client delivery on schedule.",
+    },
+  ],
+};
+
+export const roles: Role[] = siteData.experience.map((exp) => ({
+  company: exp.company,
+  role: exp.role,
+  dates: exp.dates,
+  location: exp.location,
+  // Drift guard: if a future sync adds/renames a company with no entry
+  // above, fall back to the raw JSON bullets, each unbolded, rather than
+  // silently dropping content or showing stale prose.
+  bullets:
+    roleBulletsByCompany[exp.company] ??
+    exp.bullets.map((rest) => ({ lead: "", rest })),
+}));
+
 export type SkillGroup = { label: string; primary: string[]; rest: string };
 
 // Authored, not derived from siteData.json's raw `skills` object (7.2):
