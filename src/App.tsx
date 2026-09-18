@@ -4,6 +4,7 @@ import { SEOHead } from "@/components/seo-head";
 import { BackToTop } from "@/components/back-to-top";
 import { Toaster } from "@/components/ui/toaster";
 import { SiteShell } from "@/components/site-shell";
+import { Section } from "@/components/section";
 
 // Import all pages
 import Home from "@/pages/home";
@@ -30,9 +31,9 @@ function App() {
           Skip to main content
         </a>
         <SiteShell>
-          <section id="home" className={`w-full ${SCROLL_ANCHOR}`}>
+          <Section id="home" label="Opening">
             <Home />
-          </section>
+          </Section>
           <section id="about" className={`w-full ${SCROLL_ANCHOR}`}>
             <About />
           </section>
