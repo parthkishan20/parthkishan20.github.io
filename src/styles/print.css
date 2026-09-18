@@ -1,24 +1,42 @@
-/* Print Styles for Resume */
+/* Print Styles for Resume — Phase 11: updated to match the redesign's
+   actual structure. A recruiter printing the page is a real use for
+   this site, so this was checked with an actual print preview, not
+   assumed to still be correct after the rewrite.
+
+   Note on breakpoints: most browsers lay out the print media at a
+   printed-page width (commonly under 900 CSS px for Letter/A4 at
+   default margins), which is below this site's 1160px `rail`
+   breakpoint. So printing almost always renders the mobile/tablet
+   layout (sticky header + chip nav), not the desktop rail — the
+   .site-rail rule below is defensive for the uncommon case (a wide
+   custom page size, or a browser that prints at window width) where
+   it does render. */
 @media print {
-  /* Hide non-essential elements */
-  .sidebar,
-  .mode-toggle,
-  .scroll-progress,
-  .back-to-top,
-  button:not(.print-keep),
+  /* Hide non-essential/interactive chrome. */
+  .site-rail,
   nav,
-  footer {
+  .back-to-top,
+  button:not(.print-keep) {
     display: none !important;
   }
 
-  /* Reset colors for print */
+  /* Reset colors for print. */
   * {
     color: black !important;
     background: white !important;
+    box-shadow: none !important;
   }
 
-  /* Page breaks */
-  section {
+  /* Nothing should stay pinned to a viewport position on a printed
+     page — the mobile sticky header/chip bar and the Experience
+     meta column both use position: sticky. */
+  * {
+    position: static !important;
+  }
+
+  /* Page breaks. */
+  section,
+  article {
     page-break-inside: avoid;
   }
 
@@ -26,28 +44,54 @@
     page-break-after: avoid;
   }
 
-  /* Ensure full content visibility */
+  /* Full page width, no side rail gap. */
   body {
     width: 100%;
     margin: 0;
     padding: 0;
   }
 
-  /* Optimize layout */
-  .container {
+  .site-shell {
+    display: block !important;
     max-width: 100% !important;
-    margin: 0 !important;
-    padding: 1rem !important;
+    padding: 0 !important;
   }
 
-  /* Card styles for print */
-  .card {
-    border: 1px solid #ccc !important;
-    box-shadow: none !important;
+  /* The Projects pan (Phase 7) is a scroll-driven, partially clipped
+     effect on screen — printing it as-is would show only whichever
+     panel happened to be scrolled into view, cut off mid-card. Unroll
+     it into a plain stacked list so every featured project prints in
+     full. */
+  .project-pan {
+    height: auto !important;
+  }
+
+  .project-pan-frame {
+    position: static !important;
+    height: auto !important;
+  }
+
+  .project-pan-viewport {
+    overflow: visible !important;
+  }
+
+  .project-pan-track {
+    display: block !important;
+    width: auto !important;
+    transform: none !important;
+  }
+
+  .project-pan-track > * {
+    width: 100% !important;
     margin-bottom: 1rem;
+    page-break-inside: avoid;
   }
 
-  /* Links */
+  .project-pan-progress-bar {
+    display: none !important;
+  }
+
+  /* Links. */
   a {
     text-decoration: underline;
   }
@@ -57,7 +101,7 @@
     font-size: 0.8em;
   }
 
-  /* Hide link URLs for internal navigation */
+  /* Hide link URLs for internal (anchor) navigation. */
   a[href^="#"]:after {
     content: "";
   }

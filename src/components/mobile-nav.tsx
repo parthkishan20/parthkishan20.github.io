@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SECTIONS } from "@/lib/sections";
-import siteData from "@/data/siteData.json";
+import { profile } from "@/data/adapters";
 
 interface MobileNavProps {
   active: string;
@@ -31,7 +31,7 @@ export function MobileNav({ active }: MobileNavProps) {
     <div className="rail:hidden sticky top-0 z-40 -mx-5 border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sm:-mx-6">
       <div className="flex h-14 items-center justify-between px-5 sm:px-6">
         <span className="truncate text-sm font-medium text-foreground">
-          {siteData.profile.name}
+          {profile.name}
         </span>
         <ModeToggle />
       </div>

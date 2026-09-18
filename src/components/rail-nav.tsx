@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SECTIONS } from "@/lib/sections";
-import siteData from "@/data/siteData.json";
+import { profile } from "@/data/adapters";
 
 interface RailNavProps {
   active: string;
@@ -11,14 +11,14 @@ interface RailNavProps {
 // shadcn SidebarProvider: one <aside>, no provider, no collapse state, no
 // icons. Below the `rail` breakpoint this renders nothing (see MobileNav).
 export function RailNav({ active }: RailNavProps) {
-  const { name, title, email, links } = siteData.profile;
+  const { name, title, email, links } = profile;
   const initials = name
     .split(" ")
     .map((n) => n[0])
     .join("");
 
   return (
-    <aside className="hidden rail:flex rail:flex-col rail:sticky rail:top-0 rail:h-dvh rail:pt-12 rail:pb-10">
+    <aside className="site-rail hidden rail:flex rail:flex-col rail:sticky rail:top-0 rail:h-dvh rail:pt-12 rail:pb-10">
       <div className="flex items-center gap-3.5">
         <Avatar className="h-[52px] w-[52px]">
           <AvatarImage src="/images/profile/avatar.png" alt={name} />

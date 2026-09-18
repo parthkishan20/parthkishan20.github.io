@@ -9,8 +9,9 @@ import { homeFigures, resume } from "@/data/adapters";
 // delayed 40/130/220/310ms — one entry per hero block. This is a
 // mount-triggered stagger, not the scroll-triggered `useReveal`: the
 // hero is above the fold on load, so there's nothing to scroll into
-// view yet. Plain CSS transitions (not framer-motion) so the global
-// prefers-reduced-motion override in index.css collapses it for free.
+// view yet. Plain CSS transitions, no animation library, so the
+// global prefers-reduced-motion override in index.css collapses it
+// for free.
 const STAGGER_MS = [40, 130, 220, 310] as const;
 const REVEAL_TRANSITION =
   "transition-all duration-[880ms] ease-[cubic-bezier(0.16,1,0.3,1)]";

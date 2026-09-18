@@ -274,3 +274,32 @@
     }
   }
 }
+
+/* Phase 11: BackToTop — an opacity/translateY transition across the
+   native `hidden` attribute, replacing the old animation library's
+   AnimatePresence (Q10). `transition-behavior: allow-discrete` plus
+   @starting-style lets the transition run across the display:none
+   boundary itself (the exit as well as the entry); without them a
+   transition can't animate across display changes at all. Browsers
+   without support for that combination just pop instantly — still
+   fully functional. */
+.back-to-top {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 220ms ease, transform 220ms ease,
+    display 220ms allow-discrete, overlay 220ms allow-discrete;
+}
+
+.back-to-top[hidden] {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@starting-style {
+  .back-to-top:not([hidden]) {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}

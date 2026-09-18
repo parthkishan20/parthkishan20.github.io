@@ -5,9 +5,10 @@ interface UseRevealOptions {
   rootMargin?: string;
 }
 
-// Replaces framer-motion's `whileInView` fade/slide reveals (D12, Q10 —
-// the CSS-plus-IntersectionObserver approach adopted once every page is
-// rewritten). One observer per element, unobserved as soon as it fires
+// Replaces the old animation library's `whileInView` fade/slide
+// reveals (D12, Q10 — the CSS-plus-IntersectionObserver approach
+// adopted once every page is rewritten). One observer per element,
+// unobserved as soon as it fires
 // once (plan section 4.6: "fire once"). Starts already revealed when
 // prefers-reduced-motion is on, so nothing is ever stuck at opacity: 0
 // for a user who never triggers the intersection (or whose browser
