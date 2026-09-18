@@ -218,3 +218,45 @@ export const homeFigures = [
     label: "Projects shipped and documented",
   },
 ] as const;
+
+export type CertificationGroup = {
+  label: string;
+  certifications: typeof certifications;
+};
+
+// Grouped into the three issuer groups plan Phase 9 names ("Anthropic /
+// Engineering and web / Adjacent") — that grouping doesn't exist in
+// siteData.json and isn't derivable mechanically, so it's an editorial
+// call, keyed by name (not array index) so it can't silently misgroup
+// if a future sync reorders the raw array:
+// - Anthropic: the four certs actually issued by Anthropic.
+// - Engineering and web: software/web skills from other providers (an
+//   AI coding-agent course, prompt engineering, React, a web dev
+//   bootcamp).
+// - Adjacent: Bloomberg Market Concepts — a finance credential, related
+//   to a tech career but not itself a software/AI skill.
+// A cert with no entry here falls into Adjacent by default rather than
+// being silently dropped if a future sync adds one.
+const certificationGroupNames: Record<string, string> = {
+  "Claude 101": "Anthropic",
+  "Claude Code 101": "Anthropic",
+  "Claude Code in Action": "Anthropic",
+  "AI Fluency Framework & Foundations": "Anthropic",
+  "AI Coder: Complete Claude Code & Coding Agents Course":
+    "Engineering and web",
+  "Advanced Prompt Engineering": "Engineering and web",
+  "React Essential Training": "Engineering and web",
+  "100 Days of Code - 2023 Web Development Bootcamp": "Engineering and web",
+  "Bloomberg Market Concept": "Adjacent",
+};
+
+const CERTIFICATION_GROUP_ORDER = ["Anthropic", "Engineering and web", "Adjacent"];
+
+export const certificationGroups: CertificationGroup[] = CERTIFICATION_GROUP_ORDER.map(
+  (label) => ({
+    label,
+    certifications: certifications.filter(
+      (c) => (certificationGroupNames[c.name] ?? "Adjacent") === label
+    ),
+  })
+).filter((group) => group.certifications.length > 0);

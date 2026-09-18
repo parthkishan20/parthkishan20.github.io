@@ -1,65 +1,60 @@
-import { motion } from "framer-motion";
-import React from "react";
-import { Award, ExternalLink } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import siteData from "@/data/siteData.json";
+import { ExternalLink } from "lucide-react";
+import { certificationGroups } from "@/data/adapters";
 
+// Nine certifications in three issuer groups (plan 9). One column at
+// base, two from md, three at rail. Each card links to its
+// verification URL — target="_blank" rel="noopener" exactly as
+// specified (not the noopener-noreferrer pattern used elsewhere on the
+// site; verification services can reasonably want the referrer).
 export default function Certifications() {
   return (
-    <div className="w-full min-h-screen flex items-center py-12 px-4 md:px-6 lg:px-8">
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="container max-w-4xl mx-auto"
-      >
-        <div className="flex flex-col">
-          {siteData.certifications.map((cert, index) => (
-            <React.Fragment key={index}>
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-center gap-3 md:gap-4 px-2 md:px-4 py-5 md:py-6"
-              >
-                <span className="flex h-12 w-12 md:h-14 md:w-16 shrink-0 items-center justify-center rounded-md bg-muted">
-                  <Award className="h-6 w-6 md:h-8 md:w-8 text-primary" />
-                </span>
-                <div className="flex-1 min-w-0">
-                  {/* First row: name (left), year (right) */}
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-semibold text-base sm:text-lg truncate">{cert.name}</h3>
-                    <span className="text-sm md:text-base font-medium text-muted-foreground whitespace-nowrap">{cert.year}</span>
+    <div id="certifications" className="scroll-mt-[72px] rail:scroll-mt-6">
+      <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        Certifications
+      </h3>
+
+      <div className="mt-5 flex flex-col gap-8">
+        {certificationGroups.map((group) => (
+          <div key={group.label}>
+            <h4 className="text-sm font-medium text-muted-foreground">
+              {group.label}
+            </h4>
+            {/* [@media(min-width:1160px)] instead of rail: — Tailwind v4
+                orders this custom breakpoint's generated rules before
+                md:'s in the stylesheet (confirmed via computed-style
+                testing, not assumed), so at >=1160px the later md:
+                rule was winning the cascade and grid-cols-3 never
+                applied. An arbitrary media variant sidesteps whatever
+                sorts named custom breakpoints incorrectly, since it's
+                inserted as a literal at-rule rather than going through
+                that ordering. */}
+            <div className="mt-3 grid gap-4 md:grid-cols-2 [@media(min-width:1160px)]:grid-cols-3">
+              {group.certifications.map((cert) => (
+                <a
+                  key={cert.name}
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener"
+                  className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4 transition-[border-color,transform] duration-[220ms] hover:-translate-y-[3px] hover:border-muted-foreground-2"
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
+                    <h5 className="min-w-0 flex-1 font-semibold leading-snug tracking-tight">
+                      {cert.name}
+                    </h5>
+                    <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+                      {cert.year}
+                    </span>
                   </div>
-                  {/* Second row: issuer (left), link (right) */}
-                  <div className="flex items-center justify-between gap-2 mt-1">
-                    <span className="text-xs sm:text-sm text-muted-foreground truncate">{cert.issuer}</span>
-                    {cert.link ? (
-                      <a
-                        className="inline-flex items-center gap-1 md:gap-2 text-xs sm:text-sm text-primary hover:underline whitespace-nowrap"
-                        href={cert.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <span className="hidden sm:inline">View Certificate</span>
-                        <span className="sm:hidden">View</span>
-                        <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
-                      </a>
-                    ) : (
-                      <span className="text-muted-foreground text-xs sm:text-sm">No link</span>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-              {index < siteData.certifications.length - 1 && (
-                <Separator className="my-2" />
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-      </motion.div>
+                  <p className="flex items-center gap-1 text-sm text-muted-foreground">
+                    {cert.issuer}
+                    <ExternalLink className="h-3 w-3 shrink-0" />
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

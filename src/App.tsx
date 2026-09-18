@@ -46,17 +46,13 @@ function App() {
           <Section id="skills" label="Skills">
             <Skills />
           </Section>
-          <section id="background" className={`w-full ${SCROLL_ANCHOR}`}>
-            <div id="education" className={SCROLL_ANCHOR}>
+          <Section id="background" label="Background">
+            <div className="flex flex-col gap-16 md:gap-20">
               <Education />
-            </div>
-            <div id="certifications" className={SCROLL_ANCHOR}>
               <Certifications />
-            </div>
-            <div id="extracurricular" className={SCROLL_ANCHOR}>
               <Extracurricular />
             </div>
-          </section>
+          </Section>
           <section id="contact" className={`w-full ${SCROLL_ANCHOR}`}>
             <div id="resume" className={SCROLL_ANCHOR}>
               <Resume />

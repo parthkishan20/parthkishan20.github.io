@@ -1,59 +1,51 @@
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import siteData from "@/data/siteData.json";
+import { education } from "@/data/adapters";
 
+// Phase 9 renders Education, Certifications and Community as three
+// blocks inside one shared <Section id="background"> (App.tsx). Each
+// keeps its own pre-redesign id and scroll-mt so the three old deep
+// links (#education, #certifications, #extracurricular) keep working.
+// The overall Background heading ("Study, credentials and community.",
+// plan 8.3) lives here since Education renders first among the three.
 export default function Education() {
   return (
-    <div className="w-full min-h-screen flex items-center py-12 px-4 md:px-6 lg:px-8">
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="container max-w-4xl mx-auto"
-      >
-        <div className="relative mx-auto max-w-3xl">
-          {/* Timeline vertical separator */}
-          <Separator orientation="vertical" className="bg-muted absolute left-4 top-8 h-full hidden sm:block" />
-          {siteData.education.map((edu, idx) => (
-            <motion.div 
-              key={idx} 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="relative mb-12 sm:mb-16 sm:pl-12"
-            >
-              {/* Timeline dot */}
-              <div className="bg-gradient-to-r from-[#0077B5] to-[#00A0DC] absolute left-0 top-7 size-5 sm:flex items-center justify-center rounded-full border-2 border-background shadow-lg hidden" />
-              <Card className="border-primary/20 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-card to-card/50">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-xl sm:text-2xl font-semibold">
-                    {edu.school}
-                  </CardTitle>
-                  <CardDescription className="flex flex-wrap gap-2 text-sm sm:text-base font-medium">
-                    <span className="text-primary">{edu.degree}</span>
-                    <span className="hidden sm:inline">•</span>
-                    <span>{edu.location}</span>
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <span className="text-muted-foreground text-sm font-medium bg-muted/50 px-3 py-1 rounded-full">{edu.dates}</span>
-                    <span className="text-sm font-semibold bg-gradient-to-r from-[#0077B5] to-[#00A0DC] bg-clip-text text-transparent px-3 py-1 rounded-full border border-primary/20">GPA: {edu.gpa}</span>
-                  </div>
-                  {/* <ul className="list-disc list-inside space-y-1 text-base text-muted-foreground">
-                    {edu.details.map((detail, i) => (
-                      <li key={i}>{detail}</li>
-                    ))}
-                  </ul> */}
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+    <div id="education" className="scroll-mt-[72px] rail:scroll-mt-6">
+      <h2 className="max-w-[26ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+        Study, credentials and community.
+      </h2>
+
+      <h3 className="mt-10 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        Education
+      </h3>
+
+      <div className="mt-5 flex flex-col gap-8">
+        {education.map((edu) => (
+          <article
+            key={edu.school}
+            className="flex flex-col justify-between gap-3 border-b border-border/60 pb-8 last:border-b-0 last:pb-0 sm:flex-row sm:items-baseline sm:gap-6"
+          >
+            <div className="min-w-0">
+              <h4 className="text-lg font-semibold tracking-tight md:text-xl">
+                {edu.school}
+              </h4>
+              <p className="mt-1 text-[15px] text-muted-foreground">
+                {edu.degree}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {edu.location}
+              </p>
+            </div>
+
+            <div className="shrink-0 sm:text-right">
+              <div className="font-display text-xl font-bold tabular-nums tracking-[-0.03em] text-foreground">
+                {edu.gpa}
+              </div>
+              <div className="mt-1 text-sm tabular-nums text-muted-foreground">
+                {edu.dates}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }
