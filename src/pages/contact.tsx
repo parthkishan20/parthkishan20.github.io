@@ -79,7 +79,7 @@ export default function Contact() {
           ))}
         </div>
 
-        <div className="flex justify-center gap-4 mt-10">
+        <div className="flex flex-col justify-center gap-4 mt-10 sm:flex-row">
           <Button asChild>
             <a href={`mailto:${siteData.profile.email}`}>
               <Mail className="mr-2 h-4 w-4" />

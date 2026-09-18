@@ -1,79 +1,68 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { SEOHead } from "@/components/seo-head";
-import { ScrollProgress } from "@/components/scroll-progress";
 import { BackToTop } from "@/components/back-to-top";
-import { SectionDivider } from "@/components/section-divider";
 import { Toaster } from "@/components/ui/toaster";
-import Layout from "@/components/layout";
+import { SiteShell } from "@/components/site-shell";
 
 // Import all pages
 import Home from "@/pages/home";
 import About from "@/pages/about";
-import Education from "@/pages/education";
 import Experience from "@/pages/experience";
 import Projects from "@/pages/projects";
 import Skills from "@/pages/skills";
+import Education from "@/pages/education";
 import Certifications from "@/pages/certifications";
 import Extracurricular from "@/pages/extracurricular";
-import Testimonials from "@/pages/testimonials";
 import Resume from "@/pages/resume";
 import Contact from "@/pages/contact";
+
+// M13: 72px clears the sticky mobile header/chip bar; rail:scroll-mt-6
+// (24px) is enough once the rail replaces it and there's no header.
+const SCROLL_ANCHOR = "scroll-mt-[72px] rail:scroll-mt-6";
 
 function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <SEOHead />
-        <ScrollProgress />
-        <a href="#home" className="skip-to-main">
+        <a href="#main" className="skip-to-main">
           Skip to main content
         </a>
-        <Layout>
-            <section id="home" className="min-h-screen w-full">
-              <Home />
-            </section>
-            <SectionDivider />
-            <section id="about" className="min-h-screen w-full">
-              <About />
-            </section>
-            <SectionDivider />
-            <section id="experience" className="min-h-screen w-full">
-              <Experience />
-            </section>
-            <SectionDivider />
-            <section id="education" className="min-h-screen w-full">
+        <SiteShell>
+          <section id="home" className={`w-full ${SCROLL_ANCHOR}`}>
+            <Home />
+          </section>
+          <section id="about" className={`w-full ${SCROLL_ANCHOR}`}>
+            <About />
+          </section>
+          <section id="experience" className={`w-full ${SCROLL_ANCHOR}`}>
+            <Experience />
+          </section>
+          <section id="projects" className={`w-full ${SCROLL_ANCHOR}`}>
+            <Projects />
+          </section>
+          <section id="skills" className={`w-full ${SCROLL_ANCHOR}`}>
+            <Skills />
+          </section>
+          <section id="background" className={`w-full ${SCROLL_ANCHOR}`}>
+            <div id="education" className={SCROLL_ANCHOR}>
               <Education />
-            </section>
-            <SectionDivider />
-            <section id="skills" className="min-h-screen w-full">
-              <Skills />
-            </section>
-            <SectionDivider />
-            <section id="projects" className="min-h-screen w-full">
-              <Projects />
-            </section>
-            <SectionDivider />
-            <section id="certifications" className="min-h-screen w-full">
+            </div>
+            <div id="certifications" className={SCROLL_ANCHOR}>
               <Certifications />
-            </section>
-            <SectionDivider />
-            <section id="extracurricular" className="min-h-screen w-full">
+            </div>
+            <div id="extracurricular" className={SCROLL_ANCHOR}>
               <Extracurricular />
-            </section>
-            <SectionDivider />
-            <section id="testimonials" className="min-h-screen w-full">
-              <Testimonials />
-            </section>
-            <SectionDivider />
-            <section id="resume" className="min-h-screen w-full">
+            </div>
+          </section>
+          <section id="contact" className={`w-full ${SCROLL_ANCHOR}`}>
+            <div id="resume" className={SCROLL_ANCHOR}>
               <Resume />
-            </section>
-            <SectionDivider />
-            <section id="contact" className="min-h-screen w-full">
-              <Contact />
-            </section>
-        </Layout>
+            </div>
+            <Contact />
+          </section>
+        </SiteShell>
         <BackToTop />
         <Toaster />
       </ThemeProvider>
