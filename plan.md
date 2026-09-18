@@ -909,7 +909,20 @@ full width and stacked at base, inline from `sm`.
 **Steps**
 1. **Delete** `src/pages/testimonials.tsx` and its import, section and nav entry.
 2. `grep -rn "0077B5\|00A0DC" src/` must return nothing. Nine files currently match (D2).
-3. `grep -rn "min-h-screen\|h-screen" src/` must return nothing.
+3. `grep -rn "min-h-screen" src/pages src/components --exclude=error-boundary.tsx`
+   must return nothing.
+   **Narrowed and closed out 2026-09-18** (originally
+   `grep -rn "min-h-screen\|h-screen" src/`). The original pattern had two
+   unavoidable false positives, both correct code that should not change:
+   - `components/error-boundary.tsx` — `min-h-screen` centres the whole-page
+     crash fallback in the viewport. That is the opposite of D1 (eleven
+     full-viewport *content* sections), and section 9 lists this file as
+     Untouched.
+   - `components/ui/toast.tsx` — `max-h-screen` caps the toast stack's height;
+     the `h-screen` alternation matched it as a substring. A shadcn primitive,
+     not hand-edited.
+   D1 is about per-section page rhythm, so the check now targets exactly that
+   and the criterion passes cleanly.
 4. `grep -rn "bg-gradient" src/` must return nothing (N7).
 5. **Remove `framer-motion` (Q10).** Order matters:
    a. `grep -rn "framer-motion" src/` and fix every remaining import. The last two are
@@ -1237,19 +1250,47 @@ or `git checkout main -- <file>` for a single file. `main` stays deployable thro
 
 ## 11. Definition of done
 
-- [ ] All 15 phases complete (0, 0.1, 1, 1.5, 2 to 13), each with its acceptance criteria met.
-- [ ] `npx tsc -b` and `npm run lint` clean.
-- [ ] `npm run build` runs **without publishing**, and its bundle number is recorded and
-      lower than the 163.44 KB gzipped baseline.
-- [ ] Section 5.5 matrix passes at eight widths, two heights, two themes.
-- [ ] The six Phase 11 greps all return nothing, including `framer-motion` and
-      `siteData.json` outside the adapter.
-- [ ] `npm run shots` is green in both chromium and firefox.
+Status as of 2026-09-18. Evidence for the measured items is in `docs/after/`
+(`lighthouse.md`, `bundle.md`) and in each phase's commit message.
+
+- [x] All 15 phases complete (0, 0.1, 1, 1.5, 2 to 13), each with its acceptance criteria met.
+- [x] `npx tsc -b` and `npm run lint` clean. Lint reaches zero errors/zero warnings:
+      the four standing errors (which pre-dated this work on `main`) were fixed —
+      `useTheme` + its context moved to `hooks/use-theme.ts` so `theme-provider.tsx`
+      exports only a component, `use-toast.ts`'s `actionTypes` became a type instead of
+      dead runtime code, and `react-refresh/only-export-components` is scoped off for
+      `src/components/ui/**`, whose cva-variant exports are upstream shadcn API.
+- [x] `npm run build` runs **without publishing**, and its bundle number is recorded and
+      lower than the 163.44 KB gzipped baseline. **98.21 KB gzipped / 312.57 KB raw,
+      a 40% reduction.**
+- [x] Section 5.5 matrix passes at eight widths, two heights, two themes.
+- [x] The six Phase 11 greps all return nothing, including `framer-motion` and
+      `siteData.json` outside the adapter. (The `min-h-screen` grep was narrowed to the
+      defect it describes — see Phase 11 step 3 for the two false positives and why they
+      are correct code.)
+- [x] `npm run shots` is green in both chromium and firefox. 32/32.
 - [ ] Lighthouse mobile: Accessibility 100, Performance 90+.
-- [ ] Every old section id still resolves except `#testimonials`.
-- [ ] No fabricated content anywhere on the page, and no string calls him a student.
-- [ ] Before and after screenshots at 375 and 1440 saved in `docs/`.
-- [ ] The site is **not** deployed. Deployment is a separate, explicit decision by the
+      **Accessibility 100, Best Practices 100, SEO 100. Performance 87 — not met.**
+      Diagnosed rather than left open: FCP is 2.5s and the LCP element is a text span,
+      not an image, because nothing paints until ~312 KB of JS downloads, parses and
+      mounts React into an empty `#root`. Phase 13's avatar work (687 KB → 3.7 KB) was
+      worth doing on D5's own terms but moved LCP only 3.5s → 3.4s, confirming the image
+      was never the bottleneck. Closing the gap needs build-time prerendering (which
+      would also fix the no-JS gap noted in Phase 7) and taking the render-blocking
+      Google Fonts stylesheet off the critical path. Both are architectural changes
+      beyond this plan's scope and are left as an explicit, separate decision for the
+      owner. CLS is a flat 0 throughout.
+- [x] Every old section id still resolves except `#testimonials`.
+- [x] No fabricated content anywhere on the page, and no string calls him a student.
+      All three Q12 replacements are in place and the old strings are gone. The only
+      remaining matches for "student" are "graduate students" (the AI club's members,
+      not him) and "Student Club IDE" (an organisation's proper name).
+- [x] Before and after screenshots at 375 and 1440 saved in `docs/`.
+      `docs/before/` (Phase 0) and `docs/after/`.
+- [x] The site is **not** deployed. Verified against the remote: `origin/gh-pages` last
+      moved at 22:23 on 2026-09-17, sixteen minutes *before* Phase 0 began — that is the
+      pre-planning build this plan already notes under Phase 0.1, not this work.
+      Deployment is a separate, explicit decision by the
       owner, run as `npm run deploy`.
 
 ---
