@@ -9,7 +9,7 @@ import { community } from "@/data/adapters";
 // breakpoints, not the site-wide `rail` used elsewhere in Background).
 export default function Extracurricular() {
   return (
-    <div id="extracurricular" className="scroll-mt-[72px] rail:scroll-mt-6">
+    <div id="extracurricular">
       <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
         Community
       </h3>

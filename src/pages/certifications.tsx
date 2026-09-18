@@ -8,7 +8,7 @@ import { certificationGroups } from "@/data/adapters";
 // site; verification services can reasonably want the referrer).
 export default function Certifications() {
   return (
-    <div id="certifications" className="scroll-mt-[72px] rail:scroll-mt-6">
+    <div id="certifications">
       <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
         Certifications
       </h3>
@@ -19,16 +19,12 @@ export default function Certifications() {
             <h4 className="text-sm font-medium text-muted-foreground">
               {group.label}
             </h4>
-            {/* [@media(min-width:1160px)] instead of rail: — Tailwind v4
-                orders this custom breakpoint's generated rules before
-                md:'s in the stylesheet (confirmed via computed-style
-                testing, not assumed), so at >=1160px the later md:
-                rule was winning the cascade and grid-cols-3 never
-                applied. An arbitrary media variant sidesteps whatever
-                sorts named custom breakpoints incorrectly, since it's
-                inserted as a literal at-rule rather than going through
-                that ordering. */}
-            <div className="mt-3 grid gap-4 md:grid-cols-2 [@media(min-width:1160px)]:grid-cols-3">
+            {/* Plain `rail:` again. This used to need an arbitrary
+                [@media(min-width:1160px)] variant because the custom
+                breakpoint sorted before md: and lost the cascade — that
+                was the px/rem unit bug, now fixed at the source in
+                index.css, so the workaround is no longer needed here. */}
+            <div className="mt-3 grid gap-4 md:grid-cols-2 rail:grid-cols-3">
               {group.certifications.map((cert) => (
                 <a
                   key={cert.name}

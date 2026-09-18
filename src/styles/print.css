@@ -99,6 +99,10 @@
   a[href]:after {
     content: " (" attr(href) ")";
     font-size: 0.8em;
+    /* One certification link is a 276-character LinkedIn URL. Printed
+       as visible text it carries no break opportunity and runs off the
+       right edge of the page. */
+    word-break: break-all;
   }
 
   /* Hide link URLs for internal (anchor) navigation. */

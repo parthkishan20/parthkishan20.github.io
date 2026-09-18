@@ -13,16 +13,42 @@ interface MobileNavProps {
 // section chips. No hamburger: seven items don't need one (Q6).
 export function MobileNav({ active }: MobileNavProps) {
   const chipRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const stripRef = useRef<HTMLElement | null>(null);
 
+  // Keep the active chip in view by scrolling *the strip*, never via
+  // scrollIntoView.
+  //
+  // scrollIntoView walks every scrollable ancestor up to and including
+  // the viewport and scrolls each one — `block: "nearest"` only makes
+  // the target offset equal the current offset, it does not skip the
+  // box. Scrolling the root scroller cancels any scroll animation
+  // already running on it, and `html` has `scroll-behavior: smooth`. So
+  // tapping a distant chip started a smooth page scroll, useActiveSection
+  // then fired once per section crossed, and each of those re-ran this
+  // effect and killed the page scroll mid-flight. The page stalled
+  // part-way and the chip strip ping-ponged through every chip on the
+  // way. It also fired on mount, cancelling the browser's own scroll to
+  // a deep-linked fragment.
+  //
+  // The visibility guard is the other half: without it this yanks the
+  // strip back every time the active section changes, even when the
+  // reader has deliberately scrolled the strip to look ahead.
   useEffect(() => {
     const chip = chipRefs.current[active];
-    if (!chip) return;
+    const strip = stripRef.current;
+    if (!chip || !strip) return;
+
+    const stripRect = strip.getBoundingClientRect();
+    const chipRect = chip.getBoundingClientRect();
+    if (chipRect.left >= stripRect.left && chipRect.right <= stripRect.right) {
+      return;
+    }
+
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    chip.scrollIntoView({
-      inline: "center",
-      block: "nearest",
+    strip.scrollTo({
+      left: chip.offsetLeft - (strip.clientWidth - chip.offsetWidth) / 2,
       behavior: reducedMotion ? "auto" : "smooth",
     });
   }, [active]);
@@ -35,9 +61,15 @@ export function MobileNav({ active }: MobileNavProps) {
         </span>
         <ModeToggle />
       </div>
+      {/* overscroll-behavior-x: contain — swiping past either end of the
+          chip row used to chain to the page and fire the browser's
+          back/forward navigation gesture on iOS Safari and Chrome
+          Android. The project's other horizontal scroller (ProjectPan)
+          already contained it; this one was missed. */}
       <nav
+        ref={stripRef}
         aria-label="Sections"
-        className="flex gap-2 overflow-x-auto px-5 pb-3 [scroll-snap-type:x_proximity] sm:px-6"
+        className="flex gap-2 overflow-x-auto px-5 pb-3 [overscroll-behavior-x:contain] [scrollbar-width:thin] [scroll-snap-type:x_proximity] sm:px-6"
       >
         {SECTIONS.map((section) => {
           const isActive = active === section.id;

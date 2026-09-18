@@ -4,7 +4,7 @@ import { about, skillGroups } from "@/data/adapters";
 export default function About() {
   return (
     <div className="flex flex-col gap-12 md:gap-16">
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
         <div className="max-w-[64ch]">
           <h2 className="text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
             How I build.

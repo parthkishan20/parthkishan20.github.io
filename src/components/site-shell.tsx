@@ -18,7 +18,7 @@ export function SiteShell({ children }: SiteShellProps) {
     <div className="site-shell mx-auto w-full max-w-[1440px] px-5 sm:px-6 rail:grid rail:grid-cols-[300px_minmax(0,1fr)] rail:gap-[72px] rail:px-10">
       <RailNav active={active} />
       <MobileNav active={active} />
-      <main id="main" className="min-w-0">
+      <main id="main" tabIndex={-1} className="min-w-0">
         {children}
       </main>
     </div>

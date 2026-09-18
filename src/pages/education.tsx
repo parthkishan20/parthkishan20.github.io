@@ -2,13 +2,16 @@ import { education } from "@/data/adapters";
 
 // Phase 9 renders Education, Certifications and Community as three
 // blocks inside one shared <Section id="background"> (App.tsx). Each
-// keeps its own pre-redesign id and scroll-mt so the three old deep
-// links (#education, #certifications, #extracurricular) keep working.
+// keeps its own pre-redesign id so the three old deep links
+// (#education, #certifications, #extracurricular) keep working; the
+// offset that stops them landing under the sticky mobile bar is
+// `html { scroll-padding-top }` in index.css, so these three no longer
+// carry a scroll-mt of their own.
 // The overall Background heading ("Study, credentials and community.",
 // plan 8.3) lives here since Education renders first among the three.
 export default function Education() {
   return (
-    <div id="education" className="scroll-mt-[72px] rail:scroll-mt-6">
+    <div id="education">
       <h2 className="max-w-[26ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
         Study, credentials and community.
       </h2>

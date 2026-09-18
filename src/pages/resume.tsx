@@ -37,7 +37,7 @@ export default function Resume() {
   }, []);
 
   return (
-    <div id="resume" className="scroll-mt-[72px] rail:scroll-mt-6">
+    <div id="resume">
       <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
         Résumé
       </h3>

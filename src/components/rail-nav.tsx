@@ -10,6 +10,17 @@ interface RailNavProps {
 // Desktop-only identity rail (notes-from-artifacts.md entry 6). Replaces the
 // shadcn SidebarProvider: one <aside>, no provider, no collapse state, no
 // icons. Below the `rail` breakpoint this renders nothing (see MobileNav).
+//
+// `rail:overflow-y-auto` is load-bearing, not decoration. The rail needs
+// ~662px of height; it is `sticky top-0` at a hard `h-dvh`, so on a
+// shorter viewport the overflow sat below the fold at *every* scroll
+// position — no scroll could reach it, because the box itself never
+// moves. Measured at 1280x560 the mode toggle was stranded at y 586-622,
+// and at rail widths this is the only theme control on the page since
+// MobileNav is `rail:hidden`. That is a 1366x768 laptop with a bookmarks
+// bar, or any window at 125% zoom — not an exotic case. Deliberately no
+// overscroll-behavior: contain here, so the wheel still chains to the
+// page when the pointer happens to be over the rail.
 export function RailNav({ active }: RailNavProps) {
   const { name, title, email, links } = profile;
   const initials = name
@@ -18,7 +29,7 @@ export function RailNav({ active }: RailNavProps) {
     .join("");
 
   return (
-    <aside className="site-rail hidden rail:flex rail:flex-col rail:sticky rail:top-0 rail:h-dvh rail:pt-12 rail:pb-10">
+    <aside className="site-rail hidden rail:flex rail:flex-col rail:sticky rail:top-0 rail:h-dvh rail:overflow-y-auto rail:pt-12 rail:pb-10">
       <div className="flex items-center gap-3.5">
         {/* Phase 13 / D5: the only on-page usage of the profile photo
             is this 52px rail slot (Q8), yet the source file was a

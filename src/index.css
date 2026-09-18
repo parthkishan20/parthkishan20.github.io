@@ -3,8 +3,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* 72.5rem, not 1160px — same width at the default root size, but the
+   unit is load-bearing. Tailwind v4 sorts breakpoint variants by their
+   declared value, and its own sm/md/lg/xl are all rem. A px value can't
+   be ordered against those, so `rail` was emitted *before* every default
+   breakpoint instead of between lg and xl. Since generated utilities all
+   have equal specificity, that silently handed every collision to the
+   later rule: `sm:px-6` beat `rail:px-10` on the shell (desktop shipped
+   with 24px tablet gutters instead of 40px) and `sm:-mx-6 sm:px-6` beat
+   `rail:mx-0 rail:px-0` on the project pan (its clip box overhung the
+   content column by 24px a side, running cards to the raw window edge).
+   Both were invisible in review — the classes are right there in the
+   markup, they just never won. In rem, `rail` sorts after lg and every
+   one of those utilities applies. Verified against the emitted CSS, not
+   assumed. */
 @theme {
-  --breakpoint-rail: 1160px;
+  --breakpoint-rail: 72.5rem;
 }
 
 @theme inline {
@@ -142,9 +156,35 @@
     @apply border-border outline-ring/50;
   }
 
+  /* The anchor offset, defined exactly once on the scroll container
+     instead of as a scroll-mt utility repeated on five elements.
+
+     Below `rail` the MobileNav bar is `sticky top-0` and overlays the
+     content, and it is two stacked rows, not one: 56px identity bar
+     (h-14) + 44px chip row (min-h-11) + 12px pb-3 + 1px border-b =
+     113px. The utilities it replaces all said 72px, which covered only
+     the first row — so every nav chip, every legacy deep link and the
+     skip link buried the top 41px of its target behind the bar, at
+     every width from 320px to 1159px.
+
+     At `rail` and up the nav is a side column that overlays nothing, so
+     the offset is just breathing room. Same 72.5rem as
+     --breakpoint-rail above; a media query can't read a @theme token,
+     so this is the one place the value is repeated. */
+  :root {
+    --anchor-offset: 113px;
+  }
+
+  @media (min-width: 72.5rem) {
+    :root {
+      --anchor-offset: 24px;
+    }
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    scroll-padding-top: var(--anchor-offset);
   }
 
   * {
@@ -169,8 +209,13 @@
     @apply outline-2 outline-offset-2 outline-primary;
   }
 
+  /* `fixed`, not `absolute`: the link is a direct child of #root, which
+     establishes no containing block, so `absolute` resolved against the
+     initial containing block — `focus:top-0` meant the top of the
+     *document*, not of the viewport. Tab into it after a mid-page
+     reload and focus landed on a control scrolled far off screen. */
   .skip-to-main {
-    @apply absolute -top-full left-0 z-50 bg-primary text-primary-foreground px-4 py-2 focus:top-0 transition-all;
+    @apply fixed -top-full left-0 z-50 bg-primary text-primary-foreground px-4 py-2 focus:top-0 transition-all;
   }
 
   @keyframes status-blink {
@@ -220,7 +265,7 @@
 }
 
 @supports (animation-timeline: scroll()) {
-  @media (min-width: 1160px) and (prefers-reduced-motion: no-preference) {
+  @media (min-width: 72.5rem) and (prefers-reduced-motion: no-preference) {
     .project-pan {
       height: 320vh;
       view-timeline-name: --project-pan;
@@ -235,8 +280,23 @@
       justify-content: center;
     }
 
+    /* `clip`, not `hidden`. An `overflow: hidden` box clips visually but
+       is still a scroll container, and this one stays overflowing
+       (scrollWidth ~2040 vs clientWidth ~1068) while pinned. Clicking or
+       tabbing to a "Code"/"Live demo" link in a later panel made the
+       browser scroll that hidden box to reveal it — measured at 972px —
+       which then *compounds* with the scroll-timeline translate, so the
+       track ended up ~1944px left: the last panels ran off-screen and
+       the first became unreachable. With no scrollbar, no wheel target
+       and no touch path, nothing could put scrollLeft back and the
+       section stayed broken until reload. `overflow: clip` clips
+       identically but creates no scroll container, so scroll-into-view
+       has nothing to move. It also makes the claim below true: with
+       `hidden` the fallback listener did fire, exactly once, which is
+       precisely how the pan got desynced. `container-type: inline-size`
+       and the 100cqw keyframe are unaffected. */
     .project-pan-viewport {
-      overflow: hidden;
+      overflow: clip;
       scroll-snap-type: none;
     }
 

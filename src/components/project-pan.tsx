@@ -41,25 +41,30 @@ export function ProjectPan({ heading, projects }: ProjectPanProps) {
     const bar = progressBarRef.current;
     if (!viewport || !bar) return;
 
-    let ticking = false;
+    // resize goes through the same rAF gate as scroll. It used to call
+    // `update` synchronously, so dragging a window edge ran a
+    // scrollWidth/clientWidth read (forces layout) plus a style write
+    // per resize event. The pending frame is also cancelled on cleanup,
+    // so `update` cannot run one frame late against a detached node.
+    let frame = 0;
     const update = () => {
+      frame = 0;
       const max = viewport.scrollWidth - viewport.clientWidth;
       const ratio = max > 0 ? viewport.scrollLeft / max : 0;
       bar.style.setProperty("--pan-progress", ratio.toFixed(4));
-      ticking = false;
     };
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(update);
+    const schedule = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
     };
 
     update();
-    viewport.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", update);
+    viewport.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
     return () => {
-      viewport.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", update);
+      viewport.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) cancelAnimationFrame(frame);
     };
   }, []);
 
@@ -79,8 +84,16 @@ export function ProjectPan({ heading, projects }: ProjectPanProps) {
           ref={viewportRef}
           tabIndex={0}
           aria-label="Featured projects, scrollable"
-          className="project-pan-viewport @container -mx-5 snap-x snap-mandatory overflow-x-auto px-5 pb-2 [overscroll-behavior-x:contain] [scrollbar-width:thin] sm:-mx-6 sm:px-6 rail:mx-0 rail:px-0"
+          className="project-pan-viewport @container -mx-5 snap-x snap-mandatory scroll-px-5 overflow-x-auto px-5 pb-2 [overscroll-behavior-x:contain] [scrollbar-width:thin] sm:-mx-6 sm:px-6 sm:scroll-px-6 rail:mx-0 rail:px-0 rail:scroll-px-0"
         >
+          {/* scroll-px matches the inline padding. Snap alignment is
+              measured from the scrollport (padding box) edge, so with
+              scroll-padding left at `auto` the browser snapped
+              scrollLeft to the padding value on first layout and ate
+              the gutter: the first project card rested at rect.left 0,
+              flush against the screen edge, while every other section
+              on the page is inset 20/24px. Measured on load with no
+              user interaction. */}
           {/* w-max: a block-level flex container defaults to filling
               its parent's width (block width:auto), not sizing to its
               own content. Without forcing it to content width here,
