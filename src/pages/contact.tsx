@@ -1,99 +1,101 @@
-import { motion } from "framer-motion";
-import siteData from "@/data/siteData.json";
 import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { profile, resume } from "@/data/adapters";
 
-const contactItems = [
+// Copy verbatim from plan 8.4. "One label per intent" across the
+// whole page: the résumé link is always "Read the résumé" wherever it
+// appears as a single link (here and in Home's secondary CTA) — the
+// Résumé block below has its own two distinct labels ("Open the
+// résumé" / "Download PDF") because it offers two different actions,
+// not the same one twice.
+const contactLines = [
   {
     icon: Mail,
     label: "Email",
-    display: siteData.profile.email,
-    href: `mailto:${siteData.profile.email}`,
+    display: profile.email,
+    href: `mailto:${profile.email}`,
   },
   {
     icon: Phone,
     label: "Phone",
-    display: siteData.profile.phone,
-    href: `tel:${siteData.profile.phone.replace(/\s/g, "")}`,
+    display: profile.phone,
+    href: `tel:${profile.phone.replace(/\s/g, "")}`,
   },
   {
     icon: MapPin,
     label: "Location",
-    display: siteData.profile.location,
+    display: profile.location,
     href: null,
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
     display: "linkedin.com/in/parthkishan20",
-    href: siteData.profile.links.linkedin,
+    href: profile.links.linkedin,
   },
   {
     icon: Github,
     label: "GitHub",
     display: "github.com/parthkishan20",
-    href: siteData.profile.links.github,
+    href: profile.links.github,
   },
-];
+] as const;
 
 export default function Contact() {
   return (
-    <div className="w-full min-h-screen flex items-center justify-center py-12 px-4 md:px-6 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="container max-w-2xl mx-auto"
-      >
-        <div className="text-center mb-10">
-          <h2 className="mb-3 text-3xl sm:text-4xl font-bold">Get In Touch</h2>
-          <p className="text-muted-foreground text-base sm:text-lg">
-            I'm always open to discussing new opportunities, collaborations, or answering questions.
-          </p>
-        </div>
+    <div className="max-w-2xl">
+      <h2 className="text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+        Hiring a full stack developer?
+      </h2>
 
-        <div className="space-y-3">
-          {contactItems.map(({ icon: Icon, label, display, href }) => (
-            <div
-              key={label}
-              className="flex items-center gap-4 p-4 rounded-lg border border-transparent hover:border-primary/20 hover:bg-gradient-to-r hover:from-primary/5 hover:to-accent/5 transition-all"
-            >
-              <Icon className="h-5 w-5 text-primary shrink-0" />
-              <div className="min-w-0 flex-1">
-                <p className="font-medium text-sm">{label}</p>
+      <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+        Open to software engineering, AI and machine learning, and
+        forward deployed engineer roles. Email reaches me fastest, and
+        I answer the same day.
+      </p>
+
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <Button asChild size="lg" className="h-12">
+          <a href={`mailto:${profile.email}`}>Email Parth</a>
+        </Button>
+        <Button variant="outline" asChild size="lg" className="h-12">
+          <a href={resume.pdfPath} target="_blank" rel="noopener noreferrer">
+            Read the résumé
+          </a>
+        </Button>
+      </div>
+
+      <dl className="mt-12 grid gap-5">
+        {contactLines.map(({ icon: Icon, label, display, href }) => (
+          <div key={label} className="flex items-start gap-3">
+            <Icon className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+            <div className="min-w-0">
+              <dt className="text-xs uppercase tracking-wide text-muted-foreground-2">
+                {label}
+              </dt>
+              {/* M5: long identifiers (email, profile URLs) use
+                  overflow-wrap: anywhere so they can't blow out the
+                  layout at narrow widths. */}
+              <dd className="mt-0.5 [overflow-wrap:anywhere]">
                 {href ? (
                   <a
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
-                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="text-sm text-primary hover:underline break-all transition-colors"
+                    rel={
+                      href.startsWith("http") ? "noopener noreferrer" : undefined
+                    }
+                    className="text-foreground transition-colors hover:text-primary"
                   >
                     {display}
                   </a>
                 ) : (
-                  <p className="text-sm text-muted-foreground">{display}</p>
+                  <span className="text-foreground">{display}</span>
                 )}
-              </div>
+              </dd>
             </div>
-          ))}
-        </div>
-
-        <div className="flex flex-col justify-center gap-4 mt-10 sm:flex-row">
-          <Button asChild>
-            <a href={`mailto:${siteData.profile.email}`}>
-              <Mail className="mr-2 h-4 w-4" />
-              Send Email
-            </a>
-          </Button>
-          <Button variant="outline" asChild>
-            <a href={siteData.profile.links.linkedin} target="_blank" rel="noopener noreferrer">
-              <Linkedin className="mr-2 h-4 w-4" />
-              Connect on LinkedIn
-            </a>
-          </Button>
-        </div>
-      </motion.div>
+          </div>
+        ))}
+      </dl>
     </div>
   );
 }

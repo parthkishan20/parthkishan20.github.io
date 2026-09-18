@@ -1,49 +1,77 @@
-import { motion } from "framer-motion";
-import siteData from "@/data/siteData.json";
-import { Download, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ExternalLink, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { resume } from "@/data/adapters";
 
+const PREVIEW_QUERY = "(min-width: 1024px)";
+
+// D6: iOS Safari does not reliably render a PDF in an iframe — a blank
+// grey box is worse than a clear button. Base/md: two buttons plus the
+// last-updated line, no iframe at all. lg+: the iframe preview too,
+// buttons still above it.
+//
+// Plan 10 says to do this with CSS (`hidden lg:block`) "not a JS width
+// check, so there is no hydration flash" — but its own acceptance
+// criterion is "no iframe is present in the DOM below 1024px," which a
+// CSS display:none toggle cannot satisfy: the <iframe> node still
+// exists and still fetches its src, just invisible. These two
+// instructions are mutually exclusive for an iframe specifically, so
+// this resolves the same way Phase 7's snippet/acceptance conflict
+// did — toward the literal, testable criterion, once its own stated
+// reason turned out not to apply here: "hydration flash" is a
+// server-rendered-markup-vs-client-mismatch problem, and this app has
+// no SSR or hydration step at all (a plain createRoot().render() SPA,
+// confirmed in Phase 7) — so there is no hydration to flash. A
+// lazy useState initializer reads matchMedia synchronously before
+// first paint, so there's no pop-in on desktop either.
 export default function Resume() {
-  return (
-    <div className="w-full min-h-screen flex items-center py-12 px-4 md:px-6 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="container max-w-5xl mx-auto space-y-6"
-      >
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold">Resume</h2>
-            <p className="text-sm text-muted-foreground mt-1">
-              Last updated: {siteData.resume.lastUpdated}
-            </p>
-          </div>
-          <div className="flex gap-3">
-            <Button variant="outline" asChild className="gap-2">
-              <a href={siteData.resume.pdfPath} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4" />
-                Open PDF
-              </a>
-            </Button>
-            <Button asChild className="gap-2">
-              <a href={siteData.resume.pdfPath} download>
-                <Download className="h-4 w-4" />
-                Download PDF
-              </a>
-            </Button>
-          </div>
-        </div>
+  const [showPreview, setShowPreview] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(PREVIEW_QUERY).matches
+  );
 
-        <div className="w-full mx-auto rounded-lg overflow-hidden bg-muted flex items-center justify-center shadow-lg" style={{ aspectRatio: '8.5/11', maxHeight: '75vh' }}>
+  useEffect(() => {
+    const mql = window.matchMedia(PREVIEW_QUERY);
+    const onChange = () => setShowPreview(mql.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  return (
+    <div id="resume" className="scroll-mt-[72px] rail:scroll-mt-6">
+      <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        Résumé
+      </h3>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Last updated {resume.lastUpdated}
+      </p>
+
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+        <Button variant="outline" asChild className="gap-2">
+          <a href={resume.pdfPath} target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="h-4 w-4" />
+            Open the résumé
+          </a>
+        </Button>
+        <Button asChild className="gap-2">
+          <a href={resume.pdfPath} download>
+            <Download className="h-4 w-4" />
+            Download PDF
+          </a>
+        </Button>
+      </div>
+
+      {showPreview && (
+        <div
+          className="mt-6 w-full max-w-md overflow-hidden rounded-lg border border-border bg-muted"
+          style={{ aspectRatio: "8.5/11", maxHeight: "75vh" }}
+        >
           <iframe
-            src={siteData.resume.pdfPath}
-            title="Resume Preview"
-            className="w-full h-full border-none"
+            src={resume.pdfPath}
+            title="Résumé preview"
+            className="h-full w-full border-none"
           />
         </div>
-      </motion.div>
+      )}
     </div>
   );
 }

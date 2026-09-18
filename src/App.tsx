@@ -18,10 +18,6 @@ import Extracurricular from "@/pages/extracurricular";
 import Resume from "@/pages/resume";
 import Contact from "@/pages/contact";
 
-// M13: 72px clears the sticky mobile header/chip bar; rail:scroll-mt-6
-// (24px) is enough once the rail replaces it and there's no header.
-const SCROLL_ANCHOR = "scroll-mt-[72px] rail:scroll-mt-6";
-
 function App() {
   return (
     <ErrorBoundary>
@@ -53,12 +49,12 @@ function App() {
               <Extracurricular />
             </div>
           </Section>
-          <section id="contact" className={`w-full ${SCROLL_ANCHOR}`}>
-            <div id="resume" className={SCROLL_ANCHOR}>
+          <Section id="contact" label="Contact">
+            <div className="flex flex-col gap-16 md:gap-20">
+              <Contact />
               <Resume />
             </div>
-            <Contact />
-          </section>
+          </Section>
         </SiteShell>
         <BackToTop />
         <Toaster />
