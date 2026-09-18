@@ -1,170 +1,76 @@
-import { motion } from "framer-motion";
-import siteData from "@/data/siteData.json"
-import { ExternalLink, Github, Star } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
-};
+import { Github, ExternalLink } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ProjectPan } from "@/components/project-pan";
+import { featuredProjects, otherProjects } from "@/data/adapters";
 
 export default function Projects() {
-  const featuredProjects = siteData.projects.filter((p) => p.featured);
-  const otherProjects = siteData.projects.filter((p) => !p.featured);
-
   return (
-    <div className="w-full min-h-screen flex items-center py-12 px-4 md:px-6 lg:px-8">
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="container max-w-7xl mx-auto space-y-12"
-      >
-        {/* Featured Projects */}
-        {featuredProjects.length > 0 && (
-          <div className="space-y-6">
-            <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-yellow-500 fill-yellow-500" />
-              <h2 className="text-2xl font-bold">Featured Projects</h2>
-            </div>
-            <div className="grid lg:grid-cols-2 gap-6">
-              {featuredProjects.map((project, index) => (
-                <motion.div
-                  key={index}
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group border rounded-lg p-6 space-y-4 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-gradient-to-br from-card to-card/50 border-primary/20 relative overflow-hidden"
-                >
-                  {/* Animated gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0077B5]/5 to-[#00A0DC]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between">
-                      <h3 className="text-xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#0077B5] group-hover:to-[#00A0DC] group-hover:bg-clip-text transition-all duration-300">
-                        {project.name}
-                      </h3>
-                      <Star className="h-5 w-5 text-yellow-500 fill-yellow-500 shrink-0 group-hover:scale-110 transition-transform" />
-                    </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  {project.highlights && project.highlights.length > 0 && (
-                    <div className="space-y-2">
-                      <p className="text-xs font-medium text-muted-foreground">Key Features:</p>
-                      <ul className="text-xs space-y-1">
-                        {project.highlights.map((highlight, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <span className="h-1 w-1 rounded-full bg-primary" />
-                            {highlight}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, idx) => (
-                      <Badge key={idx} variant="secondary" className="text-xs hover:bg-primary hover:text-primary-foreground transition-colors">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                  
-                  <div className="flex gap-3 pt-2">
-                    {project.github && (
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-all hover:gap-2"
-                      >
-                        <Github className="h-4 w-4" /> Code
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a 
-                        href={project.demo} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-all hover:gap-2"
-                      >
-                        <ExternalLink className="h-4 w-4" /> Live Demo
-                      </a>
-                    )}
-                  </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
+    <div className="flex flex-col gap-14 md:gap-20">
+      <ProjectPan
+        heading={
+          <h2 className="max-w-[30ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+            What I have built.
+          </h2>
+        }
+        projects={featuredProjects}
+      />
 
-        {/* Other Projects */}
-        {otherProjects.length > 0 && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold">Other Projects</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {otherProjects.map((project, index) => (
-                <motion.div
-                  key={index}
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group border rounded-lg p-5 space-y-3 hover:shadow-lg transition-all hover:scale-[1.03] bg-gradient-to-br from-card to-card/30 border-primary/10 hover:border-primary/30"
-                >
-                  <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">{project.name}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.slice(0, 4).map((tech, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs hover:bg-primary/10 transition-colors">
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.tech.length > 4 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{project.tech.length - 4}
-                      </Badge>
-                    )}
-                  </div>
-                  
-                  <div className="flex gap-3">
-                    {project.github && (
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs hover:text-primary transition-colors"
-                      >
-                        <Github className="h-3.5 w-3.5" /> Code
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a 
-                        href={project.demo} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs hover:text-primary transition-colors"
-                      >
-                        <ExternalLink className="h-3.5 w-3.5" /> Demo
-                      </a>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
-      </motion.div>
+      <div>
+        <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          More projects
+        </h3>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          {otherProjects.map((project) => (
+            <article
+              key={project.name}
+              className="flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition-[border-color,transform] duration-[220ms] hover:-translate-y-[3px] hover:border-muted-foreground-2"
+            >
+              <h4 className="font-semibold tracking-tight">
+                {project.name}
+              </h4>
+              <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {project.tech.slice(0, 4).map((tech) => (
+                  <Badge key={tech} variant="outline" className="text-xs">
+                    {tech}
+                  </Badge>
+                ))}
+                {project.tech.length > 4 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{project.tech.length - 4}
+                  </Badge>
+                )}
+              </div>
+              {(project.github || project.demo) && (
+                <div className="mt-auto flex gap-4 pt-1">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      <Github className="h-3.5 w-3.5" /> Code
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" /> Demo
+                    </a>
+                  )}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
     </div>
-  )
+  );
 }

@@ -9,41 +9,48 @@ import { roles } from "@/data/adapters";
 // row (6.3 acceptance).
 export default function Experience() {
   return (
-    <div className="divide-y divide-border/60">
-      {roles.map((job) => (
-        <article
-          key={job.company}
-          className="grid gap-5 py-10 first:pt-0 md:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] md:gap-14 md:py-14"
-        >
-          <div className="rail:sticky rail:top-6 rail:self-start">
-            <h3 className="text-2xl tracking-tight md:text-3xl">
-              {job.company}
-            </h3>
-            <div className="mt-2 text-[15px] text-muted-foreground">
-              {job.role}, {job.location}
-            </div>
-            <div className="mt-1 text-sm tabular-nums text-muted-foreground">
-              {job.dates}
-            </div>
-          </div>
+    <div className="flex flex-col gap-10 md:gap-14">
+      <h2 className="max-w-[42ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+        Two internships, both spent putting software in front of
+        strangers.
+      </h2>
 
-          <ul className="grid gap-[18px]">
-            {job.bullets.map((bullet, i) => (
-              <li
-                key={i}
-                className="max-w-[68ch] leading-relaxed text-muted-foreground"
-              >
-                {bullet.lead && (
-                  <strong className="font-semibold text-foreground">
-                    {bullet.lead}
-                  </strong>
-                )}
-                {bullet.rest}
-              </li>
-            ))}
-          </ul>
-        </article>
-      ))}
+      <div className="divide-y divide-border/60">
+        {roles.map((job) => (
+          <article
+            key={job.company}
+            className="grid gap-5 py-10 first:pt-0 md:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] md:gap-14 md:py-14"
+          >
+            <div className="rail:sticky rail:top-6 rail:self-start">
+              <h3 className="text-2xl tracking-tight md:text-3xl">
+                {job.company}
+              </h3>
+              <div className="mt-2 text-[15px] text-muted-foreground">
+                {job.role}, {job.location}
+              </div>
+              <div className="mt-1 text-sm tabular-nums text-muted-foreground">
+                {job.dates}
+              </div>
+            </div>
+
+            <ul className="grid gap-[18px]">
+              {job.bullets.map((bullet, i) => (
+                <li
+                  key={i}
+                  className="max-w-[68ch] leading-relaxed text-muted-foreground"
+                >
+                  {bullet.lead && (
+                    <strong className="font-semibold text-foreground">
+                      {bullet.lead}
+                    </strong>
+                  )}
+                  {bullet.rest}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }

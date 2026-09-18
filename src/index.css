@@ -191,3 +191,86 @@
     }
   }
 }
+
+/* Phase 7: Projects — CSS-only scroll-driven pan (plan 7.1/7.2/7.4, Q10).
+   No animation library. Everything below the plain scroll-snap row
+   (the .project-pan-viewport rules on the JSX itself, plus these two
+   base rules) IS the entire experience on mobile, in browsers without
+   `animation-timeline` support (Firefox, at time of writing), and with
+   JS disabled — not a degraded fallback, a first-class one (N1). The
+   @supports block below is a pure enhancement: it changes no DOM, adds
+   no JS branch, and can be deleted outright with the section still
+   complete (7.2's stated recovery path if it "turns out badly").
+
+   Deviation from the plan's illustrative snippet, noted here since the
+   snippet and its own surrounding prose disagree: 7.2's code sample
+   puts `.pan{height:320vh}`, `.pan-frame{sticky,100dvh}` and
+   `.pan-viewport{overflow:hidden}` OUTSIDE its @supports block, but
+   the very next sentence calls that same code "the scroll-snap row
+   from 7.1" — which needs a non-sticky, non-fixed-height, overflow:
+   auto viewport to exist at all. Applying the snippet literally would
+   force a 320vh spacer with overflow:hidden onto every browser and
+   width, including ones the acceptance criteria explicitly require to
+   render as a plain row (reduced motion, Firefox, <1160px, no JS). The
+   acceptance criteria are unambiguous where the snippet contradicts
+   itself, so they win: every pin/height/hidden-overflow rule below is
+   scoped inside the @supports+@media block, never outside it. */
+.project-pan-progress-bar {
+  transform: scaleX(var(--pan-progress, 0));
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (min-width: 1160px) and (prefers-reduced-motion: no-preference) {
+    .project-pan {
+      height: 320vh;
+      view-timeline-name: --project-pan;
+    }
+
+    .project-pan-frame {
+      position: sticky;
+      top: 0;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-pan-viewport {
+      overflow: hidden;
+      scroll-snap-type: none;
+    }
+
+    .project-pan-track {
+      animation: project-pan-x linear both;
+      animation-timeline: --project-pan;
+      animation-range: contain 0% contain 100%;
+    }
+
+    /* 7.4: the enhanced-path progress driver. The fallback's scroll
+       listener never fires here (the viewport is overflow: hidden), so
+       the bar is driven by the same --project-pan timeline instead,
+       via a scaleX keyframe rather than the JS-set custom property. */
+    .project-pan-progress-bar {
+      animation: project-pan-progress linear both;
+      animation-timeline: --project-pan;
+      animation-range: contain 0% contain 100%;
+    }
+
+    /* `100cqw` replaces the notes' `100vw`: this site's pan lives
+       inside the persistent rail's content column (@container on
+       .project-pan-viewport), not a full-bleed shell with no side
+       nav. Using 100vw here would measure the whole browser
+       viewport — wider than the actual visible track area once the
+       300px rail is accounted for — and overshoot past the last
+       panel. cqw measures the viewport element's own rendered width,
+       which is the correct travel distance: trackWidth - viewportWidth. */
+    @keyframes project-pan-x {
+      to { transform: translateX(calc(-100% + 100cqw)); }
+    }
+
+    @keyframes project-pan-progress {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+  }
+}

@@ -155,6 +155,47 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
+export type ProjectMetric = { value: string; label: string };
+
+// Real metrics only (N8: "no invented metrics"), each traceable
+// straight to a number already sitting in that project's own
+// highlights in siteData.json — never generated or estimated. A
+// project whose highlights don't contain four genuinely quantifiable
+// numbers (Mini Search Engine has exactly one: the 10-page crawl
+// limit) gets fewer metrics rather than padded ones.
+const featuredProjectMetrics: Record<string, ProjectMetric[]> = {
+  "AI Resume Tailoring Platform": [
+    { value: "23", label: "REST/SSE endpoints" },
+    { value: "7", label: "FastAPI route modules" },
+    { value: "89", label: "Backend unit tests" },
+    { value: "13", label: "Playwright end-to-end tests" },
+  ],
+  "MRTD Validation System (ICAO TD3)": [
+    { value: "15", label: "Automated unit tests, 100% pass rate" },
+    { value: "86%", label: "Line coverage achieved" },
+    { value: "406", label: "Mutants generated for testing" },
+    { value: "156K", label: "Decodes benchmarked per second" },
+  ],
+  SortBoard: [
+    { value: "6", label: "Sorting algorithms visualized" },
+    { value: "4", label: "Live visual states tracked" },
+    { value: "100", label: "Max array size configurable" },
+    { value: "100", label: "Max animation speed, steps/sec" },
+  ],
+  "Mini Search Engine": [
+    { value: "10", label: "Wikipedia pages crawled and indexed" },
+  ],
+};
+
+// featured (exactly 4: Résumé Platform, SortBoard, MRTD, Mini Search
+// Engine, per plan 7.3) go in the pan; the rest in the short list.
+export const featuredProjects = projects.filter((p) => p.featured);
+export const otherProjects = projects.filter((p) => !p.featured);
+
+export function getProjectMetrics(name: string): ProjectMetric[] {
+  return featuredProjectMetrics[name] ?? [];
+}
+
 // The three figures for the Opening hero (plan section 8.2, Q13 — no
 // months figure). GPA is derived live from education[0].gpa
 // ("3.9/4.0" -> "3.9") so it can't drift from the actual data. The test
