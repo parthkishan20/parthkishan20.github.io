@@ -27,13 +27,17 @@ This is a single-page portfolio site - no router. All sections live in `src/App.
 - `src/components/` - shared layout and utility components (`layout.tsx`, `app-sidebar.tsx`, `scroll-progress.tsx`, etc.)
 - `src/components/ui/` - shadcn/ui primitives (do not hand-edit; add new ones via `npx shadcn@latest add <component>`)
 
-**Theming:** Dark/light mode via `ThemeProvider` (wraps the app in `App.tsx`), persisted to `localStorage` under key `vite-ui-theme`. CSS variables defined in `src/index.css` using Tailwind v4's `@theme inline` block. The shadcn style is `new-york` with `neutral` base color.
+**Design system:** The site follows Apple's design language - an achromatic palette (`--background: #FFFFFF`, `--foreground: #1D1D1F`, `--card: #F5F5F7`, etc., defined in `src/index.css`), Apple content-hierarchy copy conventions, and an SF Pro-style type stack (`-apple-system`, with Inter loaded in `index.html` as the non-Apple fallback).
+
+**Theming:** `ThemeProvider` (wraps the app in `App.tsx`) supports dark/light mode persisted to `localStorage` under key `vite-ui-theme`, but dark mode is currently force-disabled: `FORCE_LIGHT_MODE = true` in `src/components/theme-provider.tsx` pins every session to light, and the toggle UI is unmounted in `rail-nav.tsx`/`mobile-nav.tsx`. To re-enable, flip that flag and re-mount `<ModeToggle />` - dark mode doesn't fully match the Apple design system yet. CSS variables are defined in `src/index.css` using Tailwind v4's `@theme inline` block. The shadcn style is `new-york` with `neutral` base color.
+
+**Copy style:** Use regular hyphens (`-`), not em dashes (`—`), in all prose - site copy (`siteData.json`), docs, and code comments.
 
 **Animations:** Framer Motion is used across page components for entrance animations (`motion.div` with `whileInView` + `viewport={{ once: true }}`).
 
 **GitHub stats:** `src/components/github-stats.tsx` fetches live data from the GitHub public API (unauthenticated) on mount and shows a skeleton while loading.
 
-**Images:** Profile photo and project images go in `public/images/`. The profile avatar is expected at `public/images/profile/avatar.png`.
+**Images:** Profile photo and project images go in `public/images/`. The profile avatar is expected at `public/images/profile/avatar.png`. `public/favicon.svg` is a minimal monogram matching the achromatic palette, with a light/dark variant via `prefers-color-scheme`.
 
 **Deployment:** The site deploys to GitHub Pages at `https://parthkishan20.github.io/`. `public/CNAME` and `dist/CNAME` point to the custom domain `parthkumar.me`. Vite base is `/`.
 
