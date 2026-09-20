@@ -10,7 +10,7 @@
       "github": "https://github.com/parthkishan20",
       "portfolio": "https://parthkumar.me/"
     },
-    "summary": "MS in Computer Science from Stevens Institute of Technology (3.9 GPA), specializing in full-stack development with React, TypeScript, FastAPI, and LLM/AI integration. Open to Software Developer, AI and machine learning, and Forward Deployed Engineer roles."
+    "summary": "Full-stack engineer who ships fast — React, TypeScript, FastAPI, and LLM-powered features, backed by an MS in Computer Science from Stevens Institute of Technology (3.9 GPA). Open to Software Developer, AI/ML, and Forward Deployed Engineer roles."
   },
   "about": {
     "bio": "I own features end to end — from the database to the interface someone actually clicks. The stack is React 19, TypeScript, and FastAPI, with LLM-powered multi-agent workflows where a problem calls for them. I've shipped responsive interfaces across mobile, desktop, and 4K displays, wired up real-time REST and WebSocket integrations, and managed the AWS S3 deployments that get it all in front of people. That comes from an MS in Computer Science at Stevens Institute of Technology (3.9 GPA), and internships at EventEase and TechBilv Solutions LLP, where I worked the same way — full stack, agile team, clean code, shipped."
@@ -253,17 +253,17 @@
       "issuer": "LinkedIn Learning",
       "year": 2024,
       "credentialId": "",
-      "link": "https://www.linkedin.com/learning/certificates/cf0c517ebdfd5b8a02e4a4fb3047a7a9d788e4f2c28b24134acd06dd81db7e61?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3B6y59wotFTGyzZdAvAPd4PA%3D%3D&accountId=56742337&u=56742337&success=true&authUUID=G6DCfU1bStOdeNPSi3H2tg%3D%3D"
+      "link": "https://www.linkedin.com/learning/certificates/cf0c517ebdfd5b8a02e4a4fb3047a7a9d788e4f2c28b24134acd06dd81db7e61"
     },
     {
       "name": "React Essential Training",
       "issuer": "LinkedIn Learning",
       "year": 2024,
       "credentialId": "",
-      "link": "https://www.linkedin.com/learning/certificates/8d89ad609a45fa6e99f2f7d184b7d7733531acd41042cde6e4707745e430414f?u=56742337"
+      "link": "https://www.linkedin.com/learning/certificates/8d89ad609a45fa6e99f2f7d184b7d7733531acd41042cde6e4707745e430414f"
     },
     {
-      "name": "Bloomberg Market Concept",
+      "name": "Bloomberg Market Concepts",
       "issuer": "Bloomberg for Education",
       "year": 2026,
       "credentialId": "",
@@ -281,21 +281,21 @@
     {
       "name": "Volunteer/Organizer",
       "org": "SPY – The Graduate AI Club, Stevens Institute of Technology",
-      "summary": "Volunteered as an organizer for SPY, the Graduate AI Club at Stevens, supporting event planning, speaker coordination, and community engagement to foster AI learning and collaboration among graduate students. Assisted with logistics for workshops, guest lectures, and networking events contributing to the club's mission of promoting AI education and research on campus.",
+      "summary": "Organized workshops, guest lectures, and networking events for SPY, Stevens' Graduate AI Club — handling speaker coordination and logistics to grow AI education on campus.",
       "dates": "Mar 2026 – May 2026",
       "role": "Volunteer/Organizer"
     },
     {
       "name": "Co-Founder/Event Head",
       "org": "Student Club IDE, GEC Gandhinagar",
-      "summary": "Coordinated logistics for 30+ events, including venue selection, scheduling, setup, and on-site operations. Collaborated with vendors, speakers, and participants to ensure seamless execution and issue resolution.",
+      "summary": "Coordinated logistics for 30+ events — venue selection, scheduling, setup, and on-site operations — working directly with vendors, speakers, and participants to resolve issues on the spot.",
       "dates": "May 2021 – Aug 2022",
       "role": "Co-Founder/Event Head"
     },
     {
       "name": "Core Team Member",
       "org": "Event Management, GEC Gandhinagar",
-      "summary": "Key team member at GEC Gandhinagar, organizing Garba festivals, cultural events, day celebrations, and freshers' parties. Managed documentation, sponsorships, permissions, and coordination to ensure seamless events and attendee satisfaction.",
+      "summary": "Key team member organizing Garba festivals, cultural events, day celebrations, and freshers' parties at GEC Gandhinagar — managing documentation, sponsorships, and permissions to keep every event running on time.",
       "dates": "May 2021 – May 2023",
       "role": "Core Team Member"
     }
