@@ -31,7 +31,7 @@ export class ErrorBoundary extends Component<Props, State> {
         <div className="min-h-dvh flex items-center justify-center p-4">
           <div className="text-center space-y-4 max-w-md">
             <AlertTriangle className="h-16 w-16 text-destructive mx-auto" />
-            <h1 className="text-2xl font-bold">Oops! Something went wrong</h1>
+            <h1 className="text-2xl font-semibold tracking-[-0.015em]">Oops! Something went wrong</h1>
             <p className="text-muted-foreground">
               We're sorry, but something unexpected happened. Please try refreshing the page.
             </p>

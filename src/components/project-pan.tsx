@@ -139,7 +139,7 @@ function ProjectPanel({ project }: { project: Project }) {
         <dl className="grid grid-cols-2 gap-x-4 gap-y-3">
           {metrics.map((metric) => (
             <div key={metric.label}>
-              <dt className="font-display text-xl font-bold tabular-nums tracking-[-0.03em] text-foreground">
+              <dt className="font-display text-xl font-semibold tabular-nums tracking-[-0.03em] text-foreground">
                 {metric.value}
               </dt>
               <dd className="text-xs text-muted-foreground">

@@ -34,7 +34,7 @@ export default function Certifications() {
                   className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4 transition-[border-color,transform] duration-[220ms] hover:-translate-y-[3px] hover:border-muted-foreground-2"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
-                    <h5 className="min-w-0 flex-1 font-semibold leading-snug tracking-tight">
+                    <h5 className="min-w-0 flex-1 font-semibold leading-snug tracking-[-0.01em]">
                       {cert.name}
                     </h5>
                     <span className="shrink-0 text-xs tabular-nums text-muted-foreground">

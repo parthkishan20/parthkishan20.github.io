@@ -101,11 +101,11 @@ export function GitHubStats() {
         return (
           <Card
             key={stat.label}
-            className="rounded-lg text-center transition-[border-color,transform] duration-[220ms] hover:-translate-y-[3px] hover:border-muted-foreground-2"
+            className="rounded-lg border border-border text-center transition-[border-color,transform] duration-[220ms] hover:-translate-y-[3px] hover:border-muted-foreground-2"
           >
             <CardContent className="pt-6">
               <Icon className="mx-auto mb-2 h-8 w-8 text-primary" />
-              <div className="mb-1 font-display text-3xl font-bold tabular-nums tracking-[-0.03em] text-foreground">
+              <div className="mb-1 font-display text-3xl font-semibold tabular-nums tracking-[-0.03em] text-foreground">
                 {stat.value}
               </div>
               <div className="text-sm text-muted-foreground">{stat.label}</div>

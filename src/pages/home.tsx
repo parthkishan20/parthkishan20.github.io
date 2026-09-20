@@ -12,9 +12,9 @@ import { homeFigures, resume } from "@/data/adapters";
 // view yet. Plain CSS transitions, no animation library, so the
 // global prefers-reduced-motion override in index.css collapses it
 // for free.
-const STAGGER_MS = [40, 130, 220, 310] as const;
+const STAGGER_MS = [20, 70, 120, 170] as const;
 const REVEAL_TRANSITION =
-  "transition-all duration-[880ms] ease-[cubic-bezier(0.16,1,0.3,1)]";
+  "transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)]";
 
 export default function Home() {
   const [revealed, setRevealed] = useState(
@@ -47,10 +47,9 @@ export default function Home() {
 
         <h1
           style={revealStyle(1)}
-          className={`${revealClass} text-[clamp(36px,6.4vw,76px)] font-bold leading-[1.02] tracking-[-0.045em]`}
+          className={`${revealClass} text-[clamp(36px,6.4vw,76px)] font-semibold leading-[1.05] tracking-[-0.018em]`}
         >
-          I build the part people actually{" "}
-          <span className="text-primary">touch.</span>
+          I build the part people actually touch.
         </h1>
 
         <p

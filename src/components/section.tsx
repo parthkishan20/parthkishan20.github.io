@@ -26,7 +26,7 @@ export function Section({ id, label, children }: SectionProps) {
       id={id}
       tabIndex={-1}
       aria-labelledby={`${id}-heading`}
-      className="border-t border-border/60 py-[88px] first:border-t-0 md:py-32"
+      className="border-t border-border/60 py-16 first:border-t-0 md:py-28"
     >
       <h2 id={`${id}-heading`} className="sr-only">
         {label}

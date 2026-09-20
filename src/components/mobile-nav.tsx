@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { ModeToggle } from "@/components/mode-toggle";
 import { SECTIONS } from "@/lib/sections";
 import { profile } from "@/data/adapters";
 
@@ -54,12 +53,11 @@ export function MobileNav({ active }: MobileNavProps) {
   }, [active]);
 
   return (
-    <div className="rail:hidden sticky top-0 z-40 -mx-5 border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sm:-mx-6">
-      <div className="flex h-14 items-center justify-between px-5 sm:px-6">
+    <div className="rail:hidden sticky top-0 z-40 -mx-5 border-b border-border/60 bg-background/95 backdrop-blur-[20px] backdrop-saturate-[180%] supports-[backdrop-filter]:bg-background/80 sm:-mx-6">
+      <div className="flex h-14 items-center px-5 sm:px-6">
         <span className="truncate text-sm font-medium text-foreground">
           {profile.name}
         </span>
-        <ModeToggle />
       </div>
       {/* overscroll-behavior-x: contain — swiping past either end of the
           chip row used to chain to the page and fire the browser's

@@ -9,7 +9,7 @@ import { skillGroups } from "@/data/adapters";
 export default function Skills() {
   return (
     <div className="flex flex-col gap-10">
-      <h2 className="max-w-[24ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+      <h2 className="max-w-[24ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.015em]">
         How I work.
       </h2>
 

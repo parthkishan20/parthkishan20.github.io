@@ -21,7 +21,7 @@ import Contact from "@/pages/contact";
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <SEOHead />
         <a href="#main" className="skip-to-main">
           Skip to main content

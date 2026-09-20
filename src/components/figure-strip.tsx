@@ -20,7 +20,7 @@ export function FigureStrip({ figures }: FigureStripProps) {
           key={figure.label}
           className="flex items-baseline gap-4 sm:flex-col sm:items-start sm:gap-1.5"
         >
-          <span className="w-[72px] shrink-0 font-display text-[clamp(28px,4vw,44px)] font-bold leading-none tracking-[-0.03em] tabular-nums text-foreground sm:w-auto">
+          <span className="w-[72px] shrink-0 font-display text-[clamp(28px,4vw,44px)] font-semibold leading-none tracking-[-0.03em] tabular-nums text-foreground sm:w-auto">
             {figure.value}
           </span>
           <span className="text-sm text-muted-foreground sm:text-[15px]">

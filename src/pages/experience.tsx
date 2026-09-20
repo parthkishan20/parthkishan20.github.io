@@ -10,7 +10,7 @@ import { roles } from "@/data/adapters";
 export default function Experience() {
   return (
     <div className="flex flex-col gap-10 md:gap-14">
-      <h2 className="max-w-[42ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+      <h2 className="max-w-[42ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.015em]">
         Two internships, both spent putting software in front of
         strangers.
       </h2>

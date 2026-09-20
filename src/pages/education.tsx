@@ -12,7 +12,7 @@ import { education } from "@/data/adapters";
 export default function Education() {
   return (
     <div id="education">
-      <h2 className="max-w-[26ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+      <h2 className="max-w-[26ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.015em]">
         Study, credentials and community.
       </h2>
 
@@ -27,7 +27,7 @@ export default function Education() {
             className="flex flex-col justify-between gap-3 border-b border-border/60 pb-8 last:border-b-0 last:pb-0 sm:flex-row sm:items-baseline sm:gap-6"
           >
             <div className="min-w-0">
-              <h4 className="text-lg font-semibold tracking-tight md:text-xl">
+              <h4 className="text-lg font-semibold tracking-[-0.01em] md:text-xl">
                 {edu.school}
               </h4>
               <p className="mt-1 text-[15px] text-muted-foreground">
@@ -39,7 +39,7 @@ export default function Education() {
             </div>
 
             <div className="shrink-0 sm:text-right">
-              <div className="font-display text-xl font-bold tabular-nums tracking-[-0.03em] text-foreground">
+              <div className="font-display text-xl font-semibold tabular-nums tracking-[-0.015em] text-foreground">
                 {edu.gpa}
               </div>
               <div className="mt-1 text-sm tabular-nums text-muted-foreground">

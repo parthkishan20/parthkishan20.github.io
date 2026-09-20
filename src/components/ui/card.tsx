@@ -7,7 +7,10 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        // Apple cards: hairline-or-nothing, never both, never a shadow.
+        // --card is already the surface-alt gray, so it carries its own
+        // separation against the page background with no border needed.
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-lg py-6",
         className
       )}
       {...props}

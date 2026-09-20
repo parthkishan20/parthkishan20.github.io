@@ -8,7 +8,7 @@ export default function Projects() {
     <div className="flex flex-col gap-14 md:gap-20">
       <ProjectPan
         heading={
-          <h2 className="max-w-[30ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+          <h2 className="max-w-[30ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.01em]">
             What I have built.
           </h2>
         }

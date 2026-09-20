@@ -22,10 +22,10 @@
 }
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 5px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 7px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -56,99 +56,124 @@
   --font-mono: var(--font-mono);
 }
 
-/* Palette (notes-from-artifacts.md entry 7, --ink-3 contrast fix applied):
-   cool neutrals biased green, one deep-green accent. Hex, not oklch — matches
-   what the notes measured for contrast. Do not mix notations. */
+/* Palette: apple-color-palette skill. Only these 13 tokens exist in the
+   system (info/error/accent/border/primary/success/surface/warning/
+   secondary/textMuted/background/textPrimary/textSecondary) — every
+   shadcn slot below maps onto one of them, none are invented. The skill
+   only defines a light set, so dark mode is derived by re-using the same
+   13 hexes in swapped roles (e.g. primary #000000 becomes the dark page
+   background, background #FFFFFF becomes dark foreground/primary) rather
+   than introducing new colors. */
 
 :root {
-  --radius: 6px;
+  /* Apple radius scale (apple-design-system skill): 9 / 12 / 17 / 24,
+     derived as fixed offsets from --radius so every rounded-* utility
+     lands on a verified value instead of an arbitrary one. */
+  --radius: 17px;
 
-  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Hybrid stack: real SF Pro on Apple hardware via -apple-system (zero
+     bytes, zero licensing risk), Inter everywhere else. Inter's opsz
+     axis reproduces SF's Text/Display split when paired with
+     font-optical-sizing: auto below, so one family stack covers both
+     of Apple's cuts. */
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Inter", ui-sans-serif, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Inter", ui-sans-serif, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+    monospace;
 
-  /* ground */
-  --background: #F3F5F3;
-  /* ink */
-  --foreground: #121816;
+  /* background */
+  --background: #FFFFFF;
+  /* textPrimary */
+  --foreground: #1D1D1F;
 
-  /* raised */
-  --card: #FFFFFF;
-  --card-foreground: #121816;
+  /* surface */
+  --card: #F5F5F7;
+  --card-foreground: #1D1D1F;
 
   --popover: #FFFFFF;
-  --popover-foreground: #121816;
+  --popover-foreground: #1D1D1F;
 
-  /* accent */
-  --primary: #0F6B4F;
+  /* primary */
+  --primary: #000000;
   --primary-foreground: #FFFFFF;
 
-  --secondary: #E7EBE7;
-  --secondary-foreground: #121816;
+  /* secondary */
+  --secondary: #86868B;
+  --secondary-foreground: #FFFFFF;
 
-  --muted: #E7EBE7;
-  /* ink-2 */
-  --muted-foreground: #4C5853;
-  /* ink-3, contrast-fixed */
-  --muted-foreground-2: #656F6A;
+  --muted: #F5F5F7;
+  /* textSecondary */
+  --muted-foreground: #6E6E73;
+  /* textMuted */
+  --muted-foreground-2: #86868B;
 
-  /* wash */
-  --accent: rgba(15, 107, 79, 0.08);
-  --accent-foreground: #121816;
+  /* accent */
+  --accent: #0071E3;
+  --accent-foreground: #FFFFFF;
 
-  --destructive: #B3261E;
+  /* error */
+  --destructive: #FF3B30;
 
-  /* line */
-  --border: #DCE1DD;
-  --input: #DCE1DD;
-  --ring: #0F6B4F;
+  /* border */
+  --border: #D2D2D7;
+  --input: #D2D2D7;
+  --ring: #0071E3;
 
-  /* ok (availability dot) */
-  --ok: #15803D;
+  /* success (availability dot) */
+  --ok: #34C759;
 
-  --chart-1: #0F6B4F;
-  --chart-2: #2F8F6B;
-  --chart-3: #58C79B;
-  --chart-4: #4C5853;
-  --chart-5: #79847F;
+  /* accent / success / info / warning / secondary */
+  --chart-1: #0071E3;
+  --chart-2: #34C759;
+  --chart-3: #5AC8FA;
+  --chart-4: #FF9F0A;
+  --chart-5: #86868B;
 }
 
 .dark {
-  --background: #0C100E;
-  --foreground: #E7ECE9;
+  /* primary */
+  --background: #000000;
+  /* background */
+  --foreground: #FFFFFF;
 
-  --card: #141A17;
-  --card-foreground: #E7ECE9;
+  /* textPrimary, reused as a dark elevated surface */
+  --card: #1D1D1F;
+  --card-foreground: #FFFFFF;
 
-  --popover: #141A17;
-  --popover-foreground: #E7ECE9;
+  --popover: #1D1D1F;
+  --popover-foreground: #FFFFFF;
 
-  --primary: #58C79B;
-  --primary-foreground: #07100C;
+  /* background */
+  --primary: #FFFFFF;
+  --primary-foreground: #000000;
 
-  --secondary: #1A211D;
-  --secondary-foreground: #E7ECE9;
+  --secondary: #86868B;
+  --secondary-foreground: #000000;
 
-  --muted: #1A211D;
-  --muted-foreground: #9BA6A1;
-  --muted-foreground-2: #838E89;
+  --muted: #1D1D1F;
+  /* secondary/textMuted */
+  --muted-foreground: #86868B;
+  /* textSecondary */
+  --muted-foreground-2: #6E6E73;
 
-  --accent: rgba(88, 199, 155, 0.12);
-  --accent-foreground: #E7ECE9;
+  --accent: #0071E3;
+  --accent-foreground: #FFFFFF;
 
-  --destructive: #E46A63;
+  --destructive: #FF3B30;
 
-  --border: #222A26;
-  --input: #222A26;
-  --ring: #58C79B;
+  --border: #D2D2D7;
+  --input: #D2D2D7;
+  --ring: #0071E3;
 
-  --ok: #4ADE80;
+  --ok: #34C759;
 
-  --chart-1: #58C79B;
-  --chart-2: #4ADE80;
-  --chart-3: #2F8F6B;
-  --chart-4: #9BA6A1;
-  --chart-5: #6E7A75;
+  --chart-1: #0071E3;
+  --chart-2: #34C759;
+  --chart-3: #5AC8FA;
+  --chart-4: #FF9F0A;
+  --chart-5: #86868B;
 }
 
 @layer base {
@@ -185,23 +210,43 @@
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
     scroll-padding-top: var(--anchor-offset);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    /* Inter 4.x's opsz axis reproduces SF Pro's Text/Display split
+       automatically; this is what makes the one hybrid stack correct
+       at every size instead of needing two managed families. */
+    font-optical-sizing: auto;
+    font-feature-settings: "calt" 1;
   }
 
   * {
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Apple steps body copy rather than scaling it fluidly: 16px/1.5 below
+     744px, 17px/1.47 at and above it. Both carry -0.022em tracking —
+     negative even at body size is part of the SF Pro look. */
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.62;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.022em;
+  }
+
+  @media (min-width: 744px) {
+    body {
+      font-size: 17px;
+      line-height: 1.47;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.03em;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 

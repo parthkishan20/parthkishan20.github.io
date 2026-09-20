@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ModeToggle } from "@/components/mode-toggle";
 import { SECTIONS } from "@/lib/sections";
 import { profile } from "@/data/adapters";
 
@@ -102,7 +101,6 @@ export function RailNav({ active }: RailNavProps) {
         >
           LinkedIn
         </a>
-        <ModeToggle />
       </div>
     </aside>
   );

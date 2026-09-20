@@ -44,7 +44,7 @@ const contactLines = [
 export default function Contact() {
   return (
     <div className="max-w-2xl">
-      <h2 className="text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+      <h2 className="text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.015em]">
         Hiring a full stack developer?
       </h2>
 

@@ -6,7 +6,7 @@ export default function About() {
     <div className="flex flex-col gap-12 md:gap-16">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
         <div className="max-w-[64ch]">
-          <h2 className="text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+          <h2 className="text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.015em]">
             How I build.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
