@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { StatusPill } from "@/components/status-pill";
 import { FigureStrip } from "@/components/figure-strip";
-import { homeFigures, resume } from "@/data/adapters";
+import { homeFigures, profile, resume } from "@/data/adapters";
 
 // Hero load stagger (plan 4.6): opacity/translateY, 880ms, children
 // delayed 40/130/220/310ms — one entry per hero block. This is a
@@ -12,7 +12,7 @@ import { homeFigures, resume } from "@/data/adapters";
 // view yet. Plain CSS transitions, no animation library, so the
 // global prefers-reduced-motion override in index.css collapses it
 // for free.
-const STAGGER_MS = [20, 70, 120, 170] as const;
+const STAGGER_MS = [20, 55, 90, 130, 170] as const;
 const REVEAL_TRANSITION =
   "transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)]";
 
@@ -41,7 +41,13 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-12 md:gap-16">
       <div className="flex max-w-2xl flex-col items-start gap-6">
-        <div style={revealStyle(0)} className={revealClass}>
+        <div
+          style={revealStyle(0)}
+          className={`${revealClass} flex flex-wrap items-center gap-3`}
+        >
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground rail:hidden">
+            {profile.title}
+          </span>
           <StatusPill>Open to full-time roles</StatusPill>
         </div>
 
@@ -49,15 +55,15 @@ export default function Home() {
           style={revealStyle(1)}
           className={`${revealClass} text-[clamp(36px,6.4vw,76px)] font-semibold leading-[1.05] tracking-[-0.018em]`}
         >
-          I build the part people actually touch.
+          I build the part people touch.
         </h1>
 
         <p
           style={revealStyle(2)}
           className={`${revealClass} text-lg leading-relaxed text-muted-foreground`}
         >
-          React and TypeScript in front, FastAPI and Python behind, tested
-          before anyone else sees it.
+          React and TypeScript up front, FastAPI and Python behind it —
+          tested before anyone else sees it.
         </p>
 
         <div
@@ -66,7 +72,7 @@ export default function Home() {
         >
           <Button asChild size="lg" className="h-12 gap-2">
             <a href="#projects">
-              See what I have built
+              See what I've built
               <ArrowRight className="h-4 w-4" />
             </a>
           </Button>

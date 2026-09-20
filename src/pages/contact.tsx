@@ -48,10 +48,17 @@ export default function Contact() {
         Hiring a full stack developer?
       </h2>
 
+      {/* Was one paragraph carrying two ideas — what roles I'm open
+          to, and how fast I respond. apple-style-copywriting's "nail"
+          test (state the section's point in under ~8 words) fails on
+          a merged sentence like that. Split: this stays the single
+          intro claim; the response-time promise moves to a caption
+          right under the CTA it qualifies, the same spot Apple puts
+          risk-reduction copy ("interest-free" sits on the price, not
+          mid-paragraph). */}
       <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
         Open to software engineering, AI and machine learning, and
-        forward deployed engineer roles. Email reaches me fastest, and
-        I answer the same day.
+        forward deployed engineer roles.
       </p>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -65,7 +72,27 @@ export default function Contact() {
         </Button>
       </div>
 
-      {/* A <ul>, not a <dl>: this is a list of contact methods (each
+      <p className="mt-3 text-sm text-muted-foreground">
+        Email reaches me fastest, and I answer the same day.
+      </p>
+
+      {/* Grouped into one quiet panel rather than left as a bare list
+          floating under the CTA — borrowed from how Apple's own
+          "Contacting Apple" page separates persuasive copy above from
+          a plain gray reference box below (its "Corporate Address"
+          block), not from that page's actual content: a portfolio has
+          no corporate address, resellers, or legal routing to list.
+          Static reachable info, so no hover-lift/shadow — those
+          belong to interactive marketing tiles (certifications,
+          extracurricular), and adding motion here would compete with
+          content the deference principle says it shouldn't. Icon
+          badges are `bg-background` (white) against the panel's
+          `bg-card` (gray) so they read as a tile sitting on the
+          panel, the same badge-on-gray language certifications.tsx
+          and extracurricular.tsx already use, just recolored for a
+          gray host surface instead of a white card.
+
+          A <ul>, not a <dl>: this is a list of contact methods (each
           with a decorative icon, a label and a value), not a strict
           term/description pairing — axe-core's definition-list rule
           requires a <dl>'s content to be flatly dt/dd/div/script/
@@ -74,10 +101,12 @@ export default function Contact() {
           accessibility audit, not assumed). A plain list sidesteps
           the constraint entirely and is the more accurate semantic
           fit for "ways to reach me" besides. */}
-      <ul className="mt-12 grid gap-5">
+      <ul className="mt-12 divide-y divide-border/60 overflow-hidden rounded-xl bg-card">
         {contactLines.map(({ icon: Icon, label, display, href }) => (
-          <li key={label} className="flex items-start gap-3">
-            <Icon className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+          <li key={label} className="flex items-center gap-4 px-5 py-4">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-background text-foreground">
+              <Icon className="h-4 w-4" />
+            </span>
             <div className="min-w-0">
               <span className="block text-xs uppercase tracking-wide text-muted-foreground-2">
                 {label}

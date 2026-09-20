@@ -1,75 +1,56 @@
-import { Github, ExternalLink } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { ProjectPan } from "@/components/project-pan";
 import { featuredProjects, otherProjects } from "@/data/adapters";
 
 export default function Projects() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <div className="flex flex-col gap-14 md:gap-20">
       <ProjectPan
         heading={
           <h2 className="max-w-[30ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.01em]">
-            What I have built.
+            What I've built.
           </h2>
         }
         projects={featuredProjects}
       />
 
       <div>
-        <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-          More projects
-        </h3>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          {otherProjects.map((project) => (
-            <article
-              key={project.name}
-              className="flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition-[border-color,transform] duration-[220ms] hover:-translate-y-[3px] hover:border-muted-foreground-2"
-            >
-              <h4 className="font-semibold tracking-tight">
-                {project.name}
-              </h4>
-              <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {project.tech.slice(0, 4).map((tech) => (
-                  <Badge key={tech} variant="outline" className="text-xs">
-                    {tech}
-                  </Badge>
-                ))}
-                {project.tech.length > 4 && (
-                  <Badge variant="outline" className="text-xs">
-                    +{project.tech.length - 4}
-                  </Badge>
-                )}
-              </div>
-              {(project.github || project.demo) && (
-                <div className="mt-auto flex gap-4 pt-1">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      <Github className="h-3.5 w-3.5" /> Code
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      <ExternalLink className="h-3.5 w-3.5" /> Demo
-                    </a>
-                  )}
-                </div>
-              )}
-            </article>
-          ))}
+        <div className="flex items-center justify-between gap-4">
+          <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            More projects
+          </h3>
+          <button
+            type="button"
+            aria-expanded={expanded}
+            aria-controls="more-projects-grid"
+            onClick={() => setExpanded((v) => !v)}
+            className="flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
+          >
+            {expanded ? "Show less" : `Show ${otherProjects.length} more`}
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-[220ms] ${expanded ? "rotate-180" : ""}`}
+            />
+          </button>
         </div>
+
+        {/* Same ProjectPan carousel as the featured row above — no
+            heading (the eyebrow/toggle row above already labels this
+            section), just the scroll-snap row and its own prev/next
+            buttons. Collapsed by default (progressive disclosure):
+            these are the uncurated projects, after the four featured
+            ones above — gating them behind one click keeps the page
+            shorter without dropping the content entirely. */}
+        {expanded && (
+          <div id="more-projects-grid" className="animate-panel-reveal mt-5">
+            <ProjectPan
+              projects={otherProjects}
+              ariaLabel="More projects, scrollable"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

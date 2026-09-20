@@ -10,7 +10,6 @@ import siteData from "@/data/siteData.json";
 // pass-throughs with nothing editorial to decide.
 
 export const profile = siteData.profile;
-export const about = siteData.about;
 export const education = siteData.education;
 export const projects = siteData.projects;
 export const certifications = siteData.certifications;
@@ -58,16 +57,16 @@ const roleBulletsByCompany: Record<string, Bullet[]> = {
       rest: " in React 19, Vite, TypeScript, Tailwind CSS, shadcn/ui and Redux Toolkit, with reusable component patterns behind live leaderboards, dashboards and admin workflows.",
     },
     {
-      lead: "Wired end to end REST workflows",
-      rest: " with Axios covering authentication, team onboarding, score submission, leaderboard retrieval, messaging, media uploads and sponsor content, with centralised error handling and toast feedback.",
+      lead: "Wired end-to-end REST workflows",
+      rest: " with Axios covering authentication, team onboarding, score submission, leaderboard retrieval, messaging, media uploads and sponsor content, with centralized error handling and toast feedback.",
     },
     {
       lead: "Kept leaderboards near real time",
       rest: " through tuned polling and refresh logic for both web and TV views, including sponsor carousels and animated transitions.",
     },
     {
-      lead: "Built the organiser CMS",
-      rest: " with data rich tables, CSV and XLSX import flows and validated forms using React Hook Form, Zod and TanStack Table.",
+      lead: "Built the organizer CMS",
+      rest: " with data-rich tables, CSV and XLSX import flows and validated forms using React Hook Form, Zod and TanStack Table.",
     },
     {
       lead: "",
@@ -106,6 +105,34 @@ export const roles: Role[] = siteData.experience.map((exp) => ({
     roleBulletsByCompany[exp.company] ??
     exp.bullets.map((rest) => ({ lead: "", rest })),
 }));
+
+// siteData.about.bio is one dense paragraph — ownership, stack, shipping
+// breadth, deployment and credentials all run together in a single block.
+// Fine for a résumé PDF; on the page it breaks the one-idea-per-block rule
+// every other section already follows (see the Experience bullets above).
+// So, same move as roleBulletsByCompany: authored here as the same facts
+// re-cut into an intro (the one thing that matters) plus a short list of
+// single-idea Bullets, reusing that exact type and its lead/rest
+// rendering convention. siteData.about.bio is untouched for résumé sync;
+// this adapter just stops re-exporting it since nothing reads it directly
+// anymore.
+export const aboutIntro =
+  "I own features end to end — from the database to the interface someone actually clicks.";
+
+export const aboutHighlights: Bullet[] = [
+  {
+    lead: "React 19, TypeScript, and FastAPI are the stack",
+    rest: ", with multi-agent LLM workflows layered in when a problem calls for it.",
+  },
+  {
+    lead: "Every interface ships responsive",
+    rest: " — phone to a 4K display — wired to real-time REST and WebSocket integrations, deployed through AWS S3.",
+  },
+  {
+    lead: "",
+    rest: "That discipline traces back to an MS in Computer Science at Stevens (3.9 GPA) and internships at EventEase and TechBilv Solutions LLP, where I worked the same way: full stack, agile team, clean code, shipped.",
+  },
+];
 
 export type SkillGroup = { label: string; primary: string[]; rest: string };
 
@@ -196,26 +223,100 @@ export function getProjectMetrics(name: string): ProjectMetric[] {
   return featuredProjectMetrics[name] ?? [];
 }
 
+// siteData.json's `description` is a spec-sheet sentence — what the
+// project is, its format, three separate features and the stack, all
+// run together. Fine for an ATS résumé parse, not for a card someone
+// skims in two seconds. Authored here, same drift-guard pattern as
+// featuredProjectMetrics: one idea, benefit first, tightened down to a
+// single line. A project with no entry falls back to its raw
+// description rather than showing nothing.
+const projectTaglines: Record<string, string> = {
+  "AI Resume Tailoring Platform":
+    "Keep one master resume. Get a tailored, ATS-scored version for every job in seconds.",
+  SortBoard:
+    "Watch six sorting algorithms think — step by step, at your speed.",
+  "MRTD Validation System (ICAO TD3)":
+    "Encodes and validates machine-readable passports, verified with mutation testing, not just unit tests.",
+  "Mini Search Engine":
+    "A search engine built from scratch — crawl, index, and rank results, in the browser or the CLI.",
+};
+
+export function getProjectTagline(name: string, description: string): string {
+  return projectTaglines[name] ?? description;
+}
+
+// siteData.extracurricular's `summary` is résumé-bullet prose — two
+// dense sentences (300+ chars) that repeat the same nouns the role/org
+// slots already carry. Fine for an ATS parse, fails the
+// apple-content-hierarchy body budget (10-25 words / 60-160 chars, one
+// idea) badly enough that nobody would read to the end. Same move as
+// projectTaglines: authored here as one benefit-led sentence, the one
+// real number in each role kept (30+ events), the rest cut. Falls back
+// to the raw summary so a role with no entry never renders blank.
+const communityBlurbs: Record<string, string> = {
+  "SPY – The Graduate AI Club, Stevens Institute of Technology":
+    "Coordinated speakers and logistics for AI workshops and lectures on campus.",
+  "Student Club IDE, GEC Gandhinagar":
+    "Ran logistics for 30+ events — venues, vendors, and on-site execution.",
+  "Event Management, GEC Gandhinagar":
+    "Organized Garba festivals and campus celebrations, handling sponsorships and permissions.",
+};
+
+export function getCommunityBlurb(org: string, summary: string): string {
+  return communityBlurbs[org] ?? summary;
+}
+
+// Apple's own card anatomy (apple-content-hierarchy: "promo card") is
+// eyebrow (category) -> headline (name) -> body, in that order. This
+// project's cards jumped straight from name to body with no category
+// label, so there was no eyebrow slot at all. Sentence case, not Title
+// Case, per that skill's rule: these are generic categories, not named
+// programs. Falls back to the project's first tech tag so a card never
+// ships with no eyebrow at all.
+const projectCategories: Record<string, string> = {
+  "AI Resume Tailoring Platform": "Full-stack AI app",
+  SortBoard: "Algorithm visualizer",
+  "MRTD Validation System (ICAO TD3)": "Systems and testing",
+  "Mini Search Engine": "Search engine",
+};
+
+export function getProjectCategory(name: string, tech: string[]): string {
+  return projectCategories[name] ?? tech[0] ?? "Project";
+}
+
 // The three figures for the Opening hero (plan section 8.2, Q13 — no
 // months figure). GPA is derived live from education[0].gpa
-// ("3.9/4.0" -> "3.9") so it can't drift from the actual data. The test
-// count is authored here because it isn't a discrete field anywhere in
-// siteData.json: it's the sum of two numbers inside a highlight
-// sentence on the "AI Resume Tailoring Platform" project ("89 backend
-// unit tests and 13 Playwright end-to-end tests"). Re-derive from that
-// project's highlights before changing this number.
+// ("3.9/4.0" -> "3.9") so it can't drift from the actual data.
+//
+// The second figure used to be a hardcoded "102" tests count that
+// wasn't a real field anywhere in siteData.json — it was the sum of
+// two unrelated numbers buried in one project's highlight sentence
+// (89 backend + 13 Playwright), assembled here rather than sourced.
+// A process metric standing in for an achievement, and not even a
+// single verifiable fact. Certifications is: a real, live count
+// (`certifications.length`), so it can't drift the way the old
+// number could.
+//
+// `shortLabel` backs the compact mobile chip-grid layout in
+// figure-strip.tsx (short word instead of the full sentence, since
+// the chip is small and the fuller context already lives in the
+// Certifications/Projects sections below); `label` stays the full
+// sentence for the spacious desktop 3-column layout.
 export const homeFigures = [
   {
     value: education[0].gpa.split("/")[0],
     label: "Graduate GPA at Stevens, out of 4.0",
+    shortLabel: "Graduate GPA",
   },
   {
-    value: "102",
-    label: "Automated tests on one platform, backend and browser",
+    value: String(certifications.length),
+    label: "Certifications earned, most from Anthropic",
+    shortLabel: "Certifications",
   },
   {
     value: String(projects.length),
     label: "Projects shipped and documented",
+    shortLabel: "Projects shipped",
   },
 ] as const;
 

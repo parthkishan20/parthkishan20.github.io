@@ -1,57 +1,50 @@
-import { useEffect, useRef, type ReactNode } from "react";
-import { Github, ExternalLink } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ChevronLeft, ChevronRight, Github, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { getProjectMetrics } from "@/data/adapters";
+import {
+  getProjectCategory,
+  getProjectMetrics,
+  getProjectTagline,
+} from "@/data/adapters";
 import type { projects } from "@/data/adapters";
 
-type Project = (typeof projects)[number];
+export type Project = (typeof projects)[number];
 
 interface ProjectPanProps {
-  heading: ReactNode;
+  heading?: ReactNode;
   projects: Project[];
+  ariaLabel?: string;
 }
 
-// notes-from-artifacts.md entry 4, built per plan 7.1/7.2/7.4 (Q10: no
-// animation library — CSS scroll-driven animation only, or the plain
-// scroll-snap row as the universal fallback).
-//
-// Base state (always, and the entire experience on mobile, in browsers
-// without `animation-timeline` support, and with JS disabled): a plain
-// horizontally scrollable, scroll-snapping row. See .project-pan-* in
-// index.css. This is not a degraded fallback — it is a first-class
-// experience per N1, and it is exactly what ships if the enhancement
-// is ever deleted outright (7.2's stated recovery path).
-//
-// Enhanced state (>=1160px, `animation-timeline: scroll()` supported,
-// no prefers-reduced-motion): the same DOM pins and scrubs
-// horizontally via CSS alone — no JS branch, no hydration flash. See
-// the @supports block in index.css.
-export function ProjectPan({ heading, projects }: ProjectPanProps) {
+// Apple's product-comparison carousel: a plain scroll-snap row plus two
+// circular prev/next buttons — not the page-pinning scroll-scrub effect
+// this replaced. No CSS scroll-timeline, no sticky frame, no progress
+// bar: the row is a first-class native scroller at every width, and the
+// buttons are the only enhancement layered on top (deliberately no
+// wheel-hijacking — see the removed effect's history for why).
+export function ProjectPan({
+  heading,
+  projects,
+  ariaLabel = "Featured projects, scrollable",
+}: ProjectPanProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
 
-  // 7.4: the fallback-path progress driver. A passive scroll listener
-  // on the viewport sets --pan-progress, which .project-pan-progress-bar
-  // reads via scaleX. This listener still exists and still runs at
-  // desktop widths without JS-independent effect on the enhanced path
-  // — there the viewport is `overflow: hidden` so it never fires, and
-  // the CSS scroll-timeline keyframe drives the bar instead.
+  // Tracks button enabled state against actual scroll position, same
+  // rAF-gated pattern the old progress bar used (resize goes through
+  // the same gate as scroll so dragging a window edge doesn't force a
+  // layout read plus a style write per event).
   useEffect(() => {
     const viewport = viewportRef.current;
-    const bar = progressBarRef.current;
-    if (!viewport || !bar) return;
+    if (!viewport) return;
 
-    // resize goes through the same rAF gate as scroll. It used to call
-    // `update` synchronously, so dragging a window edge ran a
-    // scrollWidth/clientWidth read (forces layout) plus a style write
-    // per resize event. The pending frame is also cancelled on cleanup,
-    // so `update` cannot run one frame late against a detached node.
     let frame = 0;
     const update = () => {
       frame = 0;
       const max = viewport.scrollWidth - viewport.clientWidth;
-      const ratio = max > 0 ? viewport.scrollLeft / max : 0;
-      bar.style.setProperty("--pan-progress", ratio.toFixed(4));
+      setCanScrollPrev(viewport.scrollLeft > 4);
+      setCanScrollNext(viewport.scrollLeft < max - 4);
     };
     const schedule = () => {
       if (frame) return;
@@ -66,72 +59,89 @@ export function ProjectPan({ heading, projects }: ProjectPanProps) {
       window.removeEventListener("resize", schedule);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [projects]);
+
+  // Tried converting a plain vertical wheel into horizontal pan while
+  // hovering the row, matching apple.com's own comparison carousels.
+  // Reverted: that pattern only reads as correct when the carousel is
+  // pinned full-viewport-height, so there's nothing else on screen for
+  // "scrolling" to mean. This row sits in normal page flow with content
+  // visible above and below it, so intercepting the wheel at all fought
+  // the page's own vertical scroll — worst right at the two edges,
+  // where a reader instinctively expects to keep scrolling the page
+  // (down off the first card, up off the last) and instead got panned
+  // sideways through the remaining cards first. Horizontal panning
+  // still works fully via drag, touch swipe, trackpad, and the
+  // prev/next buttons below; vertical wheel now always scrolls the
+  // page, everywhere on the page, with no special case for this row.
+
+  const scrollByPage = (direction: 1 | -1) => {
+    viewportRef.current?.scrollBy({
+      left: direction * viewportRef.current.clientWidth * 0.9,
+      behavior: "smooth",
+    });
+  };
 
   return (
-    <div className="project-pan">
-      <div className="project-pan-frame">
-        {/* Lives inside the pinned frame, not as a sibling before it
-            (notes entry 4's .pan-head markup). Once the section is
-            truly pinned, only what's inside .project-pan-frame stays
-            on screen — a heading rendered outside it would have
-            already scrolled away by the time the pan engages, which
-            is what the 1280x720 "heading, tallest panel and progress
-            line all visible" acceptance check is actually testing. */}
-        <div className="mb-6 rail:mb-4">{heading}</div>
+    <div>
+      {heading && <div className="mb-6 rail:mb-4">{heading}</div>}
 
-        <div
-          ref={viewportRef}
-          tabIndex={0}
-          aria-label="Featured projects, scrollable"
-          className="project-pan-viewport @container -mx-5 snap-x snap-mandatory scroll-px-5 overflow-x-auto px-5 pb-2 [overscroll-behavior-x:contain] [scrollbar-width:thin] sm:-mx-6 sm:px-6 sm:scroll-px-6 rail:mx-0 rail:px-0 rail:scroll-px-0"
+      <div
+        ref={viewportRef}
+        role="region"
+        tabIndex={0}
+        aria-label={ariaLabel}
+        className="project-pan-viewport -mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-px-5 px-5 pb-2 [-ms-overflow-style:none] [overscroll-behavior-x:contain] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:scroll-px-6 sm:px-6 rail:mx-0 rail:scroll-px-0 rail:px-0"
+      >
+        {projects.map((project) => (
+          <ProjectPanel key={project.name} project={project} />
+        ))}
+      </div>
+
+      <div className="mt-4 flex justify-end gap-2">
+        <button
+          type="button"
+          aria-label="Previous project"
+          disabled={!canScrollPrev}
+          onClick={() => scrollByPage(-1)}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-muted transition-colors duration-[160ms] enabled:hover:bg-border disabled:cursor-not-allowed"
         >
-          {/* scroll-px matches the inline padding. Snap alignment is
-              measured from the scrollport (padding box) edge, so with
-              scroll-padding left at `auto` the browser snapped
-              scrollLeft to the padding value on first layout and ate
-              the gutter: the first project card rested at rect.left 0,
-              flush against the screen edge, while every other section
-              on the page is inset 20/24px. Measured on load with no
-              user interaction. */}
-          {/* w-max: a block-level flex container defaults to filling
-              its parent's width (block width:auto), not sizing to its
-              own content. Without forcing it to content width here,
-              `-100%` in the enhanced translateX keyframe resolves
-              against the shrunk parent-matching width instead of the
-              track's real (wider) content width, and the pan barely
-              moves — this was caught empirically, not assumed. */}
-          <div className="project-pan-track flex w-max gap-6">
-            {projects.map((project) => (
-              <ProjectPanel key={project.name} project={project} />
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-4 h-0.5 w-full rounded-full bg-border">
-          <div
-            ref={progressBarRef}
-            className="project-pan-progress-bar h-full w-full origin-left rounded-full bg-primary"
+          <ChevronLeft
+            className={`h-5 w-5 ${canScrollPrev ? "text-foreground" : "text-muted-foreground-2"}`}
           />
-        </div>
+        </button>
+        <button
+          type="button"
+          aria-label="Next project"
+          disabled={!canScrollNext}
+          onClick={() => scrollByPage(1)}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-muted transition-colors duration-[160ms] enabled:hover:bg-border disabled:cursor-not-allowed"
+        >
+          <ChevronRight
+            className={`h-5 w-5 ${canScrollNext ? "text-foreground" : "text-muted-foreground-2"}`}
+          />
+        </button>
       </div>
     </div>
   );
 }
 
-function ProjectPanel({ project }: { project: Project }) {
+export function ProjectPanel({ project }: { project: Project }) {
   const metrics = getProjectMetrics(project.name);
-  const visibleTech = project.tech.slice(0, 6);
+  const visibleTech = project.tech.slice(0, 4);
   const hiddenTechCount = project.tech.length - visibleTech.length;
 
   return (
-    <article className="flex w-[min(88vw,560px)] shrink-0 snap-start flex-col gap-4 rounded-lg border border-border bg-card p-6 rail:gap-3 rail:p-5 md:w-[min(70vw,480px)]">
+    <article className="flex w-[min(78vw,300px)] shrink-0 snap-start flex-col gap-5 rounded-lg bg-card p-6 rail:w-[320px]">
       <div>
-        <h3 className="text-lg font-semibold tracking-tight md:text-xl">
+        <p className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          {getProjectCategory(project.name, project.tech)}
+        </p>
+        <h3 className="mt-1 text-lg font-semibold tracking-tight md:text-xl">
           {project.name}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {project.description}
+          {getProjectTagline(project.name, project.description)}
         </p>
       </div>
 
@@ -181,7 +191,7 @@ function ProjectPanel({ project }: { project: Project }) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
-            <ExternalLink className="h-4 w-4" /> Live demo
+            <ArrowUpRight className="h-4 w-4" /> Live demo
           </a>
         )}
       </div>

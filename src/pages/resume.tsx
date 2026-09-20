@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ExternalLink, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { resume } from "@/data/adapters";
 
@@ -45,14 +45,20 @@ export default function Resume() {
         Last updated {resume.lastUpdated}
       </p>
 
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+      {/* Was two buttons here ("Open the résumé" + "Download PDF"),
+          but Contact's own secondary CTA ("Read the résumé") already
+          opens this exact PDF in a new tab one scroll above — same
+          action, third label. Apple's one-action-per-block rule says
+          cut the duplicate rather than relabel around it. Download is
+          the one thing this block does that Contact doesn't. `outline`,
+          not the filled/accent variant: Contact's "Email Parth" is
+          this section's one real primary action, so this stays
+          visually secondary rather than competing with it as a second
+          solid-black button. Default (36px) size on purpose too — it
+          reads as a quiet follow-up beneath Contact's size="lg" CTAs,
+          not a reset back to full scale. */}
+      <div className="mt-4">
         <Button variant="outline" asChild className="gap-2">
-          <a href={resume.pdfPath} target="_blank" rel="noopener noreferrer">
-            <ExternalLink className="h-4 w-4" />
-            Open the résumé
-          </a>
-        </Button>
-        <Button asChild className="gap-2">
           <a href={resume.pdfPath} download>
             <Download className="h-4 w-4" />
             Download PDF

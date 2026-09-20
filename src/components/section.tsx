@@ -16,17 +16,26 @@ interface SectionProps {
 // navigation moves DOM focus into it. Without it Safari leaves focus on
 // the nav link that was clicked, so the next Tab walks the rest of the
 // nav instead of entering the content the reader just jumped to.
-// `:focus-visible` gates the outline, so this draws nothing. `label`
-// backs a visually-hidden heading so `aria-labelledby` always resolves
-// to a real accessible name, whether or not the section's own content
-// happens to render a heading with a matching id.
+// `outline-none`, not left to `:focus-visible`: that heuristic was
+// expected to suppress the ring here, but Chromium treats fragment-nav
+// focus (a link click, or the browser landing on #about on load/
+// refresh) as keyboard-equivalent, so it drew the full default outline
+// around the entire section — a large, page-spanning black rectangle,
+// not a subtle ring. tabIndex=-1 keeps this out of the normal Tab
+// order (a sequential Tab press can never land here), so there's no
+// keyboard user this outline would be helping; a screen reader still
+// gets the section announced via aria-labelledby regardless of whether
+// it's drawn. `label` backs a visually-hidden heading so
+// aria-labelledby always resolves to a real accessible name, whether
+// or not the section's own content happens to render a heading with a
+// matching id.
 export function Section({ id, label, children }: SectionProps) {
   return (
     <section
       id={id}
       tabIndex={-1}
       aria-labelledby={`${id}-heading`}
-      className="border-t border-border/60 py-16 first:border-t-0 md:py-28"
+      className="border-t border-border/60 py-16 outline-none first:border-t-0 md:py-28"
     >
       <h2 id={`${id}-heading`} className="sr-only">
         {label}

@@ -1,4 +1,5 @@
 import { education } from "@/data/adapters";
+import { useReveal } from "@/hooks/use-reveal";
 
 // Phase 9 renders Education, Certifications and Community as three
 // blocks inside one shared <Section id="background"> (App.tsx). Each
@@ -10,6 +11,8 @@ import { education } from "@/data/adapters";
 // The overall Background heading ("Study, credentials and community.",
 // plan 8.3) lives here since Education renders first among the three.
 export default function Education() {
+  const { ref, revealed } = useReveal<HTMLDivElement>();
+
   return (
     <div id="education">
       <h2 className="max-w-[26ch] text-[clamp(26px,3.6vw,40px)] font-semibold leading-[1.08] tracking-[-0.015em]">
@@ -20,7 +23,12 @@ export default function Education() {
         Education
       </h3>
 
-      <div className="mt-5 flex flex-col gap-8">
+      <div
+        ref={ref}
+        className={`mt-5 flex flex-col gap-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+        }`}
+      >
         {education.map((edu) => (
           <article
             key={edu.school}

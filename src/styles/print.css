@@ -57,38 +57,23 @@
     padding: 0 !important;
   }
 
-  /* The Projects pan (Phase 7) is a scroll-driven, partially clipped
-     effect on screen — printing it as-is would show only whichever
-     panel happened to be scrolled into view, cut off mid-card. Unroll
-     it into a plain stacked list so every featured project prints in
-     full. */
-  .project-pan {
-    height: auto !important;
-  }
-
-  .project-pan-frame {
-    position: static !important;
-    height: auto !important;
-  }
-
+  /* The Projects row is a horizontally scrollable, clipped viewport on
+     screen — printing it as-is would show only whichever card happened
+     to be scrolled into view, cut off mid-card. Unroll it into a plain
+     stacked list so every featured project prints in full. The
+     prev/next buttons need no rule here: they're plain <button>
+     elements, already caught by the blanket button:not(.print-keep)
+     rule above. */
   .project-pan-viewport {
-    overflow: visible !important;
-  }
-
-  .project-pan-track {
     display: block !important;
+    overflow: visible !important;
     width: auto !important;
-    transform: none !important;
   }
 
-  .project-pan-track > * {
+  .project-pan-viewport > * {
     width: 100% !important;
     margin-bottom: 1rem;
     page-break-inside: avoid;
-  }
-
-  .project-pan-progress-bar {
-    display: none !important;
   }
 
   /* Links. */

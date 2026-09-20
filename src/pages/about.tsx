@@ -1,5 +1,5 @@
 import { GitHubStats } from "@/components/github-stats";
-import { about, skillGroups } from "@/data/adapters";
+import { aboutHighlights, aboutIntro, skillGroups } from "@/data/adapters";
 
 export default function About() {
   return (
@@ -10,8 +10,20 @@ export default function About() {
             How I build.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            {about.bio}
+            {aboutIntro}
           </p>
+          <ul className="mt-6 grid gap-4">
+            {aboutHighlights.map((item, i) => (
+              <li key={i} className="leading-relaxed text-muted-foreground">
+                {item.lead && (
+                  <strong className="font-semibold text-foreground">
+                    {item.lead}
+                  </strong>
+                )}
+                {item.rest}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <aside>
