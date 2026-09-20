@@ -12,7 +12,7 @@ import siteData from "@/data/siteData.json";
 export const profile = siteData.profile;
 export const education = siteData.education;
 export const projects = siteData.projects;
-export const certifications = siteData.certifications;
+const certifications = siteData.certifications;
 export const community = siteData.extracurricular;
 export const resume = siteData.resume;
 
@@ -348,7 +348,7 @@ const certificationGroupNames: Record<string, string> = {
   "Advanced Prompt Engineering": "Engineering and web",
   "React Essential Training": "Engineering and web",
   "100 Days of Code - 2023 Web Development Bootcamp": "Engineering and web",
-  "Bloomberg Market Concept": "Adjacent",
+  "Bloomberg Market Concepts": "Adjacent",
 };
 
 const CERTIFICATION_GROUP_ORDER = ["Anthropic", "Engineering and web", "Adjacent"];

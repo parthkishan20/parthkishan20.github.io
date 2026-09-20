@@ -8,7 +8,7 @@ import {
 } from "@/data/adapters";
 import type { projects } from "@/data/adapters";
 
-export type Project = (typeof projects)[number];
+type Project = (typeof projects)[number];
 
 interface ProjectPanProps {
   heading?: ReactNode;
@@ -126,7 +126,7 @@ export function ProjectPan({
   );
 }
 
-export function ProjectPanel({ project }: { project: Project }) {
+function ProjectPanel({ project }: { project: Project }) {
   const metrics = getProjectMetrics(project.name);
   const visibleTech = project.tech.slice(0, 4);
   const hiddenTechCount = project.tech.length - visibleTech.length;
