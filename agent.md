@@ -1,4 +1,4 @@
-# Parthkumar Patel Portfolio — Agent
+# Parthkumar Patel Portfolio - Agent
 
 ## Project Summary
 

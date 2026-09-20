@@ -1,7 +1,7 @@
 import { skillGroups } from "@/data/adapters";
 import { useReveal } from "@/hooks/use-reveal";
 
-// notes-from-artifacts.md entry 5. Definition list, not a badge grid —
+// notes-from-artifacts.md entry 5. Definition list, not a badge grid -
 // the accent lead clause carries real hierarchy (what's reached for
 // daily) that a wall of equal-weight chips can't. Base: term above
 // description. md: 210px term column, items-baseline so the mono term
@@ -10,7 +10,7 @@ import { useReveal } from "@/hooks/use-reveal";
 //
 // `dt` is deliberately quieter than the sitewide uppercase eyebrow
 // style (About/Projects/Certifications) rather than matching it: this
-// is Apple's "spec list" recipe, not a promo card — the reader already
+// is Apple's "spec list" recipe, not a promo card - the reader already
 // wants facts, not a label competing for attention on every one of
 // seven rows.
 export default function Skills() {

@@ -1,11 +1,11 @@
-# Portfolio UI Redesign — Implementation Plan
+# Portfolio UI Redesign - Implementation Plan
 
 **Written by:** Claude Opus 5, 2026-09-18
 **Revision 2:** 2026-09-18, all fourteen review questions answered and folded in. No open
 questions remain. The answers are recorded in section 13.
 **To be executed by:** Claude Sonnet (this plan is the single source of truth for the build)
 **Source of design decisions:** [`notes-from-artifacts.md`](./notes-from-artifacts.md), entries 1 to 8
-**Repo:** `parth-portfolio/website/my-app` — React 19 + TypeScript + Vite 7 + Tailwind v4 + shadcn/ui
+**Repo:** `parth-portfolio/website/my-app` - React 19 + TypeScript + Vite 7 + Tailwind v4 + shadcn/ui
 
 > **Revision 2 changed these things.** Read them even if you read revision 1.
 > 1. `npm run build` **deploys the site**. It is banned as a routine check. See rule 2 and Phase 0.1.
@@ -17,7 +17,7 @@ questions remain. The answers are recorded in section 13.
 
 ---
 
-## 0. Executor protocol — read this first
+## 0. Executor protocol - read this first
 
 You are implementing a design that has already been decided. Your job is faithful
 execution, not redesign.
@@ -138,11 +138,11 @@ sections merge into two.
 
 | # | Rail label | Section `id` | Contains | Old ids preserved inside |
 | --- | --- | --- | --- | --- |
-| 01 | Opening | `home` | Hero, status pill, three figures | — |
-| 02 | About | `about` | Bio prose, optional GitHub activity | — |
-| 03 | Experience | `experience` | Two roles, sticky meta, bold leads | — |
-| 04 | Projects | `projects` | 4 featured in the pan, 5 in the short list | — |
-| 05 | Skills | `skills` | 7 definition rows | — |
+| 01 | Opening | `home` | Hero, status pill, three figures | - |
+| 02 | About | `about` | Bio prose, optional GitHub activity | - |
+| 03 | Experience | `experience` | Two roles, sticky meta, bold leads | - |
+| 04 | Projects | `projects` | 4 featured in the pan, 5 in the short list | - |
+| 05 | Skills | `skills` | 7 definition rows | - |
 | 06 | Background | `background` | Education, certifications, community | `#education`, `#certifications`, `#extracurricular` as inner anchors |
 | 07 | Contact | `contact` | Résumé access, contact lines, footer | `#resume` as an inner anchor |
 
@@ -170,17 +170,17 @@ the original `--ink-3` values from the artifact; they fail WCAG AA.
 
 | Role | Light | Dark | Contrast on ground (L / D) |
 | --- | --- | --- | --- |
-| ground | `#F3F5F3` | `#0C100E` | — |
-| raised (cards, inputs) | `#FFFFFF` | `#141A17` | — |
+| ground | `#F3F5F3` | `#0C100E` | - |
+| raised (cards, inputs) | `#FFFFFF` | `#141A17` | - |
 | ink (body, headings) | `#121816` | `#E7ECE9` | 16.41 / 16.03 |
 | ink-2 (secondary prose) | `#4C5853` | `#9BA6A1` | 6.78 / 7.63 |
 | ink-3 (dates, meta, stacks) | `#656F6A` | `#838E89` | 4.75 / 5.65 |
-| line (control borders) | `#DCE1DD` | `#222A26` | — |
-| line-2 (section hairlines) | `#E7EBE7` | `#1A211D` | — |
+| line (control borders) | `#DCE1DD` | `#222A26` | - |
+| line-2 (section hairlines) | `#E7EBE7` | `#1A211D` | - |
 | accent | `#0F6B4F` | `#58C79B` | 5.92 / 9.18 |
 | accent-ink (text on accent) | `#FFFFFF` | `#07100C` | 6.49 / 9.24 |
-| wash (tinted fill) | `rgba(15,107,79,0.08)` | `rgba(88,199,155,0.12)` | — |
-| ok (availability dot) | `#15803D` | `#4ADE80` | — |
+| wash (tinted fill) | `rgba(15,107,79,0.08)` | `rgba(88,199,155,0.12)` | - |
+| ok (availability dot) | `#15803D` | `#4ADE80` | - |
 
 ### 4.2 Mapping onto the shadcn tokens in `index.css`
 
@@ -243,7 +243,7 @@ so they do not overflow at 320px. Verify at 320px.
 Do not set `font-optical-sizing: none` and do not pin `'opsz'`. The optical axis is the
 reason this face was chosen.
 
-### 4.4 Shape language — the one conflict in the notes, resolved
+### 4.4 Shape language - the one conflict in the notes, resolved
 
 The notes mix two shape systems. Entries 1 and 2 come from a brutalist concept (0px
 radius, 2px borders, hard offset shadows); entries 5, 6 and 7 come from a soft concept
@@ -304,7 +304,7 @@ global block in `index.css`:
 ```
 
 and, separately, ensure reveal elements render at their final state (never stuck at
-`opacity: 0`) when the query matches — see the `useReveal` hook in Phase 3.
+`opacity: 0`) when the query matches - see the `useReveal` hook in Phase 3.
 
 ---
 
@@ -375,7 +375,7 @@ there is no `tailwind.config.js` in this project and none should be added.
 | M13 | Section anchors use `scroll-margin-top: 72px` on phone and tablet (clears the sticky header), `24px` at `rail` (no header). |
 | M14 | The mobile chip nav scrolls horizontally inside its own container and must not push the page wide. |
 
-### 5.5 Test matrix — the per-phase gate
+### 5.5 Test matrix - the per-phase gate
 
 Every phase must be checked at **all eight widths** before it is marked done:
 
@@ -416,7 +416,7 @@ either.
 
 ## 6. Implementation phases
 
-### Phase 0 — Baseline
+### Phase 0 - Baseline
 
 **Steps**
 1. `git checkout -b redesign/ui-v2`
@@ -429,7 +429,7 @@ either.
 
 ---
 
-### Phase 0.1 — Stop the build from deploying (do this before anything else)
+### Phase 0.1 - Stop the build from deploying (do this before anything else)
 
 **Why.** `vite.config.ts` registers `ghPages()`, which publishes `dist` to the live
 gh-pages branch at the end of every `vite build`. `package.json` separately defines
@@ -459,7 +459,7 @@ push an unfinished redesign to the live site.
 
 ---
 
-### Phase 1 — Design tokens and fonts
+### Phase 1 - Design tokens and fonts
 
 **Files:** `src/index.css`, `index.html`
 
@@ -505,7 +505,7 @@ push an unfinished redesign to the live site.
 
 ---
 
-### Phase 1.5 — Responsive screenshot harness (Q4 answer: yes, add Playwright)
+### Phase 1.5 - Responsive screenshot harness (Q4 answer: yes, add Playwright)
 
 Set this up early, not at the end. From here on every phase can be eyeballed at all eight
 widths with one command, which is what makes the per-phase responsive gate practical.
@@ -545,7 +545,7 @@ whether reduced motion works. Those three stay manual in section 5.5.
 
 ---
 
-### Phase 2 — Layout shell: rail on desktop, header plus chips on mobile
+### Phase 2 - Layout shell: rail on desktop, header plus chips on mobile
 
 **Files:** new `src/components/site-shell.tsx`, new `src/components/rail-nav.tsx`,
 new `src/components/mobile-nav.tsx`, new `src/hooks/use-active-section.ts`;
@@ -553,7 +553,7 @@ modify `src/App.tsx`; **delete** `src/components/layout.tsx`, `src/components/ap
 
 This is the largest structural change. It replaces `SidebarProvider` entirely.
 
-**2.1 `use-active-section.ts`** — replaces the `window.scroll` listener in `layout.tsx`.
+**2.1 `use-active-section.ts`** - replaces the `window.scroll` listener in `layout.tsx`.
 
 ```ts
 import { useEffect, useState } from "react";
@@ -586,12 +586,12 @@ export function useActiveSection(ids: string[]) {
 
 Pass `ids` as a module-level constant array so the effect does not re-run every render.
 
-**2.2 `rail-nav.tsx`** — desktop only, `hidden rail:flex`. Structure per entry 6:
+**2.2 `rail-nav.tsx`** - desktop only, `hidden rail:flex`. Structure per entry 6:
 photo, name, role, numbered `<ol>` index, contact lines, theme toggle pinned to the bottom
 with `mt-auto`. Active item: `aria-current="true"`, accent left border, ink colour, weight
 550. No icons.
 
-**2.3 `mobile-nav.tsx`** — **this is new work, not in the notes.** Below `rail:` there is
+**2.3 `mobile-nav.tsx`** - **this is new work, not in the notes.** Below `rail:` there is
 no vertical rail, and the notes' concept simply dropped navigation on mobile. Given
 requirement N1, mobile gets real navigation:
 
@@ -605,7 +605,7 @@ requirement N1, mobile gets real navigation:
 - No hamburger. Entry 6 of the notes rules it out and a seven-item row does not need one.
 **(Q6: confirmed, header plus chips.)**
 
-**2.4 `site-shell.tsx`** — the grid wrapper:
+**2.4 `site-shell.tsx`** - the grid wrapper:
 
 ```tsx
 <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-6 rail:grid rail:grid-cols-[300px_minmax(0,1fr)] rail:gap-[72px] rail:px-10">
@@ -618,7 +618,7 @@ requirement N1, mobile gets real navigation:
 `min-w-0` on `<main>` is rule M4 and is not optional; without it the pan section forces the
 grid wider than the viewport.
 
-**2.5 `App.tsx`** — replace `Layout` with `SiteShell`, drop all eleven `min-h-screen`
+**2.5 `App.tsx`** - replace `Layout` with `SiteShell`, drop all eleven `min-h-screen`
 classes, drop every `<SectionDivider />`, and reduce to the seven sections from section 3.
 Keep `ErrorBoundary`, `SEOHead`, `BackToTop`, `Toaster` and the skip link. **Remove
 `<ScrollProgress />` and delete `components/scroll-progress.tsx` (Q7: confirmed).**
@@ -634,16 +634,16 @@ Keep `ErrorBoundary`, `SEOHead`, `BackToTop`, `Toaster` and the skip link. **Rem
 
 ---
 
-### Phase 3 — Section primitives and reveal
+### Phase 3 - Section primitives and reveal
 
 **Files:** new `src/components/section.tsx`, new `src/hooks/use-reveal.ts`;
 **delete** `src/components/section-divider.tsx`.
 
-**3.1 `use-reveal.ts`** — one IntersectionObserver per element, unobserve after firing, and
+**3.1 `use-reveal.ts`** - one IntersectionObserver per element, unobserve after firing, and
 **start in the visible state when reduced motion is on** so nothing is ever stuck at
 `opacity: 0`.
 
-**3.2 `section.tsx`** — a single component every section uses, so rhythm and anchor offsets
+**3.2 `section.tsx`** - a single component every section uses, so rhythm and anchor offsets
 are defined once:
 
 ```tsx
@@ -669,7 +669,7 @@ export function Section({ id, label, children }: SectionProps) {
 
 ---
 
-### Phase 4 — Opening (hero)
+### Phase 4 - Opening (hero)
 
 **Files:** rewrite `src/pages/home.tsx`, new `src/components/status-pill.tsx`,
 new `src/components/figure-strip.tsx`.
@@ -702,7 +702,7 @@ new `src/components/figure-strip.tsx`.
 
 ---
 
-### Phase 5 — About
+### Phase 5 - About
 
 **Files:** rewrite `src/pages/about.tsx`
 
@@ -718,7 +718,7 @@ eight widths.
 
 ---
 
-### Phase 6 — Experience
+### Phase 6 - Experience
 
 **Files:** rewrite `src/pages/experience.tsx`; `src/data/siteData.json` (section 7.1).
 
@@ -740,7 +740,7 @@ Implement entry 3 exactly, with these responsive specifics:
 
 ---
 
-### Phase 7 — Projects
+### Phase 7 - Projects
 
 **Files:** rewrite `src/pages/projects.tsx`, new `src/components/project-pan.tsx`.
 
@@ -843,7 +843,7 @@ keyframe. Implement both; the notes flag losing one of them as a known failure.
 
 ---
 
-### Phase 8 — Skills
+### Phase 8 - Skills
 
 **Files:** rewrite `src/pages/skills.tsx`; `src/data/siteData.json` (section 7.2).
 
@@ -857,7 +857,7 @@ with `items-baseline`. Seven rows. Accent on the primary clause only.
 
 ---
 
-### Phase 9 — Background (education, certifications, community)
+### Phase 9 - Background (education, certifications, community)
 
 **Files:** rewrite `src/pages/education.tsx`, `src/pages/certifications.tsx`,
 `src/pages/extracurricular.tsx`; they become three blocks rendered inside one `Section`.
@@ -879,7 +879,7 @@ Each block keeps its old `id` (`education`, `certifications`, `extracurricular`)
 
 ---
 
-### Phase 10 — Contact, résumé, footer
+### Phase 10 - Contact, résumé, footer
 
 **Files:** rewrite `src/pages/contact.tsx`, `src/pages/resume.tsx` (résumé becomes a block
 inside the contact section, keeping `id="resume"`).
@@ -904,7 +904,7 @@ full width and stacked at base, inline from `sm`.
 
 ---
 
-### Phase 11 — Cleanup sweep
+### Phase 11 - Cleanup sweep
 
 **Steps**
 1. **Delete** `src/pages/testimonials.tsx` and its import, section and nav entry.
@@ -914,11 +914,11 @@ full width and stacked at base, inline from `sm`.
    **Narrowed and closed out 2026-09-18** (originally
    `grep -rn "min-h-screen\|h-screen" src/`). The original pattern had two
    unavoidable false positives, both correct code that should not change:
-   - `components/error-boundary.tsx` — `min-h-screen` centres the whole-page
+   - `components/error-boundary.tsx` - `min-h-screen` centres the whole-page
      crash fallback in the viewport. That is the opposite of D1 (eleven
      full-viewport *content* sections), and section 9 lists this file as
      Untouched.
-   - `components/ui/toast.tsx` — `max-h-screen` caps the toast stack's height;
+   - `components/ui/toast.tsx` - `max-h-screen` caps the toast stack's height;
      the `h-screen` alternation matched it as a substring. A shadcn primitive,
      not hand-edited.
    D1 is about per-section page rhythm, so the check now targets exactly that
@@ -953,7 +953,7 @@ server shows no missing-module errors; `npm run shots` still renders every secti
 
 ---
 
-### Phase 12 — Responsive and accessibility verification
+### Phase 12 - Responsive and accessibility verification
 
 Run the full section 5.5 matrix against the **finished page**, not section by section.
 
@@ -978,7 +978,7 @@ Run the full section 5.5 matrix against the **finished page**, not section by se
 
 ---
 
-### Phase 13 — Performance
+### Phase 13 - Performance
 
 **Steps**
 1. **`avatar.png` is 687 KB (D5).** Produce a 104px WebP (2x of the 52px rail slot) and,
@@ -1014,7 +1014,7 @@ and every reshape happens in a new `src/data/adapters.ts`. That keeps the file
 sync-compatible no matter what writes it next. Sections 7.1 and 7.2 below describe the
 shapes the adapters must **return**, not the shapes to write into the JSON.
 
-### 7.1 `experience[].bullets` — the adapter returns `{ lead, rest }`
+### 7.1 `experience[].bullets` - the adapter returns `{ lead, rest }`
 
 Entry 3's scan layer needs a bolded lead clause and a plain string has nothing to bold.
 **`siteData.json` keeps its plain strings.** The split lives in `src/data/adapters.ts` as
@@ -1032,7 +1032,7 @@ cannot silently un-bold the page either. Shape the adapter returns:
 ```
 
 An empty `lead` renders the bullet unbolded. **Exactly one bullet per job must have an
-empty lead** — the process bullet. The renderer treats `lead === ""` as "no strong".
+empty lead** - the process bullet. The renderer treats `lead === ""` as "no strong".
 
 Full split text for all ten bullets across the two jobs: take it verbatim from the
 *Parth Patel Ships* artifact, which is already written this way. Do not re-split by hand.
@@ -1043,7 +1043,7 @@ JSON has changed so the `lead` is no longer a prefix of it, the adapter returns
 showing stale text. Never let the adapter print a lead that is not actually the opening of
 the current source string.
 
-### 7.2 `skills` — the adapter returns an array of groups
+### 7.2 `skills` - the adapter returns an array of groups
 
 ```json
 "skills": [
@@ -1067,7 +1067,7 @@ exactly as it is. The adapter does not read it at all, because the grouping and 
 are editorial decisions that a flat list cannot carry. Keep the raw object in the file so
 a future sync has somewhere to land, and so nothing downstream breaks.
 
-### 7.5 `src/data/adapters.ts` — the contract
+### 7.5 `src/data/adapters.ts` - the contract
 
 One new file, the only place that knows about both shapes.
 
@@ -1255,7 +1255,7 @@ Status as of 2026-09-18. Evidence for the measured items is in `docs/after/`
 
 - [x] All 15 phases complete (0, 0.1, 1, 1.5, 2 to 13), each with its acceptance criteria met.
 - [x] `npx tsc -b` and `npm run lint` clean. Lint reaches zero errors/zero warnings:
-      the four standing errors (which pre-dated this work on `main`) were fixed —
+      the four standing errors (which pre-dated this work on `main`) were fixed -
       `useTheme` + its context moved to `hooks/use-theme.ts` so `theme-provider.tsx`
       exports only a component, `use-toast.ts`'s `actionTypes` became a type instead of
       dead runtime code, and `react-refresh/only-export-components` is scoped off for
@@ -1266,11 +1266,11 @@ Status as of 2026-09-18. Evidence for the measured items is in `docs/after/`
 - [x] Section 5.5 matrix passes at eight widths, two heights, two themes.
 - [x] The six Phase 11 greps all return nothing, including `framer-motion` and
       `siteData.json` outside the adapter. (The `min-h-screen` grep was narrowed to the
-      defect it describes — see Phase 11 step 3 for the two false positives and why they
+      defect it describes - see Phase 11 step 3 for the two false positives and why they
       are correct code.)
 - [x] `npm run shots` is green in both chromium and firefox. 32/32.
 - [ ] Lighthouse mobile: Accessibility 100, Performance 90+.
-      **Accessibility 100, Best Practices 100, SEO 100. Performance 87 — not met.**
+      **Accessibility 100, Best Practices 100, SEO 100. Performance 87 - not met.**
       Diagnosed rather than left open: FCP is 2.5s and the LCP element is a text span,
       not an image, because nothing paints until ~312 KB of JS downloads, parses and
       mounts React into an empty `#root`. Phase 13's avatar work (687 KB → 3.7 KB) was
@@ -1288,7 +1288,7 @@ Status as of 2026-09-18. Evidence for the measured items is in `docs/after/`
 - [x] Before and after screenshots at 375 and 1440 saved in `docs/`.
       `docs/before/` (Phase 0) and `docs/after/`.
 - [x] The site is **not** deployed. Verified against the remote: `origin/gh-pages` last
-      moved at 22:23 on 2026-09-17, sixteen minutes *before* Phase 0 began — that is the
+      moved at 22:23 on 2026-09-17, sixteen minutes *before* Phase 0 began - that is the
       pre-planning build this plan already notes under Phase 0.1, not this work.
       Deployment is a separate, explicit decision by the
       owner, run as `npm run deploy`.

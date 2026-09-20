@@ -10,7 +10,7 @@ interface FigureStripProps {
 
 // Three figures (plan 8.2, Q13 dropped the months figure to two-of-three
 // looking arbitrary). Went through several mobile treatments before
-// this one — a baseline row, a fully stacked column, a divided list —
+// this one - a baseline row, a fully stacked column, a divided list -
 // each either cramped or too spacious. This merges the two the user
 // actually picked from a live A/B/C/D comparison: B's bounded chip
 // cards (structure, so the three read as one grouped set) with D's
@@ -18,7 +18,7 @@ interface FigureStripProps {
 // sentence to justify its size). The third chip spans the full row
 // when the count is odd, so a lone leftover doesn't look stranded.
 // `sm` and up reverts to the original 3-column grid with the full
-// descriptive sentence — that layout was never the complaint, only
+// descriptive sentence - that layout was never the complaint, only
 // the mobile one was, and desktop has the room a sentence needs.
 export function FigureStrip({ figures }: FigureStripProps) {
   return (

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 // Replaces the window.scroll + offsetTop comparison that used to live in
 // layout.tsx (D3). One IntersectionObserver, no work on scroll frames.
-// `ids` must be a module-level constant array — see src/lib/sections.ts —
+// `ids` must be a module-level constant array - see src/lib/sections.ts -
 // so this effect does not re-subscribe on every render.
 export function useActiveSection(ids: string[]) {
   const [active, setActive] = useState(ids[0]);
@@ -36,8 +36,8 @@ export function useActiveSection(ids: string[]) {
     // comparing those rects would be measuring nothing.
     //
     // Net behaviour, and it is symmetric: the highlight moves to the
-    // next section once that section covers everything below the band —
-    // about 60% of the viewport — whether the reader is scrolling down
+    // next section once that section covers everything below the band -
+    // about 60% of the viewport - whether the reader is scrolling down
     // or up.
     const intersecting = new Set<string>();
 
@@ -55,7 +55,7 @@ export function useActiveSection(ids: string[]) {
           if (intersecting.has(id)) lowest = id;
         }
 
-        // Nothing in the band — a fast fling, or the gap above the first
+        // Nothing in the band - a fast fling, or the gap above the first
         // section. Keep the last answer rather than blanking the nav.
         if (lowest) setActive(lowest);
       },

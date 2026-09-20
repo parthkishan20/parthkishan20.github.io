@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-// Vector marks from Simple Icons (simpleicons.org), CC0 — built
+// Vector marks from Simple Icons (simpleicons.org), CC0 - built
 // specifically for identifying a real brand/service, not decorative
 // reuse. Rendered with `fill="currentColor"` so they inherit the
 // site's ink color instead of each brand's own hex, matching the
@@ -27,7 +27,7 @@ export function UdemyIcon(props: SVGProps<SVGSVGElement>) {
 
 // Traced (via potrace, a bitmap-to-vector tracer) from a monochrome
 // rendering of the standard LinkedIn "in" mark, rather than
-// redistributing any single provider's icon file — used here purely
+// redistributing any single provider's icon file - used here purely
 // to identify LinkedIn Learning as the real, verifiable issuer of a
 // real credential (the same nominative use every certificate/resume
 // site makes of an issuer's mark), not as decoration or an implied

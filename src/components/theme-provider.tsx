@@ -12,7 +12,7 @@ type ThemeProviderProps = {
 // unmounted (rail-nav.tsx / mobile-nav.tsx) and this flag makes every
 // session resolve to light regardless of a stale "dark"/"system" value
 // already sitting in localStorage from before this change. Flip it back
-// to false and re-mount <ModeToggle /> once dark mode is revisited —
+// to false and re-mount <ModeToggle /> once dark mode is revisited -
 // nothing else here needs to change.
 const FORCE_LIGHT_MODE = true
 

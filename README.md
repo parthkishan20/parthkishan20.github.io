@@ -27,10 +27,10 @@ A modern, responsive portfolio website built with Vite, React, TypeScript, Tailw
   ```
 
 ## Folder Structure
-- `src/pages/` — All main pages (Home, About, Education, etc.)
-- `src/components/` — Reusable UI components
-- `src/data/siteData.json` — Portfolio data
-- `public/images/` — Profile, logos, and project images
+- `src/pages/` - All main pages (Home, About, Education, etc.)
+- `src/components/` - Reusable UI components
+- `src/data/siteData.json` - Portfolio data
+- `public/images/` - Profile, logos, and project images
 
 ## Deployment
 You can deploy this site to Vercel, Netlify, or GitHub Pages. For Vercel/Netlify, just import the repo and follow their instructions.

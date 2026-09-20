@@ -4,20 +4,20 @@ import { certificationGroups } from "@/data/adapters";
 
 // Nine certifications in three issuer groups (plan 9). One column at
 // base, two from md, three at rail. Each card links to its
-// verification URL — target="_blank" rel="noopener" exactly as
+// verification URL - target="_blank" rel="noopener" exactly as
 // specified (not the noopener-noreferrer pattern used elsewhere on the
 // site; verification services can reasonably want the referrer).
 //
 // Card anatomy follows Apple's spec-list recipe (group heading, then
 // label:value rows) rather than its promo-card recipe: this is proof
-// content — real credential titles and verification links — not
+// content - real credential titles and verification links - not
 // marketing copy, so the layout leads with the issuer as a plain
 // eyebrow and ends with a clear "Verify" action instead of fusing the
 // issuer and the link into one decorative line.
 //
 // The tile shows a real issuer mark where one exists at a safe source
 // (see brand-icons.tsx) and falls back to a plain letter monogram
-// otherwise — Bloomberg has no such source, so it stays type-only.
+// otherwise - Bloomberg has no such source, so it stays type-only.
 function getIssuerIcon(issuer: string) {
   if (issuer === "Anthropic") return AnthropicIcon;
   if (issuer.startsWith("Udemy")) return UdemyIcon;
@@ -40,7 +40,7 @@ export default function Certifications() {
             </h4>
             {/* Plain `rail:` again. This used to need an arbitrary
                 [@media(min-width:1160px)] variant because the custom
-                breakpoint sorted before md: and lost the cascade — that
+                breakpoint sorted before md: and lost the cascade - that
                 was the px/rem unit bug, now fixed at the source in
                 index.css, so the workaround is no longer needed here. */}
             <div className="mt-3 grid gap-4 md:grid-cols-2 rail:grid-cols-3">

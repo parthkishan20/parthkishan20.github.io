@@ -7,7 +7,7 @@ interface MobileNavProps {
 }
 
 // Below the `rail` breakpoint there is no vertical rail (N1: mobile is a
-// primary target, not an afterthought — this is new work, not in the
+// primary target, not an afterthought - this is new work, not in the
 // concept notes). A sticky 56px bar plus a horizontally scrollable row of
 // section chips. No hamburger: seven items don't need one (Q6).
 export function MobileNav({ active }: MobileNavProps) {
@@ -18,7 +18,7 @@ export function MobileNav({ active }: MobileNavProps) {
   // scrollIntoView.
   //
   // scrollIntoView walks every scrollable ancestor up to and including
-  // the viewport and scrolls each one — `block: "nearest"` only makes
+  // the viewport and scrolls each one - `block: "nearest"` only makes
   // the target offset equal the current offset, it does not skip the
   // box. Scrolling the root scroller cancels any scroll animation
   // already running on it, and `html` has `scroll-behavior: smooth`. So
@@ -59,7 +59,7 @@ export function MobileNav({ active }: MobileNavProps) {
           {profile.name}
         </span>
       </div>
-      {/* overscroll-behavior-x: contain — swiping past either end of the
+      {/* overscroll-behavior-x: contain - swiping past either end of the
           chip row used to chain to the page and fire the browser's
           back/forward navigation gesture on iOS Safari and Chrome
           Android. The project's other horizontal scroller (ProjectPan)

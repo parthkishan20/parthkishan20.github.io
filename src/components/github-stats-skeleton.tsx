@@ -1,6 +1,6 @@
 // Dimensions here must match GitHubStats' loaded state exactly (chip
 // padding, value line-height, icon size, label size) so the live fetch
-// resolving never shifts layout — that's the whole point of reserving
+// resolving never shifts layout - that's the whole point of reserving
 // the shape instead of just showing a spinner. Mirrors GitHubStats'
 // own two-layout split (bounded chip grid on mobile, left-aligned
 // 3-column stack from `sm` up) and its number-first, icon-inline-

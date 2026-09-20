@@ -4,7 +4,7 @@ import { profile, resume } from "@/data/adapters";
 
 // Copy verbatim from plan 8.4. "One label per intent" across the
 // whole page: the résumé link is always "Read the résumé" wherever it
-// appears as a single link (here and in Home's secondary CTA) — the
+// appears as a single link (here and in Home's secondary CTA) - the
 // Résumé block below has its own two distinct labels ("Open the
 // résumé" / "Download PDF") because it offers two different actions,
 // not the same one twice.
@@ -48,7 +48,7 @@ export default function Contact() {
         Hiring a full stack developer?
       </h2>
 
-      {/* Was one paragraph carrying two ideas — what roles I'm open
+      {/* Was one paragraph carrying two ideas - what roles I'm open
           to, and how fast I respond. apple-style-copywriting's "nail"
           test (state the section's point in under ~8 words) fails on
           a merged sentence like that. Split: this stays the single
@@ -77,12 +77,12 @@ export default function Contact() {
       </p>
 
       {/* Grouped into one quiet panel rather than left as a bare list
-          floating under the CTA — borrowed from how Apple's own
+          floating under the CTA - borrowed from how Apple's own
           "Contacting Apple" page separates persuasive copy above from
           a plain gray reference box below (its "Corporate Address"
           block), not from that page's actual content: a portfolio has
           no corporate address, resellers, or legal routing to list.
-          Static reachable info, so no hover-lift/shadow — those
+          Static reachable info, so no hover-lift/shadow - those
           belong to interactive marketing tiles (certifications,
           extracurricular), and adding motion here would compete with
           content the deference principle says it shouldn't. Icon
@@ -94,7 +94,7 @@ export default function Contact() {
 
           A <ul>, not a <dl>: this is a list of contact methods (each
           with a decorative icon, a label and a value), not a strict
-          term/description pairing — axe-core's definition-list rule
+          term/description pairing - axe-core's definition-list rule
           requires a <dl>'s content to be flatly dt/dd/div/script/
           template, and the icon sitting alongside the label+value
           here would violate that (found via Phase 12's Lighthouse

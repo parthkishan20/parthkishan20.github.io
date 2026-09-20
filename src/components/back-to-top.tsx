@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 // Q10): the element stays mounted and is toggled with the native
 // `hidden` attribute
 // instead of being conditionally rendered, so a CSS transition (see
-// .back-to-top in index.css) can animate it in and out — including the
+// .back-to-top in index.css) can animate it in and out - including the
 // exit, via `transition-behavior: allow-discrete` + `@starting-style`,
 // which lets a transition run across a display:none boundary. Browsers
 // without that support just pop instantly; still fully functional,
@@ -20,7 +20,7 @@ export function BackToTop() {
   // opened deep-linked (#contact) or restored below the threshold showed
   // no button at all until the reader scrolled again. Without the
   // throttle this ran a layout-flushing window.scrollY read on every
-  // scroll event — ~120/s on a high-refresh trackpad — on the same
+  // scroll event - ~120/s on a high-refresh trackpad - on the same
   // frames the rail nav is already flipping aria-current.
   useEffect(() => {
     let frame = 0;
@@ -54,7 +54,7 @@ export function BackToTop() {
   const scrollToTop = () => {
     // No explicit `behavior`. Passing "smooth" here overrides the
     // computed scroll-behavior, which is exactly what the reduced-motion
-    // block in index.css sets to `auto !important` — so the one user who
+    // block in index.css sets to `auto !important` - so the one user who
     // has asked not to be flung across the page was the one user who
     // got flung. Omitting it defers to that computed value.
     window.scrollTo({ top: 0 });

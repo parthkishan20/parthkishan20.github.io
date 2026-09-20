@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* 72.5rem, not 1160px — same width at the default root size, but the
+/* 72.5rem, not 1160px - same width at the default root size, but the
    unit is load-bearing. Tailwind v4 sorts breakpoint variants by their
    declared value, and its own sm/md/lg/xl are all rem. A px value can't
    be ordered against those, so `rail` was emitted *before* every default
@@ -13,7 +13,7 @@
    with 24px tablet gutters instead of 40px) and `sm:-mx-6 sm:px-6` beat
    `rail:mx-0 rail:px-0` on the project pan (its clip box overhung the
    content column by 24px a side, running cards to the raw window edge).
-   Both were invisible in review — the classes are right there in the
+   Both were invisible in review - the classes are right there in the
    markup, they just never won. In rem, `rail` sorts after lg and every
    one of those utilities applies. Verified against the emitted CSS, not
    assumed. */
@@ -58,7 +58,7 @@
 
 /* Palette: apple-color-palette skill. Only these 13 tokens exist in the
    system (info/error/accent/border/primary/success/surface/warning/
-   secondary/textMuted/background/textPrimary/textSecondary) — every
+   secondary/textMuted/background/textPrimary/textSecondary) - every
    shadcn slot below maps onto one of them, none are invented. The skill
    only defines a light set, so dark mode is derived by re-using the same
    13 hexes in swapped roles (e.g. primary #000000 becomes the dark page
@@ -188,7 +188,7 @@
      content, and it is two stacked rows, not one: 56px identity bar
      (h-14) + 44px chip row (min-h-11) + 12px pb-3 + 1px border-b =
      113px. The utilities it replaces all said 72px, which covered only
-     the first row — so every nav chip, every legacy deep link and the
+     the first row - so every nav chip, every legacy deep link and the
      skip link buried the top 41px of its target behind the bar, at
      every width from 320px to 1159px.
 
@@ -225,7 +225,7 @@
   }
 
   /* Apple steps body copy rather than scaling it fluidly: 16px/1.5 below
-     744px, 17px/1.47 at and above it. Both carry -0.022em tracking —
+     744px, 17px/1.47 at and above it. Both carry -0.022em tracking -
      negative even at body size is part of the SF Pro look. */
   body {
     @apply bg-background text-foreground;
@@ -256,7 +256,7 @@
 
   /* `fixed`, not `absolute`: the link is a direct child of #root, which
      establishes no containing block, so `absolute` resolved against the
-     initial containing block — `focus:top-0` meant the top of the
+     initial containing block - `focus:top-0` meant the top of the
      *document*, not of the viewport. Tab into it after a mid-page
      reload and focus landed on a control scrolled far off screen. */
   .skip-to-main {
@@ -273,7 +273,7 @@
   }
 
   /* For content that mounts on click (e.g. the "More projects"
-     disclosure) rather than scrolling into view — same opacity/
+     disclosure) rather than scrolling into view - same opacity/
      translateY recipe and easing as the scroll-triggered reveals
      elsewhere on the site, just animation-driven instead of tied to
      useReveal's IntersectionObserver, since there's no scroll to
@@ -297,13 +297,13 @@
   }
 }
 
-/* Phase 11: BackToTop — an opacity/translateY transition across the
+/* Phase 11: BackToTop - an opacity/translateY transition across the
    native `hidden` attribute, replacing the old animation library's
    AnimatePresence (Q10). `transition-behavior: allow-discrete` plus
    @starting-style lets the transition run across the display:none
    boundary itself (the exit as well as the entry); without them a
    transition can't animate across display changes at all. Browsers
-   without support for that combination just pop instantly — still
+   without support for that combination just pop instantly - still
    fully functional. */
 .back-to-top {
   display: flex;

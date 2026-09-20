@@ -13,11 +13,11 @@ interface RailNavProps {
 // `rail:overflow-y-auto` is load-bearing, not decoration. The rail needs
 // ~662px of height; it is `sticky top-0` at a hard `h-dvh`, so on a
 // shorter viewport the overflow sat below the fold at *every* scroll
-// position — no scroll could reach it, because the box itself never
+// position - no scroll could reach it, because the box itself never
 // moves. Measured at 1280x560 the mode toggle was stranded at y 586-622,
 // and at rail widths this is the only theme control on the page since
 // MobileNav is `rail:hidden`. That is a 1366x768 laptop with a bookmarks
-// bar, or any window at 125% zoom — not an exotic case. Deliberately no
+// bar, or any window at 125% zoom - not an exotic case. Deliberately no
 // overscroll-behavior: contain here, so the wheel still chains to the
 // page when the pointer happens to be over the rail.
 export function RailNav({ active }: RailNavProps) {
@@ -34,7 +34,7 @@ export function RailNav({ active }: RailNavProps) {
             is this 52px rail slot (Q8), yet the source file was a
             687 KB 1024x1024 PNG. avatar-104.webp is a 104x104 (2x
             retina) WebP generated from it, 3.7 KB. The original PNG
-            stays in public/ unchanged — it's also the og:image /
+            stays in public/ unchanged - it's also the og:image /
             twitter:image meta target (index.html), a genuinely
             different use case (a social-preview card wants a large
             image) that this defect isn't about and isn't asked to

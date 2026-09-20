@@ -6,7 +6,7 @@ interface UseRevealOptions {
 }
 
 // Replaces the old animation library's `whileInView` fade/slide
-// reveals (D12, Q10 — the CSS-plus-IntersectionObserver approach
+// reveals (D12, Q10 - the CSS-plus-IntersectionObserver approach
 // adopted once every page is rewritten). One observer per element,
 // unobserved as soon as it fires
 // once (plan section 4.6: "fire once"). Starts already revealed when
@@ -16,9 +16,9 @@ interface UseRevealOptions {
 //
 // The target is tracked as state behind a callback ref, not a useRef.
 // A plain useRef is populated *after* the effect's first run, so a
-// consumer that mounts its ref'd node later than the hook — GitHubStats
+// consumer that mounts its ref'd node later than the hook - GitHubStats
 // renders a skeleton until its fetch resolves, so the ref'd grid does
-// not exist on mount — never got an observer at all, and nothing
+// not exist on mount - never got an observer at all, and nothing
 // re-triggered the effect once the node appeared. The element then sat
 // at opacity: 0 permanently. A callback ref re-runs the effect at the
 // moment the node actually attaches, whenever that is.

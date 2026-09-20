@@ -171,7 +171,7 @@ Opportunities" badge:
 
 ---
 
-## 2. Extracurricular / community entries — DECIDED FORMAT for the final build
+## 2. Extracurricular / community entries - DECIDED FORMAT for the final build
 
 **From:** *Patel Spec Sheet* concept, `#community` section
 (https://claude.ai/artifact/TVWpQoRbPHRLcCSbWhuozQ)
@@ -302,7 +302,7 @@ export default function Extracurricular() {
 
 ---
 
-## 3. Work / experience section — DECIDED FORMAT for the final build
+## 3. Work / experience section - DECIDED FORMAT for the final build
 
 **From:** *Parth Patel Portfolio* concept, `#work` section
 (https://claude.ai/artifact/Y1m4DCRjemKSYVUn3gSAKa)
@@ -439,7 +439,7 @@ export default function Experience() {
 
 ---
 
-## 4. Selected work — scroll-driven horizontal pan — DECIDED FORMAT for the final build
+## 4. Selected work - scroll-driven horizontal pan - DECIDED FORMAT for the final build
 
 **From:** *Patel Build Index* concept, `#projects` section
 (https://claude.ai/artifact/Pv8RHLnvpU5Dws1epSqrsk)
@@ -613,7 +613,7 @@ package. GSAP's pin is the better behaviour if the dependency is acceptable.
 
 ---
 
-## 5. Skills as definition rows — DECIDED FORMAT for the final build
+## 5. Skills as definition rows - DECIDED FORMAT for the final build
 
 **From:** *Parth Patel Ships* concept, `#how` section, "How I work"
 (https://claude.ai/artifact/33ZF5sSLpNn9XtQk9CJQJ6)
@@ -758,7 +758,7 @@ export default function Skills() {
 
 ---
 
-## 6. Vertical identity rail as the navigation — DECIDED FORMAT for the final build
+## 6. Vertical identity rail as the navigation - DECIDED FORMAT for the final build
 
 **From:** *Parth Patel Ships* concept, the `.rail` aside
 (https://claude.ai/artifact/33ZF5sSLpNn9XtQk9CJQJ6)
@@ -937,7 +937,7 @@ square in the concept, which is deliberately small: the rail is a nameplate, not
 
 ---
 
-## 7. Colour palette — DECIDED PALETTE for the final build
+## 7. Colour palette - DECIDED PALETTE for the final build
 
 **From:** *Parth Patel Ships* concept
 (https://claude.ai/artifact/33ZF5sSLpNn9XtQk9CJQJ6)
@@ -1049,7 +1049,7 @@ outright if the rail from entry 6 replaces the shadcn sidebar.
 
 ---
 
-## 8. Heading typeface: Bricolage Grotesque — LOCKED for all headings and titles
+## 8. Heading typeface: Bricolage Grotesque - LOCKED for all headings and titles
 
 **From:** *Parth Patel Portfolio* concept, hero and every section head
 (https://claude.ai/artifact/Y1m4DCRjemKSYVUn3gSAKa)

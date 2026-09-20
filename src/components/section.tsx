@@ -8,7 +8,7 @@ interface SectionProps {
 
 // The one wrapper every top-level section uses (plan 3.2), so rhythm is
 // defined exactly once instead of per page. The anchor offset moved to
-// `html { scroll-padding-top }` in index.css — same "exactly once"
+// `html { scroll-padding-top }` in index.css - same "exactly once"
 // intent, but one declaration for every anchor target on the page
 // rather than a utility five elements had to remember to repeat.
 //
@@ -20,7 +20,7 @@ interface SectionProps {
 // expected to suppress the ring here, but Chromium treats fragment-nav
 // focus (a link click, or the browser landing on #about on load/
 // refresh) as keyboard-equivalent, so it drew the full default outline
-// around the entire section — a large, page-spanning black rectangle,
+// around the entire section - a large, page-spanning black rectangle,
 // not a subtle ring. tabIndex=-1 keeps this out of the normal Tab
 // order (a sequential Tab press can never land here), so there's no
 // keyboard user this outline would be helping; a screen reader still

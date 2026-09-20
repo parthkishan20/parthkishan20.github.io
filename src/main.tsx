@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
 //
 // The browser performs its fragment scroll when parsing finishes. This
 // is a module script, so it runs at that point and `root.render()` only
-// *schedules* the first render — #background and friends do not exist
+// *schedules* the first render - #background and friends do not exist
 // yet, the browser finds no target, and the scroll silently no-ops.
 // Every legacy deep link (#education, #certifications, #extracurricular,
 // #resume) and every shared section link landed the reader at the top of

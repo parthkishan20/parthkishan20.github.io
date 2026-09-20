@@ -1,4 +1,4 @@
-/* Print Styles for Resume — Phase 11: updated to match the redesign's
+/* Print Styles for Resume - Phase 11: updated to match the redesign's
    actual structure. A recruiter printing the page is a real use for
    this site, so this was checked with an actual print preview, not
    assumed to still be correct after the rewrite.
@@ -7,7 +7,7 @@
    printed-page width (commonly under 900 CSS px for Letter/A4 at
    default margins), which is below this site's 1160px `rail`
    breakpoint. So printing almost always renders the mobile/tablet
-   layout (sticky header + chip nav), not the desktop rail — the
+   layout (sticky header + chip nav), not the desktop rail - the
    .site-rail rule below is defensive for the uncommon case (a wide
    custom page size, or a browser that prints at window width) where
    it does render. */
@@ -28,7 +28,7 @@
   }
 
   /* Nothing should stay pinned to a viewport position on a printed
-     page — the mobile sticky header/chip bar and the Experience
+     page - the mobile sticky header/chip bar and the Experience
      meta column both use position: sticky. */
   * {
     position: static !important;
@@ -58,7 +58,7 @@
   }
 
   /* The Projects row is a horizontally scrollable, clipped viewport on
-     screen — printing it as-is would show only whichever card happened
+     screen - printing it as-is would show only whichever card happened
      to be scrolled into view, cut off mid-card. Unroll it into a plain
      stacked list so every featured project prints in full. The
      prev/next buttons need no rule here: they're plain <button>

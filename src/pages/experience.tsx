@@ -46,7 +46,7 @@ function JobEntry({ job }: { job: Role }) {
 }
 
 // notes-from-artifacts.md entry 3. Base: meta stacked above bullets, no
-// sticky. md: two columns (0.8fr/2fr), still no sticky — a sticky meta
+// sticky. md: two columns (0.8fr/2fr), still no sticky - a sticky meta
 // column fights nothing at md, since there's no header there either,
 // but the plan reserves sticky for rail only where it's guaranteed a
 // long job actually has room to pin against. rail: meta becomes sticky,

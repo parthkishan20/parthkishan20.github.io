@@ -30,12 +30,12 @@ export function GitHubStats() {
         const userData: GitHubData = await userResponse.json();
 
         // Total stars used to live here, summed across every repo from
-        // a second fetch — dropped along with that fetch: most of
+        // a second fetch - dropped along with that fetch: most of
         // these repos are internship/coursework work, not open-source
         // projects built to attract stars, so the number sat at 0 and
         // read as a null result instead of a proof point. Years on
         // GitHub comes straight off this same response's `created_at`,
-        // no second request needed — real, always positive, and it
+        // no second request needed - real, always positive, and it
         // only grows. `Math.max(1, …)` so an account created earlier
         // this same calendar year still reads "1", not "0".
         const yearsOnGithub = Math.max(
@@ -70,7 +70,7 @@ export function GitHubStats() {
       <div className="flex items-center justify-center gap-2 py-6 text-sm text-muted-foreground">
         <AlertCircle className="h-4 w-4 shrink-0" />
         <span>
-          GitHub stats unavailable — visit{" "}
+          GitHub stats unavailable - visit{" "}
           <a
             href="https://github.com/parthkishan20"
             target="_blank"
@@ -90,7 +90,7 @@ export function GitHubStats() {
     { label: "Followers", value: stats.followers, icon: Users },
   ];
 
-  // Same bounded chip-grid pattern figure-strip.tsx uses on Home —
+  // Same bounded chip-grid pattern figure-strip.tsx uses on Home -
   // this widget had the identical mobile problem (icon/number/label
   // stacked with a big gap, three times, no boundary tying them
   // together as one set). Mobile: 2-up `bg-muted` chips, last one
@@ -100,7 +100,7 @@ export function GitHubStats() {
   // Icon placement picked from a live A/B/C comparison: it no longer
   // floats large above the number (that made it compete with the
   // number for attention). It sits small, inline, right next to its
-  // own label instead — a clarifying glyph next to the caption it
+  // own label instead - a clarifying glyph next to the caption it
   // belongs to, not a second hero element per stat.
   return (
     <div

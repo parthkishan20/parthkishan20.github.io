@@ -36,12 +36,12 @@ export default function Projects() {
           </button>
         </div>
 
-        {/* Same ProjectPan carousel as the featured row above — no
+        {/* Same ProjectPan carousel as the featured row above - no
             heading (the eyebrow/toggle row above already labels this
             section), just the scroll-snap row and its own prev/next
             buttons. Collapsed by default (progressive disclosure):
             these are the uncurated projects, after the four featured
-            ones above — gating them behind one click keeps the page
+            ones above - gating them behind one click keeps the page
             shorter without dropping the content entirely. */}
         {expanded && (
           <div id="more-projects-grid" className="animate-panel-reveal mt-5">

@@ -9,8 +9,8 @@ interface StatusPillProps {
 // and a round dot instead of a square one. Full pill radius (apple-
 // design-system) instead of a fixed px value now that it's a StatusPill
 // in name and shape both. The blink stays `steps(1, end)` (see
-// .animate-status-blink in index.css) — a status light, not a
-// breathing pulse — and the dot is aria-hidden since the text next to
+// .animate-status-blink in index.css) - a status light, not a
+// breathing pulse - and the dot is aria-hidden since the text next to
 // it already carries the meaning.
 export function StatusPill({ children }: StatusPillProps) {
   return (

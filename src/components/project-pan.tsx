@@ -17,11 +17,11 @@ interface ProjectPanProps {
 }
 
 // Apple's product-comparison carousel: a plain scroll-snap row plus two
-// circular prev/next buttons — not the page-pinning scroll-scrub effect
+// circular prev/next buttons - not the page-pinning scroll-scrub effect
 // this replaced. No CSS scroll-timeline, no sticky frame, no progress
 // bar: the row is a first-class native scroller at every width, and the
 // buttons are the only enhancement layered on top (deliberately no
-// wheel-hijacking — see the removed effect's history for why).
+// wheel-hijacking - see the removed effect's history for why).
 export function ProjectPan({
   heading,
   projects,
@@ -67,7 +67,7 @@ export function ProjectPan({
   // pinned full-viewport-height, so there's nothing else on screen for
   // "scrolling" to mean. This row sits in normal page flow with content
   // visible above and below it, so intercepting the wheel at all fought
-  // the page's own vertical scroll — worst right at the two edges,
+  // the page's own vertical scroll - worst right at the two edges,
   // where a reader instinctively expects to keep scrolling the page
   // (down off the first card, up off the last) and instead got panned
   // sideways through the remaining cards first. Horizontal panning

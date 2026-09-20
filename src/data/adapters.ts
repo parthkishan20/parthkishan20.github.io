@@ -29,11 +29,11 @@ export type Role = {
 // siteData.json's raw experience[].bullets (7.1's stated shape, applying
 // 7.2's precedent). The plan's own worked example under 7.1 quotes this
 // exact EventEase lead bullet verbatim, confirming this is the intended
-// source text — transcribed from the "Parth Patel Ships" artifact via a
+// source text - transcribed from the "Parth Patel Ships" artifact via a
 // screenshot the site owner supplied directly on 2026-09-18, since the
 // artifact itself is sandboxed against automated reading. It is a
-// tighter, portfolio-specific rewrite of the same two jobs — 10 bullets
-// total (6 + 4) versus the raw JSON's 12 more résumé-formal ones — not a
+// tighter, portfolio-specific rewrite of the same two jobs - 10 bullets
+// total (6 + 4) versus the raw JSON's 12 more résumé-formal ones - not a
 // verbatim substring split of the JSON text, so the 7.1 "lead must be a
 // prefix of the current JSON string" drift guard does not apply the way
 // it would for a same-text split. `company`/`role`/`dates`/`location`
@@ -44,7 +44,7 @@ export type Role = {
 // Exactly one bullet per job carries an empty lead (the process bullet)
 // so it renders unbolded, per 7.1. `rest` includes its own leading
 // space or comma so `<strong>{lead}</strong>{rest}` reconstructs the
-// original sentence with correct punctuation — do not insert an
+// original sentence with correct punctuation - do not insert an
 // additional space when rendering.
 const roleBulletsByCompany: Record<string, Bullet[]> = {
   EventEase: [
@@ -106,7 +106,7 @@ export const roles: Role[] = siteData.experience.map((exp) => ({
     exp.bullets.map((rest) => ({ lead: "", rest })),
 }));
 
-// siteData.about.bio is one dense paragraph — ownership, stack, shipping
+// siteData.about.bio is one dense paragraph - ownership, stack, shipping
 // breadth, deployment and credentials all run together in a single block.
 // Fine for a résumé PDF; on the page it breaks the one-idea-per-block rule
 // every other section already follows (see the Experience bullets above).
@@ -117,7 +117,7 @@ export const roles: Role[] = siteData.experience.map((exp) => ({
 // this adapter just stops re-exporting it since nothing reads it directly
 // anymore.
 export const aboutIntro =
-  "I own features end to end — from the database to the interface someone actually clicks.";
+  "I own features end to end - from the database to the interface someone actually clicks.";
 
 export const aboutHighlights: Bullet[] = [
   {
@@ -126,7 +126,7 @@ export const aboutHighlights: Bullet[] = [
   },
   {
     lead: "Every interface ships responsive",
-    rest: " — phone to a 4K display — wired to real-time REST and WebSocket integrations, deployed through AWS S3.",
+    rest: " - phone to a 4K display - wired to real-time REST and WebSocket integrations, deployed through AWS S3.",
   },
   {
     lead: "",
@@ -186,7 +186,7 @@ export type ProjectMetric = { value: string; label: string };
 
 // Real metrics only (N8: "no invented metrics"), each traceable
 // straight to a number already sitting in that project's own
-// highlights in siteData.json — never generated or estimated. A
+// highlights in siteData.json - never generated or estimated. A
 // project whose highlights don't contain four genuinely quantifiable
 // numbers (Mini Search Engine has exactly one: the 10-page crawl
 // limit) gets fewer metrics rather than padded ones.
@@ -223,7 +223,7 @@ export function getProjectMetrics(name: string): ProjectMetric[] {
   return featuredProjectMetrics[name] ?? [];
 }
 
-// siteData.json's `description` is a spec-sheet sentence — what the
+// siteData.json's `description` is a spec-sheet sentence - what the
 // project is, its format, three separate features and the stack, all
 // run together. Fine for an ATS résumé parse, not for a card someone
 // skims in two seconds. Authored here, same drift-guard pattern as
@@ -234,18 +234,18 @@ const projectTaglines: Record<string, string> = {
   "AI Resume Tailoring Platform":
     "Keep one master resume. Get a tailored, ATS-scored version for every job in seconds.",
   SortBoard:
-    "Watch six sorting algorithms think — step by step, at your speed.",
+    "Watch six sorting algorithms think - step by step, at your speed.",
   "MRTD Validation System (ICAO TD3)":
     "Encodes and validates machine-readable passports, verified with mutation testing, not just unit tests.",
   "Mini Search Engine":
-    "A search engine built from scratch — crawl, index, and rank results, in the browser or the CLI.",
+    "A search engine built from scratch - crawl, index, and rank results, in the browser or the CLI.",
 };
 
 export function getProjectTagline(name: string, description: string): string {
   return projectTaglines[name] ?? description;
 }
 
-// siteData.extracurricular's `summary` is résumé-bullet prose — two
+// siteData.extracurricular's `summary` is résumé-bullet prose - two
 // dense sentences (300+ chars) that repeat the same nouns the role/org
 // slots already carry. Fine for an ATS parse, fails the
 // apple-content-hierarchy body budget (10-25 words / 60-160 chars, one
@@ -257,7 +257,7 @@ const communityBlurbs: Record<string, string> = {
   "SPY – The Graduate AI Club, Stevens Institute of Technology":
     "Coordinated speakers and logistics for AI workshops and lectures on campus.",
   "Student Club IDE, GEC Gandhinagar":
-    "Ran logistics for 30+ events — venues, vendors, and on-site execution.",
+    "Ran logistics for 30+ events - venues, vendors, and on-site execution.",
   "Event Management, GEC Gandhinagar":
     "Organized Garba festivals and campus celebrations, handling sponsorships and permissions.",
 };
@@ -284,12 +284,12 @@ export function getProjectCategory(name: string, tech: string[]): string {
   return projectCategories[name] ?? tech[0] ?? "Project";
 }
 
-// The three figures for the Opening hero (plan section 8.2, Q13 — no
+// The three figures for the Opening hero (plan section 8.2, Q13 - no
 // months figure). GPA is derived live from education[0].gpa
 // ("3.9/4.0" -> "3.9") so it can't drift from the actual data.
 //
 // The second figure used to be a hardcoded "102" tests count that
-// wasn't a real field anywhere in siteData.json — it was the sum of
+// wasn't a real field anywhere in siteData.json - it was the sum of
 // two unrelated numbers buried in one project's highlight sentence
 // (89 backend + 13 Playwright), assembled here rather than sourced.
 // A process metric standing in for an achievement, and not even a
@@ -326,7 +326,7 @@ export type CertificationGroup = {
 };
 
 // Grouped into the three issuer groups plan Phase 9 names ("Anthropic /
-// Engineering and web / Adjacent") — that grouping doesn't exist in
+// Engineering and web / Adjacent") - that grouping doesn't exist in
 // siteData.json and isn't derivable mechanically, so it's an editorial
 // call, keyed by name (not array index) so it can't silently misgroup
 // if a future sync reorders the raw array:
@@ -334,7 +334,7 @@ export type CertificationGroup = {
 // - Engineering and web: software/web skills from other providers (an
 //   AI coding-agent course, prompt engineering, React, a web dev
 //   bootcamp).
-// - Adjacent: Bloomberg Market Concepts — a finance credential, related
+// - Adjacent: Bloomberg Market Concepts - a finance credential, related
 //   to a tech career but not itself a software/AI skill.
 // A cert with no entry here falls into Adjacent by default rather than
 // being silently dropped if a future sync adds one.

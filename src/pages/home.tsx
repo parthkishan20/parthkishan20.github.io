@@ -6,7 +6,7 @@ import { FigureStrip } from "@/components/figure-strip";
 import { homeFigures, profile, resume } from "@/data/adapters";
 
 // Hero load stagger (plan 4.6): opacity/translateY, 880ms, children
-// delayed 40/130/220/310ms — one entry per hero block. This is a
+// delayed 40/130/220/310ms - one entry per hero block. This is a
 // mount-triggered stagger, not the scroll-triggered `useReveal`: the
 // hero is above the fold on load, so there's nothing to scroll into
 // view yet. Plain CSS transitions, no animation library, so the
@@ -62,7 +62,7 @@ export default function Home() {
           style={revealStyle(2)}
           className={`${revealClass} text-lg leading-relaxed text-muted-foreground`}
         >
-          React and TypeScript up front, FastAPI and Python behind it —
+          React and TypeScript up front, FastAPI and Python behind it -
           tested before anyone else sees it.
         </p>
 
