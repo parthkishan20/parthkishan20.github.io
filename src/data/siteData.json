@@ -71,6 +71,40 @@
   ],
   "projects": [
     {
+      "name": "Refund Agent (LLM Tool-Use Governance)",
+      "description": "Production-shaped LLM tool-use agent for customer-support refunds, built from a written spec, whose thesis is that a tool description is advisory while enforcement must be a programmatic check that runs regardless of what the model intends.",
+      "tech": ["Next.js 16", "TypeScript", "Anthropic Messages API", "LLM tool use", "Streaming agentic loop", "GitHub Actions", "GitHub Pages", "Claude Code"],
+      "github": "",
+      "demo": "https://parthkumar.me/claude-exam/demo",
+      "featured": true,
+      "highlights": [
+        "Built an LLM customer-support refund agent (Next.js 16, TypeScript, Anthropic Messages API) with a hand-written streaming agentic loop, four tools including a deliberately confusable refund/store-credit pair, and a programmatic policy hook that blocks refunds over $500 and deterministically files the human escalation in code.",
+        "Made policy enforcement structurally impossible to bypass by routing every model-requested side effect through a single dispatch choke point guarded by a pure synchronous rule gate whose only inputs are the tool name and parsed arguments, proven prompt-independent by a test that blocks a $900 refund with no system prompt in the loop.",
+        "Designed a structured tool-result error contract (transient / validation / permission) with per-category retry semantics - bounded backoff, no retry on identical params, and never retry for permission - plus an internal audit log kept on the opposite side of an explicit redaction boundary from anything the model can see.",
+        "Modeled a governance asymmetry most implementations collapse, blocking and escalating refunds over $500 where a human approval path exists while rejecting store credit over $2,000 outright where none does, with both limits pinned by dedicated scenario and unit tests.",
+        "Wrote a trace-first eval suite that asserts on structured execution traces and resulting state rather than model prose - 9 scenarios, 46 assertions, and 43 unit tests runnable against a live model, a scripted model, or recorded fixtures so CI stays free, offline, and deterministic.",
+        "Shipped a five-act, keyboard-driven stakeholder walkthrough as a public static site on GitHub Pages, gated in CI on typecheck, unit tests, and offline evals, replaying real traces through the real hook and dispatcher with zero API key and zero network calls.",
+        "Orchestrated the one-day solo build as three waves of parallel Claude Code subagents over disjoint file sets against a frozen shared contract, closing with a clause-by-clause spec-conformance review that records deviations and residual gaps rather than dropping them."
+      ]
+    },
+    {
+      "name": "Ledger (Hisab) - Shared Expense PWA",
+      "description": "Mobile-first installable PWA that replaced a 3-person household's shared Google Sheets/Excel expense ledger with real-time shared credits/debits and automatic attribution of every expense to the deposit it was spent from, built test-first on React and Supabase at $0/month.",
+      "tech": ["React 19", "TypeScript", "Vite", "Tailwind CSS v4", "TanStack Query", "Supabase", "PostgreSQL", "Row Level Security", "Vitest", "pgTAP", "Playwright", "GitHub Actions", "Sentry", "PWA"],
+      "github": "",
+      "demo": "https://hisab.parthkumar.me",
+      "featured": true,
+      "highlights": [
+        "Designed and shipped a mobile-first, installable PWA (React 19, TypeScript, Vite, Tailwind CSS v4, TanStack Query, Supabase Postgres/Auth/Realtime) that replaced a 3-person household's fragile shared expense spreadsheet, live on a custom domain at $0/month infrastructure cost.",
+        "Ported the spreadsheet's implicit SUMIFS/FILTER business logic into 7 versioned SQL migrations covering 5 tables, 4 views, audit and updated_at triggers, and Row Level Security on every table, computing each expense's credit period in a LATERAL join rather than storing it so back-dating, editing, or deleting a deposit can never leave stale links.",
+        "Implemented real-time multi-device sync with TanStack Query and Supabase postgres_changes subscriptions plus optimistic mutations with rollback, so an entry logged on one phone appears on the others in under two seconds.",
+        "Drove the whole build test-first with 193 Vitest unit/component tests, 48 pgTAP assertions against real Postgres, and 10 Playwright end-to-end specs with axe accessibility sweeps, all gated in GitHub Actions alongside coverage floors and a 200 KB gzipped bundle budget - production Lighthouse 90 performance, 100 accessibility, 100 best practices.",
+        "Migrated five years of real historical data with a test-first Python (openpyxl, supabase-py) importer handling blank and formula-only rows, Excel duration cells, and refunds encoded as negative debits, then verified the import against the source spreadsheet to the cent with a SQL reconciliation script.",
+        "Hardened and operated the app in production for real users - invite-only auth with an email allowlist enforced in a security definer trigger, RLS verified by scripted anonymous-access probes against production, security headers, CSV export hardened against formula injection, soft deletes with 30-day restore, Sentry, and a weekly pg_dump backup with a rehearsed restore drill.",
+        "Ran a full UI/UX overhaul phase against a written design spec after direct user feedback, delivering three-layer design tokens, a 9-component primitive library, accessible focus-trapped sheet dialogs, and responsive phone/tablet/desktop shells with zero axe violations across every route."
+      ]
+    },
+    {
       "name": "AI Resume Tailoring Platform",
       "description": "Full-stack AI resume workstation that keeps one master resume in YAML and uses LLMs to generate job-specific tailored resumes, score ATS keyword fit, and apply chat-driven edits, shipped as a single Docker container with FastAPI, Next.js, and rendercv PDF rendering.",
       "tech": ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "FastAPI", "SQLite", "LiteLLM", "Server-Sent Events", "rendercv", "Typst", "Playwright", "Docker"],
@@ -242,6 +276,34 @@
       "link": "https://verify.skilljar.com/c/t92r3i8z3xu7"
     },
     {
+      "name": "Introduction to Agent Skills",
+      "issuer": "Anthropic",
+      "year": 2026,
+      "credentialId": "",
+      "link": "https://verify.skilljar.com/c/kj9fm5krs39t"
+    },
+    {
+      "name": "Building with the Claude API",
+      "issuer": "Anthropic",
+      "year": 2026,
+      "credentialId": "",
+      "link": "https://verify.skilljar.com/c/kor3ja67nogr"
+    },
+    {
+      "name": "Introduction to Model Context Protocol",
+      "issuer": "Anthropic",
+      "year": 2026,
+      "credentialId": "",
+      "link": "https://verify.skilljar.com/c/3gam7mv9rti6"
+    },
+    {
+      "name": "Introduction to Subagents",
+      "issuer": "Anthropic",
+      "year": 2026,
+      "credentialId": "",
+      "link": "https://verify.skilljar.com/c/b8fmiwummwrs"
+    },
+    {
       "name": "AI Coder: Complete Claude Code & Coding Agents Course",
       "issuer": "Udemy – Ed Donner",
       "year": 2026,
@@ -302,6 +364,6 @@
   ],
   "resume": {
     "pdfPath": "/Parthkumar_Patel_Resume.pdf",
-    "lastUpdated": "August 2026"
+    "lastUpdated": "September 2026"
   }
 }

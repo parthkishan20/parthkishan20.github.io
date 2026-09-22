@@ -191,6 +191,18 @@ export type ProjectMetric = { value: string; label: string };
 // numbers (Mini Search Engine has exactly one: the 10-page crawl
 // limit) gets fewer metrics rather than padded ones.
 const featuredProjectMetrics: Record<string, ProjectMetric[]> = {
+  "Refund Agent (LLM Tool-Use Governance)": [
+    { value: "$500", label: "Refund ceiling enforced in code" },
+    { value: "9", label: "Eval scenarios asserted on traces" },
+    { value: "46", label: "Assertions across the eval suite" },
+    { value: "43", label: "Unit tests" },
+  ],
+  "Ledger (Hisab) - Shared Expense PWA": [
+    { value: "193", label: "Vitest unit and component tests" },
+    { value: "48", label: "pgTAP assertions against real Postgres" },
+    { value: "10", label: "Playwright end-to-end specs" },
+    { value: "100", label: "Lighthouse accessibility, in production" },
+  ],
   "AI Resume Tailoring Platform": [
     { value: "23", label: "REST/SSE endpoints" },
     { value: "7", label: "FastAPI route modules" },
@@ -214,8 +226,11 @@ const featuredProjectMetrics: Record<string, ProjectMetric[]> = {
   ],
 };
 
-// featured (exactly 4: Résumé Platform, SortBoard, MRTD, Mini Search
-// Engine, per plan 7.3) go in the pan; the rest in the short list.
+// featured go in the pan; the rest in the short list. Plan 7.3 set
+// this at exactly 4 (Résumé Platform, SortBoard, MRTD, Mini Search
+// Engine); the Sept 2026 résumé sync added Refund Agent and Ledger,
+// both live and both stronger than the original four, so the pan now
+// carries 6.
 export const featuredProjects = projects.filter((p) => p.featured);
 export const otherProjects = projects.filter((p) => !p.featured);
 
@@ -231,6 +246,10 @@ export function getProjectMetrics(name: string): ProjectMetric[] {
 // single line. A project with no entry falls back to its raw
 // description rather than showing nothing.
 const projectTaglines: Record<string, string> = {
+  "Refund Agent (LLM Tool-Use Governance)":
+    "An agent that can't break refund policy - because the limit lives in code, not in the prompt.",
+  "Ledger (Hisab) - Shared Expense PWA":
+    "Shared household money, settled in real time. The spreadsheet is gone.",
   "AI Resume Tailoring Platform":
     "Keep one master resume. Get a tailored, ATS-scored version for every job in seconds.",
   SortBoard:
@@ -274,6 +293,8 @@ export function getCommunityBlurb(org: string, summary: string): string {
 // programs. Falls back to the project's first tech tag so a card never
 // ships with no eyebrow at all.
 const projectCategories: Record<string, string> = {
+  "Refund Agent (LLM Tool-Use Governance)": "LLM agent governance",
+  "Ledger (Hisab) - Shared Expense PWA": "Real-time PWA",
   "AI Resume Tailoring Platform": "Full-stack AI app",
   SortBoard: "Algorithm visualizer",
   "MRTD Validation System (ICAO TD3)": "Systems and testing",
@@ -330,7 +351,7 @@ export type CertificationGroup = {
 // siteData.json and isn't derivable mechanically, so it's an editorial
 // call, keyed by name (not array index) so it can't silently misgroup
 // if a future sync reorders the raw array:
-// - Anthropic: the four certs actually issued by Anthropic.
+// - Anthropic: the eight certs actually issued by Anthropic.
 // - Engineering and web: software/web skills from other providers (an
 //   AI coding-agent course, prompt engineering, React, a web dev
 //   bootcamp).
@@ -343,6 +364,10 @@ const certificationGroupNames: Record<string, string> = {
   "Claude Code 101": "Anthropic",
   "Claude Code in Action": "Anthropic",
   "AI Fluency Framework & Foundations": "Anthropic",
+  "Introduction to Agent Skills": "Anthropic",
+  "Building with the Claude API": "Anthropic",
+  "Introduction to Model Context Protocol": "Anthropic",
+  "Introduction to Subagents": "Anthropic",
   "AI Coder: Complete Claude Code & Coding Agents Course":
     "Engineering and web",
   "Advanced Prompt Engineering": "Engineering and web",
