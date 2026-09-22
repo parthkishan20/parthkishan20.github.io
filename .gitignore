@@ -36,3 +36,8 @@ blob-report/
 playwright/.cache/
 
 .playwright-mcp
+# Master resume source (rendercv YAML) - deliberately kept out of the repo.
+# Drop it in locally when syncing content into src/data/siteData.json, then
+# it stays untracked no matter what gets staged.
+master-resume.yaml
+master-resume.yml
