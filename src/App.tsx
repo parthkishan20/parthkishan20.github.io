@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { SEOHead } from "@/components/seo-head";
 import { BackToTop } from "@/components/back-to-top";
+import { AgentField } from "@/components/agent-field";
 import { Toaster } from "@/components/ui/toaster";
 import { SiteShell } from "@/components/site-shell";
 import { Section } from "@/components/section";
@@ -56,6 +57,7 @@ function App() {
             </div>
           </Section>
         </SiteShell>
+        <AgentField />
         <BackToTop />
         <Toaster />
       </ThemeProvider>

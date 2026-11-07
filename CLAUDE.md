@@ -35,6 +35,8 @@ This is a single-page portfolio site - no router. All sections live in `src/App.
 
 **Animations:** Framer Motion is used across page components for entrance animations (`motion.div` with `whileInView` + `viewport={{ once: true }}`).
 
+**Agent field:** `src/components/agent-field.tsx` mounts a fixed, click-through canvas (z-30, 60% opacity, above content but under the mobile nav and back-to-top) driven by `src/lib/agent-field/engine.ts`. An Orchestrator plans whichever section is in view and hands tasks to worker agents, who walk to real on-screen elements, frame them ("Writer · editing headline"), type a terminal log built from the element's text/link/page file, and sometimes chat. Agents are orbs with lucide icons (`icons.ts`); colors come only from the palette tokens in `index.css`. Copy lives in `script.ts`. Reduced motion paints one still frame.
+
 **GitHub stats:** `src/components/github-stats.tsx` fetches live data from the GitHub public API (unauthenticated) on mount and shows a skeleton while loading.
 
 **Images:** Profile photo and project images go in `public/images/`. The profile avatar is expected at `public/images/profile/avatar.png`. `public/favicon.svg` is a minimal monogram matching the achromatic palette, with a light/dark variant via `prefers-color-scheme`.
